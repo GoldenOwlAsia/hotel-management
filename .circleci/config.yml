@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/circleci-app
-
     # Primary container image where all commands run
 
     docker:
@@ -19,38 +17,50 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: HotelManagement_test
 
+    working_directory: ~/repo
+
     steps:
       - checkout
 
-      # Restore bundle cache
+      # Download and cache dependencies
       - restore_cache:
           keys:
-            - app-{{ checksum "Gemfile.lock" }}
-            - app-
-
-      # Bundle install dependencies
-      - run:
-          name: Install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - run: sudo apt install -y postgresql-client || true
-
-      # Store bundle cache
-      - save_cache:
-          key: app-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
-          name: Database Setup
+          name: install dependencies
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:structure:load
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # run tests!
       - run:
-          name: Parallel RSpec
-          command: bin/rails test
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
-      # Save artifacts
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      # collect reports
       - store_test_results:
           path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
