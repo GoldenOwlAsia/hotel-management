@@ -1,0 +1,7 @@
+= content_for :page_class, 'hotels-index'
+section.hotel
+  h1 Hotels
+  - @hotels.each do |hotel|
+    = link_to hotel_rooms_path(hotel) do
+      div
+        = hotel.name
