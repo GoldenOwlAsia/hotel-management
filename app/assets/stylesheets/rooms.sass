@@ -1,0 +1,215 @@
+@import 'main.sass'
+@import 'variables.sass'
+@import 'mixins.sass'
+
+.rooms
+  font-size: 10.5pt
+  padding-top: 150pt
+
+  &__room-wrapper
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+  &__navigations
+    display: flex
+    justify-content: center
+    padding: 20pt 0
+
+  &__navigations-list
+    list-style: none
+    display: flex
+    justify-content: space-between
+    padding: 0
+
+  h5
+    padding: 0 5pt 0 0
+    margin: 0
+    font-size: 10.5pt
+
+  p
+    padding: 0
+    margin: 0
+
+  &__room
+    width: 190pt
+    height: 150pt
+    margin: 10pt
+    border-radius: 4px
+    border: $border-line-whisper
+    padding: 10pt 0 10pt 0
+
+  &__rent-type
+    text-transform: capitalize
+
+  &__number-wrapper
+    display: flex
+    align-items: center
+    padding-left: 10pt
+    line-height: 20pt
+
+  &__rent-type-wrapper
+    padding-left: 10pt
+    line-height: 20pt
+
+  &__status-wrapper
+    padding: 0 0 55pt 10pt
+
+  &__choose-btn-wrapper
+    display: flex
+    justify-content: center
+    padding-bottom: 20pt
+
+  &__choose-btn
+    color: $black
+    background-color: $whisper
+    border-radius: 4px
+    padding: 5pt 20pt
+    border: $border-line-whisper
+
+  &__rooms__nav-link
+    padding: 2pt 5pt
+    margin: 0 10pt
+
+  &__link-active
+    background-color: $orange
+    display: flex
+    justify-content: center
+    border-radius: 4px
+    padding: 2pt 5pt
+    a
+      color: $white
+
+  &__navigations-list
+    li:not(:last-child)
+      margin-right: 20pt
+
+  &__room-container
+    h1
+      padding: 20pt 0 0 0
+      text-transform: uppercase
+      text-align: center
+
+.rooms-index
+  padding: 0 25pt
+
+
+.room-status-booked
+  background-color: $blue
+  color: #ffffff
+
+.room-status-rent
+  background-color: $orange
+  color: #ffffff
+
+.room-status-available
+  &:hover
+    &:after
+      content: 'Chọn phòng'
+      display: block
+      color: $black
+      background-color: $whisper
+      border-radius: 4px
+      padding: 5pt 20pt
+      border: $border-line-whisper
+      margin: 40pt 10pt
+      text-align: center
+      transition: ease-in-out
+
+  .rooms__status-wrapper
+    padding-bottom: 30pt
+
+.menu
+  display: block
+
+@media screen and (min-width: 420px)
+  .rooms
+    margin: 0 auto
+
+    &__room-wrapper
+      display: grid
+      grid-template-columns: repeat(2, auto)
+      grid-gap: 10pt
+      padding-top: 10pt
+      margin: 0 10pt
+
+    &__room
+      width: 142.5pt
+      height: 120pt
+      margin: 0
+
+    &__navigations-list
+      justify-content: flex-start
+      padding: 0
+      li:not(:last-child)
+        margin-right: 20pt
+        text-align: center
+
+  .room-status-available
+    &:hover
+      &:after
+        margin: 10pt 10pt
+
+@media screen and (min-width: 500px)
+  .rooms
+    &__room-wrapper
+      grid-gap: 20pt
+
+@media screen and (min-width: 767px)
+  .rooms-index
+    padding: 0 55pt
+
+  .rooms
+    &__room-wrapper
+      grid-template-columns: repeat(3, auto)
+
+    &__number-wrapper
+      line-height: 15pt
+
+    &__rent-type-wrapper
+      line-height: 15pt
+
+    &__status-wrapper
+      padding: 0 0 40pt 10pt
+
+    &__navigations
+      justify-content: initial
+
+    &__room-container
+      h1
+        text-align: left
+
+@media screen and (min-width: 1023px)
+  .rooms-index
+    padding: 0 60pt
+
+  .rooms
+    padding-top: 180pt
+
+    &__room-wrapper
+      grid-template-columns: repeat(4, auto)
+
+    &__navigations
+      padding-left: 10pt
+
+    &__room-container
+      h1
+        padding-left: 10pt
+
+@media screen and (min-width: 1400px)
+  .rooms
+
+    &__room-wrapper
+      grid-template-columns: repeat(6, auto)
+
+    &__navigations
+      padding-left: 0
+
+    &__room-container
+      h1
+        padding-left: 0
+
+@media screen and (min-width: 2559px)
+  .rooms-index
+    max-width: 1440px

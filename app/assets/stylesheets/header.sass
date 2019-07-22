@@ -1,0 +1,224 @@
+@import 'mixins.sass'
+@import 'variables.sass'
+
+.desktop-header
+  display: none
+
+  &__wrapper
+    display: flex
+
+  &__left-side
+    flex: 1
+    display: flex
+    align-items: center
+
+  &__right-side
+    display: flex
+    font-size: 10pt
+    p
+      white-space: nowrap
+    > div
+      display: flex
+
+  &__list
+    display: flex
+    list-style-type: none
+    padding: 0
+    margin: 0
+    li
+      padding-right: 10pt
+      white-space: nowrap
+      font-size: 10pt
+
+.mobile-header
+  &__hamburger-wrapper
+    position: fixed
+    top: 25pt
+    left: 15pt
+    z-index: 9999999999
+    span
+      width: 20pt
+      height: 3pt
+      display: block
+      background-color: #ff6363
+    span:nth-child(2)
+      margin: 2pt 0
+
+  &__toogle-menu
+    display: block
+
+  &__toogle-hamburger
+    z-index: 9999999999
+    position: fixed
+    top: 25pt
+    span
+      background-color: #ff6363
+      border: none
+    span:first-child
+      transform: rotate(-45deg) translate(-6px, 5px)
+      transition: delay 3s
+    span:nth-child(2)
+      display: none
+    span:last-child
+      transform: rotate(45deg) translate(2px, 3px)
+      display: block
+
+  &__list
+    display: none
+    ul
+      list-style: none
+      position: fixed
+      min-height: 100vh
+      z-index: 999999999
+      background-color: #ffffff
+      width: 100vw
+      top: 0
+      padding-top: 60pt
+      top: -13pt
+      padding-top: 52pt
+      left: 0
+      padding-left: 50pt
+      li
+        color: $black
+        padding: 5pt 0
+
+.sub-header
+  position: fixed
+  left: 0
+  right: 0
+  background: white
+  z-index: 999999
+  padding-top: 60pt
+  font-size: 10.5pt
+  h3
+    position: fixed
+    top: 0
+    left: 43%
+    right: 35%
+    white-space: nowrap
+    top: 29pt
+    z-index: 999999999999
+
+  &__search
+    form
+      border: $border-line-whisper
+      height: 27pt
+      border-radius: 13.5pt
+      width: 148pt
+      padding-left: 10pt
+      display: flex
+      align-items: center
+      input
+        border: none
+        &:focus
+          outline: none
+
+  &__lelf-side
+    display: flex
+    justify-content: center
+    padding: 0 0 20pt 0
+
+  &__right-side
+    display: flex
+    justify-content: center
+    > p
+      border: $border-line-whisper
+      width: 148pt
+      border-radius: 13.5pt
+      height: 27pt
+      align-items: center
+      display: flex
+      font-family: 'Nunito'
+      font-size: 10.5pt
+      justify-content: center
+      color: $cornFlowerBlue
+      span:first-child
+        color: $gray
+        padding-right: 2pt
+
+  &__search-btn
+    position: relative
+    bottom: 15pt
+    background-color: transparent
+    border: none
+
+  &__search-input
+    border: $border-line-whisper
+
+  &__icon
+    width: 10pt
+
+@media screen and(min-width: 767px)
+  .sub-header
+    display: flex
+    justify-content: center
+    flex-direction: column
+
+    > div:first-child
+      display: flex
+      justify-content: center
+      border-bottom: 1px solid #f5f8f7
+
+    > div:last-child
+      padding: 20pt 0 20pt 55pt
+
+    &__lelf-side
+      padding: 0 20pt 20pt 0
+
+@media screen and (min-width: 1023px)
+  .sub-header
+    display: flex
+    padding: 80pt 70pt 0 70pt
+    justify-content: initial
+    > div:last-child
+      padding-left: 0
+
+    h3
+      position: static
+      margin-right: 10pt
+
+    &__lelf-side
+      display: flex
+      flex: 1
+      justify-content: space-between
+      align-items: center
+
+      &__left-side
+        padding: 0 0 20pt 0
+
+      form
+        display: flex
+        align-items: center
+
+    &__right-side
+      display: flex
+      flex: 2
+      justify-content: flex-end
+      > p
+        justify-content: center
+
+  .desktop-header
+    display: block
+    padding: 20pt 50pt
+    position: fixed
+    bottom: 92%
+    left: 0
+    right: 0
+    z-index: 99999999
+    padding: 20pt 70pt
+    p:not(:last-child)
+      padding-right: 20pt
+
+  .mobile-header
+    display: none
+
+@media screen and (min-width: 1439px)
+  .desktop-header
+    padding: 20pt 60pt
+
+  .sub-header
+    padding-left: 60pt
+    padding-right: 60pt
+
+    &__right-side
+      flex: 3

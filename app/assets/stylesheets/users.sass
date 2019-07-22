@@ -1,0 +1,51 @@
+@import 'mixins.sass'
+
+.sign-in-up-container
+  .desktop-header, .sub-header
+    display: none
+
+.user-form
+  text-align: center
+  h2
+    text-align: center
+  a
+    text-decoration: none
+    padding: 20pt 0
+    color: black
+
+  > div
+    display: flex
+    justify-content: center
+
+  .field
+    display: flex
+    padding: 5pt 0
+
+  input
+    border: $border-line-whisper
+    border-radius: 4px
+    padding: 5pt 0
+    width: 220pt
+    &:focus
+      outline: none
+
+  .actions
+    display: flex
+    justify-content: center
+    input[type='submit']
+      padding-left: 0
+      background-color: #ff6363
+      color: #ffffff
+      border: 1px solid transparent
+
+  .remember-me
+    input
+      width: initial
+
+.share-login-btn
+  position: relative
+  top: 20pt
+
+@media screen and (min-width: 767px)
+  width: 500pt
+  margin: 0 auto

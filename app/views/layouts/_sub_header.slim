@@ -1,0 +1,14 @@
+header
+  .sub-header
+    div
+      .sub-header__lelf-side
+        h3= @hotel_name
+        = render 'layouts/search'
+
+      .sub-header__right-side
+        p
+          span Ngày:
+          span
+            = Time.now.strftime('%d tháng %-m')
+
+    = yield :navigations

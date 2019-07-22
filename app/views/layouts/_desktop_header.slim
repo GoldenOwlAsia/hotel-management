@@ -1,0 +1,14 @@
+header.desktop-header
+  .desktop-header__wrapper
+    .desktop-header__left-side
+      ul.desktop-header__list
+        li Bảng điều khiển
+        li Danh sách phòng
+        li Danh sách khách
+        li Lịch sử
+    .desktop-header__right-side
+      p Thoi gian lam viec
+      div
+        p
+          = "#{current_user.first_name} #{current_user.last_name}"
+        p Thoi gian làm  việc: 48 phút
