@@ -1,0 +1,60 @@
+<%= content_for :page_class, 'sign-in-up-container' %>
+<section class='user-form'>
+  <h2>Đăng ký</h2>
+  <div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: resource %>
+
+      <div class='field'>
+        <%= f.email_field :email,
+        autofocus: true, autocomplete: 'email',
+        placeholder:'Email',
+        class:'user-form__input' %>
+      </div>
+
+      <div class='field'>
+        <%= f.text_field :user_name,
+          autofocus: true,
+          autocomplete: 'user_name',
+          placeholder:'Tên người dùng',
+          class:'user-form__input' %>
+      </div>
+
+      <div class='field'>
+        <%= f.text_field :first_name,
+          autofocus: true,
+          placeholder:'Tên',
+          autocomplete: 'first_name',
+          class:'user-form__input' %>
+      </div>
+
+      <div class='field'>
+        <%= f.text_field :last_name,
+          autofocus: true,
+          placeholder:'Họ',
+          autocomplete: 'last_name',
+          class:'user-form__input' %>
+      </div>
+
+      <div class='field'>
+        <% if @minimum_password_length %>
+        <% end %><br />
+        <%= f.password_field :password,
+          autocomplete: 'new-password',
+          placeholder:'Mật khẩu',
+          class:'user-form__input' %>
+      </div>
+
+      <div class='field'>
+        <%= f.password_field :password_confirmation,
+          autocomplete: 'new-password',
+          placeholder:'Xác nhận mật khẩu' %>
+      </div>
+    </div>
+
+    <div class='actions'>
+      <%= f.submit 'Đăng ký' %>
+    </div>
+  <% end %>
+
+<%= render 'devise/shared/links' %>
