@@ -9,6 +9,9 @@ class RoomsController < ApplicationController
     @standard_rooms = @rooms.standard
     @superior_rooms = @rooms.superior
     @vip_rooms = @rooms.vip
+    @standard_rooms_available = @standard_rooms.where(status: 'available')
+    @superior_rooms_available = @superior_rooms.where(status: 'available')
+    @vip_rooms_available = @vip_rooms.where(status: 'available')
   end
 
   private

@@ -6,17 +6,17 @@
       li class="rooms__nav-link #{ @room_type_param == 'standard' ? 'rooms__link-active' : '' }"
         = link_to 'standard', url_for(room_type: 'standard')
         span
-          = @standard_rooms.count
+          = @standard_rooms_available.count
 
       li class="rooms__nav-link #{ @room_type_param == 'superior' ? 'rooms__link-active' : '' }"
         = link_to 'superior', url_for(room_type: 'superior')
         span
-          = @superior_rooms.count
+          = @superior_rooms_available.count
 
       li class="rooms__nav-link #{ @room_type_param == 'vip' ? 'rooms__link-active' : '' }"
         = link_to 'vip', url_for(room_type: 'vip')
         span
-          = @vip_rooms.count
+          = @vip_rooms_available.count
 
       li class="rooms__nav-link #{ @room_type_param.blank? ? 'rooms__link-active' : '' }"
         = link_to 'All', url_for(room_type: nil)
