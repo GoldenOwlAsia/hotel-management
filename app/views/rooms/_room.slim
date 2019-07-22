@@ -1,0 +1,13 @@
+div class=('rooms__room ' + get_rom_status_class(room))
+  .rooms__number-wrapper
+    h5 Phòng
+    p
+      = room.room_number
+  .rooms__status-wrapper
+    p #{ get_rom_status_text(room) }
+
+  .rooms__rent-type-wrapper
+    - if room.rent_type.present?
+      h5 Hinh thuc
+      p.rooms__rent-type
+        = room.rent_type
