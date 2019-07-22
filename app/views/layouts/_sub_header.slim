@@ -2,8 +2,10 @@ header
   .sub-header
     div
       .sub-header__lelf-side
-        h3= @hotel_name
-        = render 'layouts/search'
+        - if @hotel_id.present?
+          h3
+            = @hotel_name
+          = render 'layouts/search'
 
       .sub-header__right-side
         p

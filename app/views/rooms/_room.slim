@@ -10,4 +10,4 @@ div class=('rooms__room ' + get_rom_status_class(room))
     - if room.rent_type.present?
       h5 Hinh thuc
       p.rooms__rent-type
-        = room.rent_type
+        = get_rent_type_text(room)
