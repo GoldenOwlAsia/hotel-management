@@ -12,8 +12,8 @@ class RoomsController < ApplicationController
     @vip_rooms = @rooms.vip
 
     @available_rooms = Room.where(hotel_id: params[:hotel_id], status: 'available')
-                           .group(:room_type)
-                           .count
+                          .group(:room_type)
+                          .count
   end
 
   def show
