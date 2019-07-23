@@ -1,11 +1,23 @@
 div class=('rooms__room ' + get_rom_status_class(room))
-  .rooms__number-wrapper
-    h5 Phòng
-    p
-      = room.room_number
+  div
+    .rooms__number-wrapper
+      h5.rooms__room-title Phòng
+      h5.rooms__room-title
+        = room.room_number
 
-  .rooms__rent-type-wrapper
-    - if room.rent_type.present?
-      h5 Hình thức
-      p.rooms__rent-type
-        = get_rent_type_text(room)
+    .rooms__checkin-time-wrapper
+      p Giờ check in: 19:00
+      p 21.7.2019
+
+    .rooms__status-wrapper
+      p #{ get_rom_status_text(room) }
+
+  div
+    .rooms__choose-room-btn-wrapper
+      = link_to 'Chọn phòng', new_booking_path
+
+    .rooms__rent-type-wrapper
+      - if room.rent_type.present?
+        h5.rooms__room-title Hình thức
+        p.rooms__rent-type
+          = get_rent_type_text(room)

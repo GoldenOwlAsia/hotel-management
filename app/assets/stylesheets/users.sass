@@ -1,6 +1,8 @@
 @import 'mixins.sass'
 
 .sign-in-up-container
+  padding-top: 50pt
+  font-family: 'Nunito'
   .desktop-header, .sub-header
     display: none
 
@@ -21,11 +23,15 @@
     display: flex
     padding: 5pt 0
 
+  label, a
+    font-size: 10.5pt
+
   input
     border: $border-line-whisper
     border-radius: 4px
     padding: 5pt 0
     width: 220pt
+    padding-left: 5pt
     &:focus
       outline: none
 

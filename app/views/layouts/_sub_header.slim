@@ -3,9 +3,9 @@ header
     div
       .sub-header__lelf-side
         - if @hotel_id.present?
-          h3
+          h3 Khách sạn
+          span
             = @hotel_name
-          = render 'layouts/search'
 
       .sub-header__right-side
         p
