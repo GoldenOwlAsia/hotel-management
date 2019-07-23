@@ -4,20 +4,8 @@
   = render 'rooms/navigations'
 
 section.rooms
-  - if @rooms_floor_one.present?
+  - @sorted_groups.each do |group_key|
     div.rooms__room-container
-      h1 tầng 1
+      h1 tầng #{group_key}
       .rooms__room-wrapper
-        = render @rooms_floor_one
-
-  - if @rooms_floor_two.present?
-    div.rooms__room-container
-      h1 tầng 2
-      .rooms__room-wrapper
-        = render @rooms_floor_two
-
-  - if @rooms_floor_three.present?
-    div.rooms__room-container
-      h1 tầng 3
-      .rooms__room-wrapper
-        = render @rooms_floor_three
+        = render @grouped_rooms[group_key]

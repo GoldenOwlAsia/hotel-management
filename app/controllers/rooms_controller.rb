@@ -13,10 +13,9 @@ class RoomsController < ApplicationController
     @available_rooms = Room.where(hotel_id: params[:hotel_id], status: 'available')
                           .group(:room_type)
                           .count
-                          
-    @rooms_floor_one = Room.where(hotel_id: params[:hotel_id], floor_number: 1)
-    @rooms_floor_two = Room.where(hotel_id: params[:hotel_id], floor_number: 2)
-    @rooms_floor_three = Room.where(hotel_id: params[:hotel_id], floor_number: 3)
+
+    @grouped_rooms = Room.where(hotel_id: params[:hotel_id]).group_by(&:floor_number)
+    @sorted_groups = @grouped_rooms.keys.sort
   end
 
   def show
