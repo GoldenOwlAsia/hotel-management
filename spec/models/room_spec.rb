@@ -42,7 +42,7 @@ RSpec.describe Room, type: :model do
 
   describe 'validates room type' do
     let(:hotel) { create(:hotel) }
-    let(:room) { build(:room, room_type: 'vip', hotel: hotel) }
+    let(:room) { build(:room, room_type: 'queen', hotel: hotel) }
     context 'valid' do
       it 'room type is not nil' do
         expect(room).to be_valid

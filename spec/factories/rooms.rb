@@ -5,6 +5,6 @@ FactoryBot.define do
     status { 'rent' }
     rent_type { 'hourly' }
     floor_number { 1 }
-    room_type { 'standard' }
+    room_type { 'single' }
   end
 end

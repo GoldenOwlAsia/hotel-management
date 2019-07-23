@@ -1,0 +1,10 @@
+.new-booking
+  = simple_form_for :bookings, url: bookings_path do |f|
+    = f.input :name, class: 'form-control'
+    = f.input :customer_nil, class: 'form-control'
+    = f.input :phone_number, class: 'form-control'
+    = f.input :checkin_time, class: 'form-control'
+    = f.input :checkout_time, class: 'form-control'
+    = f.input :booked_at, class: 'form-control'
+    = f.input :phone_number, class: 'form-control'
+    = f.button :submit, 'Bat dau nhan phong', class: "btn btn-primary"
