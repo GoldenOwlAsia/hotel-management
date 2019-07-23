@@ -43,22 +43,25 @@ puts '--> Creating rooms...'
   {number: '107', floor: 1},
   {number: '108', floor: 1},
   {number: '109', floor: 1},
+  {number: '110', floor: 1},
   {number: '201', floor: 2},
   {number: '202', floor: 2},
   {number: '203', floor: 2},
   {number: '206', floor: 2},
   {number: '207', floor: 2},
   {number: '208', floor: 2},
+  {number: '210', floor: 2},
   {number: '301', floor: 3},
   {number: '302', floor: 3},
   {number: '303', floor: 3},
   {number: '306', floor: 3},
   {number: '307', floor: 3},
   {number: '308', floor: 3},
+  {number: '310', floor: 3},
 ].each do |room_position|
   floor = room_position[:floor]
   room_number = room_position[:number]
-  room_type = [:standard, :superior, :vip].sample
+  room_type = [:single, :double, :queen].sample
   rent_type = [:hourly, :overnight].sample
   status = [:rent, :booked].sample
   Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.first)
@@ -68,14 +71,17 @@ end
 [
   {number: '104', floor: 1},
   {number: '105', floor: 1},
+  {number: '111', floor: 1},
   {number: '204', floor: 2},
   {number: '205', floor: 2},
+  {number: '211', floor: 2},
   {number: '304', floor: 3},
   {number: '305', floor: 3},
+  {number: '311', floor: 3},
 ].each do |room_position|
   floor = room_position[:floor]
   room_number = room_position[:number]
-  room_type = [:standard, :superior, :vip].sample
+  room_type = [:single, :double, :queen].sample
   rent_type = [''].sample
   status = [:available].sample
   Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.first)
