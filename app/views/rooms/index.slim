@@ -1,41 +1,23 @@
 = content_for :page_class, 'rooms-index'
 
 = content_for :navigations do
-  .rooms__navigations
-    ul.rooms__navigations-list
-      li class="rooms__nav-link #{ @room_type_param == 'standard' ? 'rooms__link-active' : '' }"
-        = link_to 'standard', url_for(room_type: 'standard')
-        span
-          = " (#{@available_rooms['standard'] || 0})"
-
-      li class="rooms__nav-link #{ @room_type_param == 'superior' ? 'rooms__link-active' : '' }"
-        = link_to 'superior', url_for(room_type: 'superior')
-        span
-          = " (#{@available_rooms['superior'] || 0})"
-
-      li class="rooms__nav-link #{ @room_type_param == 'vip' ? 'rooms__link-active' : '' }"
-        = link_to 'vip', url_for(room_type: 'vip')
-        span
-          = " (#{@available_rooms['vip'] || 0})"
-
-      li class="rooms__nav-link #{ @room_type_param.blank? ? 'rooms__link-active' : '' }"
-        = link_to 'All', url_for(room_type: nil)
+  = render 'rooms/navigations'
 
 section.rooms
-  - if @standard_rooms.present?
+  - if @rooms_floor_one.present?
     div.rooms__room-container
-      h1 Phòng standard
+      h1 tầng 1
       .rooms__room-wrapper
-        = render @standard_rooms
+        = render @rooms_floor_one
 
-  - if @superior_rooms.present?
+  - if @rooms_floor_two.present?
     div.rooms__room-container
-      h1 Phòng superior
+      h1 tầng 2
       .rooms__room-wrapper
-        = render @superior_rooms
+        = render @rooms_floor_two
 
-  - if @vip_rooms.present?
+  - if @rooms_floor_three.present?
     div.rooms__room-container
-      h1 Phòng vip
+      h1 tầng 3
       .rooms__room-wrapper
-        = render @vip_rooms
+        = render @rooms_floor_three
