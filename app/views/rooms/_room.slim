@@ -14,7 +14,7 @@ div class=('rooms__room ' + get_rom_status_class(room))
 
   div
     .rooms__choose-room-btn-wrapper
-      = link_to 'Chọn phòng', new_booking_path
+      = link_to 'Chọn phòng', booking_room_path(room)
 
     .rooms__rent-type-wrapper
       - if room.rent_type.present?
