@@ -7,7 +7,7 @@
 
 .rooms
   font-size: 10.5pt
-  padding-top: 175pt
+  padding-top: 180pt
 
   &__room-title
     font-weight: bold
@@ -69,17 +69,18 @@
     padding: 5pt 20pt
     border: $border-line-whisper
 
-  &__rooms__nav-link
-    margin: 0 10pt
+  &__nav-link
+    a, span
+      color: $lightGray
 
   &__link-active
     display: flex
     justify-content: center
     border-radius: 4px
-    color: $black
     font-weight: bold
     a, span
       color: $black
+      font-weight: bold
 
   &__navigations-list
     li:not(:last-child)
@@ -160,7 +161,7 @@
     padding: 0 54pt
 
   .rooms
-    padding-top: 145pt
+    padding-top: 170pt
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
