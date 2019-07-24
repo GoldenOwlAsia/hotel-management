@@ -3,7 +3,7 @@
     li class="rooms__nav-link #{ @room_type_param.blank? ? 'rooms__link-active' : '' }"
       = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel_id)
       span
-        = " (#{@available_rooms_all || 0})"
+        = " (#{@available_rooms['single'] + @available_rooms['double']+ @available_rooms['queen'] || 0})"
 
     li class="rooms__nav-link #{ @room_type_param == 'single' ? 'rooms__link-active' : '' }"
       = link_to 'Phòng đơn', url_for(room_type: 'single', hotel_id: @hotel_id)
