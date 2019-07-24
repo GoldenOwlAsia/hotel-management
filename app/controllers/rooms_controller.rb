@@ -13,23 +13,44 @@ class RoomsController < ApplicationController
                           .group(:room_type)
                           .count
 
+    @available_rooms_filter = @rooms.where(room_status: room_status_param) if room_status_param
+
     @grouped_rooms = @rooms.group_by(&:floor_number)
     @sorted_groups = @grouped_rooms.keys.sort
   end
 
-  def show
-    @room = Room.find(params[:id])
+  def booking
+    @customer = Customer.find_by(customer_nin: booking_params[:customer_nin])
+
+    if @customer.blank?
+      @customer = Customer.create(
+        customer_nin: booking_params[:customer_nin],
+        name: booking_params[:name]
+      )
+    end
+
+    @booking = Booking.new(
+      customer: @customer,
+      checkin_time: booking_params[:checkin_time],
+      checkout_time: booking_params[:checkout_time],
+      booked_at: booking_params[:booked_at],
+      status: booking_params[:status]
+    )
+
+    if @booking.save
+      redirect_to rooms_path
+    else
+      render 'booking'
+    end
   end
 
   private
 
-  def search_param
-    @search_param ||= begin
-      params[:search] && params[:search][:q]
-    end
-  end
-
   def room_type_param
     @room_type_param ||= params[:room_type]
+  end
+
+  def room_status_param
+    @room_status_param ||= params[:room_status]
   end
 end

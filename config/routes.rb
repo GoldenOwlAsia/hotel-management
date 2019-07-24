@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :hotels do
     resources :rooms, only: [:index]
   end
+
   resources :rooms do
-    collection do
-      get :search
+    member do
+      post :booking
     end
   end
-  resources :bookings
 end
