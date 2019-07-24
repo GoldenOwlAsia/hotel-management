@@ -23,4 +23,9 @@ module RoomsHelper
     end
   end
 
+  def get_floor_number_text(group_key)
+    if group_key == 0
+      'Trệt'
+    end
+  end
 end

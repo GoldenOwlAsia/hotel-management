@@ -2,6 +2,9 @@
 @import 'variables.sass'
 @import 'mixins.sass'
 
+.rooms-index
+  padding-bottom: 30pt
+
 .rooms
   font-size: 10.5pt
   padding-top: 175pt
@@ -165,7 +168,7 @@
     padding: 0 54pt
 
   .rooms
-    padding-top: 150pt
+    padding-top: 145pt
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
@@ -185,11 +188,9 @@
 
 @media screen and (min-width: 1023px)
   .rooms-index
-    padding: 0 62pt
+    padding: 0 69pt
 
   .rooms
-    padding-top: 135pt
-
     &__room-wrapper
       grid-template-columns: repeat(4, auto)
 
@@ -197,8 +198,6 @@
       padding-left: 10pt
 
     &__room-container
-      h1
-        padding-left: 10pt
 
 @media screen and (min-width: 1400px)
   .rooms
