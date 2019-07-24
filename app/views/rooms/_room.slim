@@ -8,7 +8,7 @@ div class=('rooms__room ' + get_rom_status_class(room))
     .rooms__checkin-time-wrapper
       p Giờ check in: #{Time.now.strftime('%H:%M')}
       p
-      = Time.now.strftime('%d.%m.%y')
+        = Time.now.strftime('%d.%m.%y')
 
     .rooms__status-wrapper
       p #{ get_rom_status_text(room) }
