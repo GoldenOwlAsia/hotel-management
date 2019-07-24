@@ -83,7 +83,7 @@
 
   &__navigations-list
     li:not(:last-child)
-      margin-right: 20pt
+      margin-right: 10pt
 
   &__room-container
     h1
@@ -145,14 +145,6 @@
       flex-direction: column
       justify-content: space-between
 
-    &__navigations-list
-      justify-content: flex-start
-      padding: 0
-      align-items: center
-      li:not(:last-child)
-        margin-right: 20pt
-        text-align: center
-
   .room-status-available
     &:hover
       &:after
@@ -181,6 +173,9 @@
 
     &__navigations
       justify-content: initial
+      &__list
+      li:not(:last-child)
+        margin-right: 20pt
 
     &__room-container
       h1

@@ -1,36 +1,7 @@
 @import 'mixins.sass'
 @import 'variables.sass'
 
-.desktop-header
-  display: none
-
-  &__wrapper
-    display: flex
-
-  &__left-side
-    flex: 1
-    display: flex
-    align-items: center
-
-  &__right-side
-    display: flex
-    font-size: 10pt
-    p
-      white-space: nowrap
-    > div
-      display: flex
-
-  &__list
-    display: flex
-    list-style-type: none
-    padding: 0
-    margin: 0
-    li
-      padding-right: 10pt
-      white-space: nowrap
-      font-size: 10pt
-
-.mobile-header
+.header
   display: flex
   position: fixed
   z-index: 9999999999
@@ -70,7 +41,7 @@
       padding-top: 60pt
       top: -13pt
       padding-top: 52pt
-      left: 20pt
+      left: 0
       padding-left: 50pt
       li
         color: $black
@@ -162,8 +133,11 @@
       position: static
       margin-right: 10pt
 
-  .mobile-header
+  .header
     left: initial
+    &__list
+      ul
+        left: 30pt
 
 @media screen and (min-width: 1023px)
   .sub-header
@@ -183,15 +157,14 @@
 
     &__right-side
       display: flex
-      > p
-        justify-content: flex-end
 
-  .mobile-header
+  .header
     left: initial
+    &__list
+      ul
+        left: 40pt
 
 @media screen and (min-width: 1439px)
-  .desktop-header
-    padding: 20pt 60pt
 
   .rooms-index
     padding: 0 47pt

@@ -1,0 +1,34 @@
+header.header
+  div
+    .header__left-side
+      .header__hamburger-wrapper
+        span
+        span
+        span
+
+      .header__list
+        ul
+          li Bảng điều khiển
+          li Danh sách phòng
+          li Danh sách khách
+          li Lịch sử
+
+    / .mobile-header__right-side
+    /   p Thời gian làm việc: 48 phút
+    /   div
+    /     p
+    /       = "#{current_user.first_name} #{current_user.last_name}"
+
+script
+  |
+    $(document).ready(function() {
+      $('.header__list').hide();
+      $('.header__hamburger-wrapper').on('click', function(e) {
+        $('.header__list').toggle('header__toogle-menu');
+        if($('.header__hamburger-wrapper').hasClass('header__toogle-hamburger')) {
+          $('.header__hamburger-wrapper').removeClass('header__toogle-hamburger');
+        } else {
+          $('.header__hamburger-wrapper').addClass('header__toogle-hamburger');
+        }
+      })
+    })
