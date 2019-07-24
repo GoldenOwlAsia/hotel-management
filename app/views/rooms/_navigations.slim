@@ -1,19 +1,19 @@
 .rooms__navigations
   ul.rooms__navigations-list
     li class="rooms__nav-link #{ @room_type_param.blank? ? 'rooms__link-active' : '' }"
-      = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: params[:hotel_id])
+      = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel_id)
 
     li class="rooms__nav-link #{ @room_type_param == 'single' ? 'rooms__link-active' : '' }"
-      = link_to 'single', url_for(room_type: 'single', hotel_id: params[:hotel_id])
+      = link_to 'Phòng đơn', url_for(room_type: 'single', hotel_id: @hotel_id)
       span
         = " (#{@available_rooms['single'] || 0})"
 
     li class="rooms__nav-link #{ @room_type_param == 'double' ? 'rooms__link-active' : '' }"
-      = link_to 'double', url_for(room_type: 'double', hotel_id: params[:hotel_id])
+      = link_to 'Phòng đôi', url_for(room_type: 'double', hotel_id: @hotel_id)
       span
         = " (#{@available_rooms['double'] || 0})"
 
     li class="rooms__nav-link #{ @room_type_param == 'queen' ? 'rooms__link-active' : '' }"
-      = link_to 'queen', url_for(room_type: 'queen', hotel_id: params[:hotel_id])
+      = link_to 'Queen', url_for(room_type: 'queen', hotel_id: @hotel_id)
       span
         = " (#{@available_rooms['queen'] || 0})"
