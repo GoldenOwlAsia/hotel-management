@@ -172,6 +172,8 @@
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
+      justify-content: flex-start
+      margin: 0
 
     &__number-wrapper
       line-height: 15pt
@@ -189,7 +191,7 @@
       h1
         text-align: left
 
-@media screen and (min-width: 1023px)
+@media screen and (min-width: 900px)
   .rooms-index
     padding: 0 69pt
 
@@ -200,15 +202,13 @@
     &__navigations
       padding-left: 10pt
 
-    &__room-container
-
-@media screen and (min-width: 1400px)
+@media screen and (min-width: 1200px)
   .rooms-index
     padding: 0 62pt
 
   .rooms
     &__room-wrapper
-      grid-template-columns: repeat(6, auto)
+      grid-template-columns: repeat(5, auto)
 
     &__navigations
       padding-left: 0
@@ -217,6 +217,10 @@
       h1
         padding-left: 0
 
-@media screen and (min-width: 2559px)
+@media screen and (min-width: 1400px)
   .rooms-index
     max-width: 1440px
+
+  .rooms
+    &__room-wrapper
+      grid-template-columns: repeat(6, auto)
