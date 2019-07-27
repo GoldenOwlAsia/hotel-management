@@ -12,14 +12,8 @@
       p Chụp ảnh thông tin
 
     .booking__form-wrapper
-      = simple_form_for :room_bookings, url: room_bookings_path(@room), method: :post do |f|
+      = simple_form_for [@room, @booking] do |f|
         .booking__main-content-wrapper
-          = f.label 'Tên khách hàng'
-          = f.input :name, label: false
-
-          = f.label 'Số CMND'
-          = f.input :customer_nin, label: false
-
           = f.label 'Số điện thoại'
           = f.input :booking_phone_number, label: false
 
@@ -31,9 +25,9 @@
               = f.label 'Ngày đi'
               = f.input :checkout_time, as: :datetime, html5: true, label: false
 
-          .booking__status-wrapper
+          .booking__rent-type-wrapper
             div
               = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons
 
         .booking__buttton-wrapper
-          = f.button :submit, 'Bắt đầu nhận phòng'
+          = f.button :submit, 'Lưu thay đổi'

@@ -13,7 +13,6 @@ class BookingsController < ApplicationController
         phone_number: booking_params[:phone_number]
       )
     end
-
     @booking = Booking.new(
       customer: @customer,
       checkin_time: booking_params[:checkin_time],
@@ -32,9 +31,28 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+    @room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params_edit)
+      redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def booking_params
     params.require(:room_bookings).permit(:checkin_time, :checkout_time, :booked_at, :room_id, :booking_phone_number, :customer_id, :status, :name, :phone_number, :customer_nin, :rent_type)
+  end
+
+  def booking_params_edit
+    params.require(:bookings).permit(:checkin_time, :checkout_time, :booked_at, :room_id, :booking_phone_number, :customer_id, :status, :name, :phone_number, :customer_nin, :rent_type)
   end
 end
