@@ -19,5 +19,18 @@ class Booking < ApplicationRecord
   belongs_to :room
   belongs_to :customer
 
+  validates :rent_type, presence: true
+
+  enum status: { checked_in: 'checked_in', unchecked_in: 'unchecked_in' }
   enum rent_type: { hourly: 'hourly', overnight: 'overnight' }
+
+  def self.period(start_time, end_time)
+    where(
+      '(checkin_time >= ? AND checkin_time <= ?) OR (checkout_time >= ? AND checkout_time <= ?)',
+      start_time,
+      end_time,
+      start_time,
+      end_time
+    )
+  end
 end

@@ -9,7 +9,11 @@ class RoomsController < ApplicationController
     @double_rooms = @rooms.double
     @queen_rooms = @rooms.queen
 
-    @available_rooms = Room.where(hotel_id: params[:hotel_id], status: 'available')
+    @bookings = Booking.period(Time.current, 1.day.from_now)
+    @booked_room_ids = @bookings.pluck(:room_id)
+
+    @available_rooms = Room.where(hotel_id: params[:hotel_id])
+                          .where.not(id: @booked_room_ids)
                           .group(:room_type)
                           .count
 

@@ -69,10 +69,8 @@ puts '--> Creating rooms...'
   floor = room_position[:floor]
   room_number = room_position[:number]
   room_type = [:single, :double, :queen].sample
-  rent_type = [:hourly, :overnight].sample
-  status = [:rent, :booked].sample
-  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.first)
-  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.second)
+  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, hotel: Hotel.first)
+  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, hotel: Hotel.second)
 end
 
 [
@@ -89,11 +87,23 @@ end
   floor = room_position[:floor]
   room_number = room_position[:number]
   room_type = [:single, :double, :queen].sample
-  rent_type = [''].sample
-  status = [:available].sample
-  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.first)
-  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, rent_type: rent_type, status: status, hotel: Hotel.second)
+  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, hotel: Hotel.first)
+  Room.create!(room_number: room_number, floor_number: floor, room_type: room_type, hotel: Hotel.second)
 end
+
+puts '--> Creating customers'
+20.times do |n|
+  name = Faker::Name.name
+  phone_number = Faker::Number.number(10)
+  customer_nin = Faker::Number.number(9)
+  Customer.create!(name: name, phone_number: phone_number, customer_nin: customer_nin)
+end
+
+puts '--> Creating bookings'
+Booking.create!(room: Room.first, customer: Customer.first, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'918858240', booked_at:Time.now, rent_type:'overnight', status: 'checked_in')
+Booking.create!(room: Room.second, customer: Customer.second, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'086458240', booked_at:Time.now, rent_type:'hourly', status: 'unchecked_in')
+Booking.create!(room: Room.third, customer: Customer.third, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'034895700', booked_at:Time.now, rent_type:'overnight', status: 'checked_in')
+Booking.create!(room: Room.fourth, customer: Customer.fourth, checkin_time: 1.month.ago, checkout_time: 1.month.from_now, booking_phone_number:'067995700', booked_at:Time.now, rent_type:'hourly', status: 'unchecked_in')
 
 puts '--> Creating roles...'
 Role.create!(name: 'owner', hotel: Hotel.first, user: User.first)

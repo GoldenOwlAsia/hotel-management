@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_030415) do
+ActiveRecord::Schema.define(version: 2019_07_27_152217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(version: 2019_07_24_030415) do
     t.datetime "checkin_time"
     t.datetime "checkout_time"
     t.datetime "booked_at"
-    t.string "phone_number"
+    t.string "booking_phone_number"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rent_type"
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["room_id"], name: "index_bookings_on_room_id"
   end
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_07_24_030415) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_nin"], name: "index_customers_on_customer_nin"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -56,8 +58,6 @@ ActiveRecord::Schema.define(version: 2019_07_24_030415) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "room_number"
-    t.string "status"
-    t.string "rent_type"
     t.string "room_type"
     t.bigint "hotel_id", null: false
     t.datetime "created_at", precision: 6, null: false
