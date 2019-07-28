@@ -1,31 +1,30 @@
 - booking = booking_in_period(Time.current.beginning_of_day, 1.days.from_now)[room.id].first
 div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' : 'room-status-booked' : 'room-status-available'))
-  = link_to(booking.present?  ? edit_room_booking_path(room, booking) : '#') do
-    div
-      .rooms__number-wrapper
-        h5.rooms__room-title Phòng
-        h5.rooms__room-title
-          = room.room_number
+  div
+    .rooms__number-wrapper
+      h5.rooms__room-title Phòng
+      h5.rooms__room-title
+        = room.room_number
 
-      .rooms__status-wrapper
-        div
-          - if booking.blank?
-            = 'Phòng trống'
-          - elsif booking.checked_in?
-            p
-              = "Giờ check-in #{format_hour booking.checkin_time}"
-            p
-              = format_date booking.checkin_time
-          - else
-            p
-              = "Đã đặt phòng #{format_date booking.checkin_time}"
+    .rooms__status-wrapper
+      div
+        - if booking.blank?
+          = 'Phòng trống'
+        - elsif booking.checked_in?
+          p
+            = "Giờ check-in #{format_hour booking.checkin_time}"
+          p
+            = format_date booking.checkin_time
+        - else
+          p
+            = "Đã đặt phòng #{format_date booking.checkin_time}"
 
-    div
-      .rooms__choose-room-btn-wrapper
-        = link_to 'Chọn phòng', new_room_booking_path(room)
+  div
+    .rooms__choose-room-btn-wrapper
+      = link_to 'Chọn phòng', new_room_booking_path(room)
 
-      .rooms__rent-type-wrapper
-        - if booking.present?
-          h5.rooms__room-title Hình thức
-          p.rooms__rent-type
-            = get_rent_type_text(booking.rent_type)
+    .rooms__rent-type-wrapper
+      - if booking.present?
+        h5.rooms__room-title Hình thức
+        p.rooms__rent-type
+          = get_rent_type_text(booking.rent_type)

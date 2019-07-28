@@ -7,11 +7,11 @@ header
           span
             = @hotel_name
 
-      / .sub-header__right-side
-      /   div
-      /     span Ngày:
-      /     span
-      /       = Time.now.strftime('%d tháng %-m')
+      .sub-header__right-side
+        div
+          span Ngày:
+          span
+            = Time.now.strftime('%d tháng %-m')
         div
           = link_to 'Lọc theo: Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel_id)
 
