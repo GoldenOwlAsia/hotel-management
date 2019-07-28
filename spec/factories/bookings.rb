@@ -17,12 +17,13 @@
 
 FactoryBot.define do
   factory :booking do
-    room { nil }
-    customer { nil }
-    checkin_time { "2019-07-23 19:36:49" }
-    checkout_time { "2019-07-23 19:36:49" }
-    booked_at { "2019-07-23 19:36:49" }
-    phone_number { "MyString" }
-    status { "MyString" }
+    room
+    customer
+    checkin_time { '2019-07-23 19:36:49' }
+    checkout_time { '2019-07-23 19:36:49' }
+    booked_at { '2019-07-23 19:36:49' }
+    booking_phone_number { '0917889937' }
+    status { 'checked_in' }
+    rent_type { 'overnight' }
   end
 end

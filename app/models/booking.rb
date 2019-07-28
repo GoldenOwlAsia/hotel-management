@@ -26,10 +26,10 @@ class Booking < ApplicationRecord
 
   def self.period(start_time, end_time)
     where(
-      '(checkin_time >= ? AND checkin_time <= ?) OR (checkout_time >= ? AND checkout_time <= ?)',
+      '(checkin_time <= ? AND ? <= checkout_time) OR (checkin_time <= ? AND ? <= checkout_time)',
+      start_time,
       start_time,
       end_time,
-      start_time,
       end_time
     )
   end
