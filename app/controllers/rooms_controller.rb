@@ -1,16 +1,13 @@
 class RoomsController < ApplicationController
   def index
     @hotel = Hotel.find(params[:hotel_id])
-    @hotel_id = @hotel.id
-    @hotel_name = @hotel.name
-
     service = AvailableRoomsQuery.new(params[:hotel_id])
     @checkin_time = params[:checkin_time] || Time.current.change(hour: 12)
     @checkout_time = params[:checkout_time] || 1.day.from_now.change(hour: 12)
     available_rooms = service.execute(@checkin_time, @checkout_time)
     @available_rooms_groups = available_rooms.group(:room_type).count
 
-    @rooms = room_status == 'available' ? available_rooms :  Room.where(hotel_id: params[:hotel_id])
+    @rooms = room_status == 'available' ? available_rooms : Room.where(hotel_id: params[:hotel_id])
     @rooms = @rooms.where(room_type: room_type_param) if room_type_param
 
     @single_rooms = @rooms.single
