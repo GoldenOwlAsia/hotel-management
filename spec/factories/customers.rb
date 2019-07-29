@@ -12,8 +12,8 @@
 
 FactoryBot.define do
   factory :customer do
-    name { "MyString" }
-    customer_nin { "MyString" }
-    phone_number { "MyString" }
+    name { Faker::Name.name }
+    customer_nin { Faker::Number.number(9) }
+    phone_number { Faker::Number.number(10) }
   end
 end
