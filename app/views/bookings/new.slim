@@ -26,10 +26,10 @@
           .booking__time-wrapper
             div
               = f.label 'Ngày vào'
-              = f.input :checkin_time,  as: :datetime, html5: true,  label: false
+              = f.input :checkin_time,  as: :datetime, html5: true, input_html: {value: @checkin_time},  label: false
             div
               = f.label 'Ngày đi'
-              = f.input :checkout_time, as: :datetime, html5: true, label: false
+              = f.input :checkout_time, as: :datetime, html5: true, input_html: {value: @checkout_time}, label: false
 
           .booking__status-wrapper
             div

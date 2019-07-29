@@ -1,18 +1,21 @@
 header
   .sub-header
-    div
-      .sub-header__lelf-side
-        - if @hotel_id.present?
-          h3 Khách sạn
-          span
-            = @hotel_name
+    - if @room_filter
+      = simple_form_for @room_filter, method: :get, url: url_for(only_path: false, overwrite_params: nil) do |f|
+        .sub-header__lelf-side
+          - if @hotel_id.present?
+            h3 Khách sạn
+            span
+              = @hotel_name
 
-      .sub-header__right-side
-        div
-          span Ngày:
-          span
-            = Time.now.strftime('%d tháng %-m')
-        div
-          = link_to 'Lọc theo: Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel_id)
-
+        .sub-header__right-side
+          div
+            span Ngày:
+            = f.input :checkin_time, as: :datetime, html5: true
+            = f.input :checkout_time, as: :datetime, html5: true
+          div
+            / = link_to 'Lọc theo: Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel_id, checkin_time: 2.day.from_now, checkout_time: 3.day.from_now)
+            = f.input :room_status, collection: ['available', 'all']
+          div
+            = f.submit 'Filter'
     = yield :navigations

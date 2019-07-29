@@ -18,7 +18,7 @@ RSpec.describe Room, type: :model do
   describe 'validates' do
     it { should validate_presence_of(:room_number) }
     it { should validate_length_of(:room_number).is_at_most(10) }
-    it { should validate_presence_of(:room_type) }
+  it { should validate_presence_of(:room_type) }
     it { should validate_presence_of(:floor_number) }
   end
 

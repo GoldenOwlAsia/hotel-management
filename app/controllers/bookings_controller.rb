@@ -1,7 +1,9 @@
 class BookingsController < ApplicationController
   def new
     @room = Room.find(params[:room_id])
-    @booking = Booking.new
+    @checkin_time = params[:checkin_time]
+    @checkout_time = params[:checkout_time]
+    @booking = Booking.new(checkin_time: @checkin_time, checkout_time: @checkout_time)
   end
 
   def create
