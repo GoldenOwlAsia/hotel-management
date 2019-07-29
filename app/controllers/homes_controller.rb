@@ -1,7 +1,8 @@
 class HomesController < ApplicationController
   def index
-    if current_user.hotels.first.present?
-      redirect_to rooms_path(hotel_id: current_user.hotels.first.id)
+    first_hotel = current_user.hotels.first
+    if first_hotel.present?
+      redirect_to rooms_path(hotel_id: first_hotel.id)
     else
       @hotels = current_user.hotels
     end
