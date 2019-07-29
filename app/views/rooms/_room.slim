@@ -1,4 +1,4 @@
-- booking = booking_in_period(@checkin_time, @checkout_time)[room.id].first
+- booking = @booking_in_period[room.id].first
 div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' : 'room-status-booked' : 'room-status-available')) data-id=(room.id)
   div
     .rooms__number-wrapper

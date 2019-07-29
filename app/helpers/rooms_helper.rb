@@ -26,16 +26,4 @@ module RoomsHelper
   def format_hour(date)
     date.strftime('%H:%M')
   end
-
-  def booking_in_period(start_time, end_time)
-    @cache ||= {}
-
-    @cache.fetch("#{start_time}, #{end_time}") do |key|
-      bookings = Booking.period(start_time, end_time)
-      @cache[key] = bookings.inject(Hash.new { |h, k| h[k] = [] }) do |memo, booking|
-        memo[booking.room_id] << booking
-        memo
-      end
-    end
-  end
 end
