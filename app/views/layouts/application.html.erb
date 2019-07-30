@@ -13,7 +13,7 @@
 
   <body class='<%= yield :page_class %>'>
     <% if current_user.present? %>
-      <%= render 'layouts/header' %>
+      <%# <%= render 'layouts/header' %>
       <%= render 'layouts/sub_header' %>
     <% end %>
     <%= yield %>

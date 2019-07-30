@@ -26,7 +26,7 @@
           .booking__status-wrapper
             = f.label 'Hình thức'
             div
-              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons, label: false
+              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons, label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' }, label: false
 
           .booking__time-wrapper
             div
