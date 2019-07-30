@@ -88,9 +88,12 @@
     color: $gray
     span:first-child
       font-weight: bold
+      padding-right: 2pt
+    span:last-child
+      padding-left: 3pt
 
   &__filter-content
-    display: flex
+    display: none
     flex-direction: column
     position: relative
     top: 30pt
@@ -115,7 +118,7 @@
     display: flex
     justify-content: center
     align-items: center
-    padding-bottom: 30pt
+    padding-bottom: 20pt
     h3:first-child
       padding-right: 5pt
 
@@ -157,6 +160,14 @@
   &__icon
     width: 10pt
 
+.hide-filter-content
+  display: flex
+  flex-direction: column
+  position: relative
+  top: 30pt
+  left: 20pt
+  width: 200pt
+
 @media screen and(min-width: 767px)
   .sub-header
     display: flex
@@ -167,19 +178,17 @@
     &__filter-default
       position: fixed
       display: flex
+      font-size: 9pt
 
     &__filter-content
       display: flex
       flex-direction: column
       position: relative
       top: 30pt
+      font-size: 9pt
 
     .new_room_filter
       display: flex
-
-    &__filter-box-container
-      span
-        font-size: 10pt
 
     > div:first-child
       display: flex
