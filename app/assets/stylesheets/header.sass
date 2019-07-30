@@ -10,6 +10,15 @@
   top: 30pt
   bottom: 20pt
   left: 20pt
+  > div
+    display: flex
+    justify-content: space-between
+    width: calc(100vw  - 35pt)
+
+  &__left-side
+    display: flex
+    span
+      padding-left: 10pt
 
   &__hamburger-wrapper
     span
@@ -94,13 +103,13 @@
         &:focus
           outline: none
 
-  &__lelf-side
+  &__left-side
     display: flex
     justify-content: center
-    font-size: 14pt
-    h3
-      padding-bottom: 10pt
-      margin-right: 5pt
+    align-items: center
+    padding-bottom: 30pt
+    h3:first-child
+      padding-right: 5pt
 
   &__right-side
     display: flex
@@ -175,7 +184,7 @@
       border-bottom: 1px solid #f5f8f7
       padding-bottom: 10pt
 
-    &__lelf-side
+    &__left-side
       align-items: center
       font-size: 18pt
       flex: 1
@@ -196,6 +205,9 @@
 
   .header
     left: 54pt
+    > div
+      width: calc(100vw  - 100pt)
+
     &__list
       ul
         left: 30pt
@@ -209,7 +221,7 @@
     display: flex
     justify-content: initial
 
-    &__lelf-side
+    &__left-side
       display: flex
 
       form
@@ -227,6 +239,8 @@
 @media screen and (min-width: 1370px)
   .header
     left: 62pt
+    > div
+      width: calc(100vw  - 125pt)
 
 @media screen and (min-width: 1439px)
 

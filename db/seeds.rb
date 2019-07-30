@@ -101,9 +101,9 @@ end
 
 puts '--> Creating bookings'
 Booking.create!(room: Room.first, customer: Customer.first, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'918858240', booked_at:Time.now, rent_type:'overnight', status: 'checked_in')
-Booking.create!(room: Room.second, customer: Customer.second, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'086458240', booked_at:Time.now, rent_type:'hourly', status: 'unchecked_in')
+Booking.create!(room: Room.second, customer: Customer.second, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'086458240', booked_at:Time.now, rent_type:'hourly', status: 'checked_in')
 Booking.create!(room: Room.third, customer: Customer.third, checkin_time:Time.now, checkout_time:Time.now, booking_phone_number:'034895700', booked_at:Time.now, rent_type:'overnight', status: 'checked_in')
-Booking.create!(room: Room.fourth, customer: Customer.fourth, checkin_time: 1.month.ago, checkout_time: 1.month.from_now, booking_phone_number:'067995700', booked_at:Time.now, rent_type:'hourly', status: 'unchecked_in')
+Booking.create!(room: Room.fourth, customer: Customer.fourth, checkin_time: 1.month.ago, checkout_time: 1.month.from_now, booking_phone_number:'067995700', booked_at:Time.now, rent_type:'hourly', status: 'checked_in')
 
 puts '--> Creating roles...'
 Role.create!(name: 'owner', hotel: Hotel.first, user: User.first)

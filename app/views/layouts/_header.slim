@@ -5,6 +5,7 @@ header.header
         span
         span
         span
+      span Menu
 
       .header__list
         ul
@@ -13,11 +14,10 @@ header.header
           li Danh sách khách
           li Lịch sử
 
-    / .mobile-header__right-side
-    /   p Thời gian làm việc: 48 phút
-    /   div
-    /     p
-    /       = "#{current_user.first_name} #{current_user.last_name}"
+    .mobile-header__right-side
+      / p Thời gian làm việc: 48 phút
+      span
+        = "#{current_user.first_name} #{current_user.last_name}"
 
 script
   |
