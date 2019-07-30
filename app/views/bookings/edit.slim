@@ -1,0 +1,33 @@
+.booking
+  .booking__room-info-container
+    div
+      h4 Phòng 201
+      p Phòng thường
+    div
+      h4 Phòng trống
+
+  div
+    .booking__form-title-container
+      h4 Thông tin chi tiết
+      p Chụp ảnh thông tin
+
+    .booking__form-wrapper
+      = simple_form_for [@room, @booking] do |f|
+        .booking__main-content-wrapper
+          = f.label 'Số điện thoại'
+          = f.input :booking_phone_number, label: false
+
+          .booking__time-wrapper
+            div
+              = f.label 'Ngày vào'
+              = f.input :checkin_time,  as: :datetime, html5: true,  label: false
+            div
+              = f.label 'Ngày đi'
+              = f.input :checkout_time, as: :datetime, html5: true, label: false
+
+          .booking__rent-type-wrapper
+            div
+              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons
+
+        .booking__buttton-wrapper
+          = f.button :submit, 'Lưu thay đổi'

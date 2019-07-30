@@ -2,9 +2,16 @@
 @import 'variables.sass'
 @import 'mixins.sass'
 
+.rooms-index
+  padding-bottom: 30pt
+
 .rooms
   font-size: 10.5pt
-  padding-top: 150pt
+  padding-top: 100pt
+  padding-bottom: 50pt
+
+  &__room-title
+    font-weight: bold
 
   &__room-wrapper
     display: flex
@@ -15,7 +22,8 @@
   &__navigations
     display: flex
     justify-content: center
-    padding: 20pt 0
+    ul
+      padding: 20pt 0
 
   &__navigations-list
     list-style: none
@@ -31,23 +39,25 @@
   p
     padding: 0
     margin: 0
+    color: $white
 
   &__room
     width: 190pt
     height: 150pt
     margin: 10pt
+    padding: 15pt
     border-radius: 4px
     border: $border-line-whisper
-    padding: 10pt 0 10pt 0
+    display: flex
+    flex-direction: column
+    justify-content: space-between
 
   &__number-wrapper
     display: flex
     align-items: center
-    padding-left: 10pt
     line-height: 20pt
 
   &__rent-type-wrapper
-    padding-left: 10pt
     line-height: 20pt
 
   &__choose-btn-wrapper
@@ -62,55 +72,68 @@
     padding: 5pt 20pt
     border: $border-line-whisper
 
-  &__rooms__nav-link
-    padding: 2pt 5pt
-    margin: 0 10pt
+  &__nav-link
+    a, span
+      color: $lightGray
 
   &__link-active
-    background-color: $orange
     display: flex
     justify-content: center
     border-radius: 4px
-    padding: 2pt 5pt
+    font-weight: bold
     a, span
-      color: $white
+      color: $black
+      font-weight: bold
 
   &__navigations-list
+    white-space: nowrap
     li:not(:last-child)
-      margin-right: 20pt
+      margin-right: 10pt
 
   &__room-container
     h1
       padding: 20pt 0 0 0
       text-transform: uppercase
       text-align: center
+      color: $lightGray
 
-.rooms-index
-  padding: 0 25pt
+  &__choose-room-btn-wrapper
+    a
+      display: none
+
+  &__room
+    &:hover
+      .rooms__choose-room-btn-wrapper
+        a
+          display: block
+          color: $black
+          border: $border-line-whisper
+          border-radius: 4px
+          text-align: center
+          padding: 2pt 0
 
 .room-status-booked
   background-color: $blue
   color: #ffffff
   border: none
+  .rooms__checkin-time-wrapper, .rooms__choose-room-btn-wrapper
+    display: none
+
+  h5, p
+    color: $white
 
 .room-status-rent
   background-color: $yellow
-  color: #ffffff
+  color: $black
   border: none
+  .rooms__choose-room-btn-wrapper
+    display: none
+  h5, p
+    color: black
 
 .room-status-available
-  &:hover
-    &:after
-      content: 'Chọn phòng'
-      display: block
-      color: $black
-      background-color: $whisper
-      border-radius: 4px
-      padding: 5pt 20pt
-      border: $border-line-whisper
-      margin: 40pt 10pt
-      text-align: center
-      transition: ease-in-out
+  .rooms__checkin-time-wrapper
+    display: none
 
 .menu
   display: block
@@ -134,13 +157,8 @@
       flex-direction: column
       justify-content: space-between
 
-    &__navigations-list
-      justify-content: flex-start
-      padding: 0
-      align-items: center
-      li:not(:last-child)
-        margin-right: 20pt
-        text-align: center
+    &__navigations
+      font-size: 10.5pt
 
   .room-status-available
     &:hover
@@ -152,13 +170,20 @@
     &__room-wrapper
       grid-gap: 20pt
 
+    &__room-container
+      padding-left: 2pt
+
 @media screen and (min-width: 767px)
   .rooms-index
-    padding: 0 55pt
+    padding: 0 54pt
 
   .rooms
+    padding-top: 130pt
+
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
+      justify-content: flex-start
+      margin: 0
 
     &__number-wrapper
       line-height: 15pt
@@ -168,31 +193,32 @@
 
     &__navigations
       justify-content: initial
+      &__list
+      li:not(:last-child)
+        margin-right: 20pt
 
     &__room-container
       h1
         text-align: left
 
-@media screen and (min-width: 1023px)
+@media screen and (min-width: 940px)
   .rooms-index
-    padding: 0 60pt
+    padding: 0 69pt
 
   .rooms
-    padding-top: 180pt
-
     &__room-wrapper
       grid-template-columns: repeat(4, auto)
 
-    &__navigations
-      padding-left: 10pt
-
-    &__room-container
-      h1
-        padding-left: 10pt
-
-@media screen and (min-width: 1400px)
+@media screen and (min-width: 1160px)
   .rooms
+    &__room-wrapper
+      grid-template-columns: repeat(5, auto)
 
+@media screen and (min-width: 1370px)
+  .rooms-index
+    padding: 0 62pt
+
+  .rooms
     &__room-wrapper
       grid-template-columns: repeat(6, auto)
 
@@ -203,6 +229,10 @@
       h1
         padding-left: 0
 
-@media screen and (min-width: 2559px)
+@media screen and (min-width: 1601px)
   .rooms-index
     max-width: 1440px
+
+  .rooms
+    &__room-wrapper
+      grid-template-columns: repeat(7, auto)

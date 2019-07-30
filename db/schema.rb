@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_150842) do
+ActiveRecord::Schema.define(version: 2019_07_27_152217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "customer_id", null: false
+    t.datetime "checkin_time"
+    t.datetime "checkout_time"
+    t.datetime "booked_at"
+    t.string "booking_phone_number"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "rent_type"
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
+    t.index ["room_id"], name: "index_bookings_on_room_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "customer_nin"
+    t.string "phone_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_nin"], name: "index_customers_on_customer_nin"
+  end
 
   create_table "hotels", force: :cascade do |t|
     t.string "name"
@@ -34,13 +58,11 @@ ActiveRecord::Schema.define(version: 2019_07_20_150842) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "room_number"
-    t.string "status"
-    t.string "rent_type"
-    t.string "floor_number"
     t.string "room_type"
     t.bigint "hotel_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "floor_number"
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
@@ -60,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_07_20_150842) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
+  add_foreign_key "bookings", "customers"
+  add_foreign_key "bookings", "rooms"
   add_foreign_key "roles", "hotels"
   add_foreign_key "roles", "users"
   add_foreign_key "rooms", "hotels"

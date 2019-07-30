@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  root 'hotels#index'
+  get 'bookings/new'
+  root 'homes#index'
+
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :hotels do
-    resources :rooms, only: [:index]
+    resources :rooms
   end
+
   resources :rooms do
-    collection do
-      get :search
-    end
+    resources :bookings
   end
 end

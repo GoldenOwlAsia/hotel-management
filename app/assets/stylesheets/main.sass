@@ -1,3 +1,4 @@
+@import 'variables.sass'
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -22,10 +23,15 @@ time, mark, audio, video
 *
   box-sizing: border-box
 
-h1, p, span, li, a, div
+h1, p, span, li, a, div, option, label
   font-family: 'Nunito'
 
 a
   text-decoration: none
-  text-transform: capitalize
-  color: black
+  color: $gray
+
+ul
+  list-style: none
+
+h3
+  white-space: nowrap

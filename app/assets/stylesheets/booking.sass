@@ -1,0 +1,49 @@
+@import 'mixins.sass'
+
+.booking
+  padding-top: 200pt
+  width: 375pt
+  height: 675pt
+  border: 1px solid red
+  &__room-info-container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: $border-line-whisper
+    padding: 0 25pt 25pt 25pt
+
+  &__form-title-container
+    display: flex
+    justify-content: space-between
+    padding: 25pt
+
+  &__form-wrapper
+    display: flex
+    justify-content: center
+    label
+      padding-bottom: 5pt
+      display: block
+    input
+      width: 100%
+      height: 33pt
+      margin-bottom: 15pt
+    input[type='submit']
+      background-color: $blue
+
+  &__time-wrapper
+    display: flex
+    input
+      width: 157pt
+
+  &__buttton-wrapper
+    display: flex
+    justify-content: flex-end
+    input[type='submit']:last-child
+      width: 188pt
+      height: 45pt
+      color: $white
+      border-radius: 4px
+      font-size: 12pt
+
+  &__main-content-wrapper
+    padding-bottom: 20pt
