@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
     @available_rooms_groups.default = 0
 
     @rooms = room_status == 'available' ? available_rooms : Room.where(hotel_id: params[:hotel_id])
-    @rooms = @rooms.where(room_type: room_type_param) if room_type_param
+    @rooms = @rooms.where(room_type: room_type) if room_type
 
     @single_rooms = @rooms.single
     @double_rooms = @rooms.double
@@ -85,7 +85,7 @@ class RoomsController < ApplicationController
     @room_status ||= params[:room_status]
   end
 
-  def room_type_param
-    @room_type_param ||= params[:room_type]
+  def room_type
+    @room_type ||= params[:room_type]
   end
 end

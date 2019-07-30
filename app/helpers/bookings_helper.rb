@@ -8,4 +8,12 @@ module BookingsHelper
       'Phòng trống'
     end
   end
+
+  def get_rent_type_text(rent_type)
+    if rent_type == 'hourly'
+      'Theo giờ'
+    elsif rent_type == 'overnight'
+      'Qua đêm'
+    end
+  end
 end
