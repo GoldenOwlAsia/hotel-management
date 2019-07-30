@@ -1,11 +1,11 @@
 puts '--> Creating users...'
 User.create(
-  email: "thanhtruong1216@gmail.com",
-  user_name: "Sophie",
-  first_name: "Thanh",
-  last_name: "Truong",
-  password: "123456",
-  password_confirmation: "123456"
+  email: 'goldenowl2019@gmail.com',
+  user_name: 'Sophie',
+  first_name: 'Thanh',
+  last_name: 'Truong',
+  password: '123456',
+  password_confirmation: '123456'
 )
 
 10.times do |n|
