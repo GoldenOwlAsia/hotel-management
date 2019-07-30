@@ -14,6 +14,7 @@ gem 'slim'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'pundit'
+gem 'figaro'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

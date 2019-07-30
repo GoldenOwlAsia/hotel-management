@@ -30,6 +30,6 @@ module HotelManagement
 end
 
 Raven.configure do |config|
-  config.dsn = 'https://3abd73a74f0f45c487f13032afee8dcb:dac2679af2364b2688a26afc4a2b97f4@sentry.io/1510708'
+  config.dsn = ENV['sentry_dsn']
   config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
 end
