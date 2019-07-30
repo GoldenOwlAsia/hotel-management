@@ -60,12 +60,17 @@ jobs:
           path: coverage
 
   deploy:
-    name: Deploy staging in branch staging
-    command: |
-      HEROKU_APP_NAME=hotel-management-staging
-      if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-        git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-      fi
+    machine:
+      enabled: true
+    working_directory: ~/repo
+    environment:
+      HEROKU_APP: "hotel-management-staging"
+    steps:
+      - checkout
+      - run:
+          name: Deploy staging to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP.git master
 
 workflows:
   version: 2
