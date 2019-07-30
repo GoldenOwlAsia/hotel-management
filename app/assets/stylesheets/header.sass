@@ -8,6 +8,7 @@
   justify-content: space-between
   font-size: 10.5pt
   top: 30pt
+  bottom: 20pt
   left: 20pt
 
   &__hamburger-wrapper
@@ -104,7 +105,7 @@
   &__right-side
     display: flex
     justify-content: center
-    padding-bottom: 20pt
+    padding-bottom: 10pt
     a, p
       color: $gray
       font-size: 9pt
@@ -159,10 +160,11 @@
       display: flex
       flex-direction: column
       position: relative
-      top: 40pt
+      top: 30pt
 
     .new_room_filter
       display: flex
+      padding-top: 30pt
 
     &__filter-box-container
       span
@@ -193,10 +195,14 @@
       position: static
 
   .header
-    left: initial
+    left: 54pt
     &__list
       ul
         left: 30pt
+
+@media screen and (min-width: 940px)
+  .header
+    left: 69pt
 
 @media screen and (min-width: 1023px)
   .sub-header
@@ -214,10 +220,13 @@
       display: flex
 
   .header
-    left: initial
     &__list
       ul
         left: 40pt
+
+@media screen and (min-width: 1370px)
+  .header
+    left: 62pt
 
 @media screen and (min-width: 1439px)
 
