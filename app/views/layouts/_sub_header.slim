@@ -16,8 +16,8 @@ header
 
           .sub-header__filter-box-container
             .sub-header__filter-default
-              span
-                = "Lọc theo: #{get_filter_text(@room_status || 'all')}"
+              span Lọc theo:
+              span #{get_filter_text(@room_status || 'all')}
               <span>&#x25BE;</span>
 
             .sub-header__filter-content
