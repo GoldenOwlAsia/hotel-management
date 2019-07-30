@@ -2,7 +2,7 @@ header
   .sub-header
     - if @room_filter
       = simple_form_for @room_filter, method: :get, url: url_for(only_path: false, overwrite_params: nil) do |f|
-        .sub-header__lelf-side
+        .sub-header__left-side
           - if @hotel.id.present?
             h3 Khách sạn
             h3
