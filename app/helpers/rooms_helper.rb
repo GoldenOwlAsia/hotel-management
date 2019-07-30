@@ -26,4 +26,14 @@ module RoomsHelper
   def format_hour(date)
     date.strftime('%H:%M')
   end
+
+  def get_filter_text(room_status)
+    if room_status = 'available'
+      'Tất cả phòng trống'
+    elsif room_status = 'all'
+      'Tất cả phòng'
+    else
+      ''
+    end
+  end
 end

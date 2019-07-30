@@ -69,6 +69,16 @@
   padding: 30pt 0 0 0
   width: 100%
 
+  &__filter-default
+      position: fixed
+      display: flex
+
+  &__filter-content
+    display: flex
+    flex-direction: column
+    position: relative
+    top: 30pt
+
   &__search
     form
       border: $border-line-whisper
@@ -97,21 +107,30 @@
     padding-bottom: 20pt
     a, p
       color: $gray
+      font-size: 9pt
+    a, p, span
+      font-size: 9pt
+
     > div
-        border: $border-line-whisper
-        width: 148pt
-        border-radius: 13.5pt
-        height: 27pt
-        align-items: center
-        display: flex
-        font-family: 'Nunito'
-        font-size: 8pt
-        justify-content: center
-        color: $cornFlowerBlue
-        margin-left: 10pt
-        span:first-child
-          color: $gray
-          padding-right: 2pt
+      border: $border-line-whisper
+      margin-left: 10pt
+      border-radius: 13.5pt
+      align-items: center
+      display: flex
+      font-family: 'Nunito'
+      height: 27pt
+      font-size: 8pt
+      justify-content: center
+      color: $cornFlowerBlue
+
+  &__filter-box-container
+    width: 140pt
+
+  &__current-day-wrapper
+    padding: 0 10pt
+    span:first-child
+      color: $gray
+      padding-right: 2pt
 
   &__search-btn
     position: relative
@@ -132,6 +151,23 @@
     flex-direction: column
     padding-top: 40pt
 
+    &__filter-default
+      position: fixed
+      display: flex
+
+    &__filter-content
+      display: flex
+      flex-direction: column
+      position: relative
+      top: 40pt
+
+    .new_room_filter
+      display: flex
+
+    &__filter-box-container
+      span
+        font-size: 10pt
+
     > div:first-child
       display: flex
       border-bottom: 1px solid #f5f8f7
@@ -149,7 +185,7 @@
       padding-bottom: 0
       font-size: 10.5pt
       position: relative
-      right: 100pt
+      right: 20pt
       > div
         font-size: 10.5pt
 
@@ -166,9 +202,6 @@
   .sub-header
     display: flex
     justify-content: initial
-
-    > div:last-child
-      padding-left: 0
 
     &__lelf-side
       display: flex
@@ -187,5 +220,6 @@
         left: 40pt
 
 @media screen and (min-width: 1439px)
-  .rooms-index
-    padding: 0 47pt
+
+  .rooms
+    padding: 120pt 47pt 0 47pt

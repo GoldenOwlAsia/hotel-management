@@ -7,7 +7,7 @@
 
 .rooms
   font-size: 10.5pt
-  padding-top: 100pt
+  padding-top: 140pt
   padding-bottom: 50pt
 
   &__room-title
@@ -75,6 +75,7 @@
   &__nav-link
     a, span
       color: $lightGray
+      font-size: 9pt
 
   &__link-active
     display: flex
@@ -138,6 +139,13 @@
 .menu
   display: block
 
+.new-room
+  padding-top: 100pt
+
+.new_room_filter
+  padding-bottom: 15pt
+  border-bottom: 1px solid $slightGray
+
 @media screen and (min-width: 420px)
   .rooms
     margin: 0 auto
@@ -174,11 +182,8 @@
       padding-left: 2pt
 
 @media screen and (min-width: 767px)
-  .rooms-index
-    padding: 0 54pt
-
   .rooms
-    padding-top: 130pt
+    padding: 100pt 54pt 0 54pt
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
@@ -193,6 +198,8 @@
 
     &__navigations
       justify-content: initial
+      padding-left: 54pt
+      padding-right: 54pt
       &__list
       li:not(:last-child)
         margin-right: 20pt
@@ -201,13 +208,27 @@
       h1
         text-align: left
 
-@media screen and (min-width: 940px)
-  .rooms-index
-    padding: 0 69pt
+    &__nav-link
+      a, span
+        font-size: 12pt
 
+  .new_room_filter
+    padding-left: 54pt
+    padding-right: 54pt
+
+@media screen and (min-width: 940px)
   .rooms
+    padding: 120pt 69pt 0 69pt
+
+    &__navigations
+      padding-left: 69pt
+      padding-right: 69pt
+
     &__room-wrapper
       grid-template-columns: repeat(4, auto)
+
+  .new_room_filter
+    padding-left: 69pt
 
 @media screen and (min-width: 1160px)
   .rooms
@@ -215,19 +236,22 @@
       grid-template-columns: repeat(5, auto)
 
 @media screen and (min-width: 1370px)
-  .rooms-index
-    padding: 0 62pt
 
   .rooms
+    padding: 120pt 62pt 0 62pt
     &__room-wrapper
       grid-template-columns: repeat(6, auto)
 
     &__navigations
-      padding-left: 0
+      padding-left: 62pt
+      padding-right: 62pt
 
     &__room-container
       h1
         padding-left: 0
+
+  .new_room_filter
+    padding-left: 62pt
 
 @media screen and (min-width: 1601px)
   .rooms-index

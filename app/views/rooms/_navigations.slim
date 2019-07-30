@@ -1,21 +1,21 @@
 .rooms__navigations
   ul.rooms__navigations-list
-    li class="rooms__nav-link #{ @room_type_param.blank? ? 'rooms__link-active' : '' }"
-      = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel.id)
+    li class="rooms__nav-link #{ @room_type.blank? ? 'rooms__link-active' : '' }"
+      = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel.id, room_status: @room_status || 'all')
       span
         = " [#{@available_rooms_groups['single'] + @available_rooms_groups['double']+ @available_rooms_groups['queen'] || 0}]"
 
-    li class="rooms__nav-link #{ @room_type_param == 'single' ? 'rooms__link-active' : '' }"
-      = link_to 'Phòng đơn', url_for(room_type: 'single', hotel_id: @hotel.id)
+    li class="rooms__nav-link #{ @room_type == 'single' ? 'rooms__link-active' : '' }"
+      = link_to 'Phòng đơn', url_for(room_type: 'single', hotel_id: @hotel.id, room_status: @room_status || 'all')
       span
         = " [#{@available_rooms_groups['single'] || 0}]"
 
-    li class="rooms__nav-link #{ @room_type_param == 'double' ? 'rooms__link-active' : '' }"
-      = link_to 'Phòng đôi', url_for(room_type: 'double', hotel_id: @hotel.id)
+    li class="rooms__nav-link #{ @room_type == 'double' ? 'rooms__link-active' : '' }"
+      = link_to 'Phòng đôi', url_for(room_type: 'double', hotel_id: @hotel.id, room_status: @room_status || 'all')
       span
         = " [#{@available_rooms_groups['double'] || 0}]"
 
-    li class="rooms__nav-link #{ @room_type_param == 'queen' ? 'rooms__link-active' : '' }"
-      = link_to 'Queen', url_for(room_type: 'queen', hotel_id: @hotel.id)
+    li class="rooms__nav-link #{ @room_type == 'queen' ? 'rooms__link-active' : '' }"
+      = link_to 'Queen', url_for(room_type: 'queen', hotel_id: @hotel.id, room_status: @room_status || 'all')
       span
         = " [#{@available_rooms_groups['queen'] || 0}]"

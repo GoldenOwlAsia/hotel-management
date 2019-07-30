@@ -1,0 +1,5 @@
+section.new-hotel
+  = simple_form_for @hotel do |f|
+    = f.input :name
+    = f.input :address
+    = f.submit 'Create hotel'
