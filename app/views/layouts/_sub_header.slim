@@ -10,14 +10,15 @@ header
 
         .sub-header__right-side
           .sub-header__current-day-wrapper
-            span Ngày:
+            h4 Ngày:
             span
               = Time.now.strftime('%d tháng %-m')
 
           .sub-header__filter-box-container
             .sub-header__filter-default
-              = link_to "Lọc theo: #{get_filter_text(@room_status)}", url_for(room_status: 'available', hotel_id: @hotel.id, room_type: @room_type)
-              <p>&#x25BE;</p>
+              span
+                = "Lọc theo: #{get_filter_text(@room_status || 'all')}"
+              <span>&#x25BE;</span>
 
             .sub-header__filter-content
               = link_to 'Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel.id, room_type: @room_type)
@@ -28,7 +29,7 @@ header
 script
   |
     $(document).ready(function() {
-      $('.sub-header__filter-content').hide();
+      $('.sub-header__filter-content').toggle('sub-header__filter-content');
       $('.sub-header__filter-default').on('click', function(e) {
         $('.sub-header__filter-content').toggle('sub-header__filter-content');
       })
