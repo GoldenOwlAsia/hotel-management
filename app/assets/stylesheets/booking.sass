@@ -1,10 +1,18 @@
 @import 'mixins.sass'
+@import 'variables.sass'
 
 .booking
-  padding-top: 200pt
+  padding-top: 50pt
   width: 375pt
   height: 675pt
-  border: 1px solid red
+  border: 1px solid $gray
+  label
+    color: $strongGray
+  h4
+    font-weight: bold
+  p
+    color: $lightGray
+
   &__room-info-container
     display: flex
     justify-content: space-between
@@ -27,8 +35,11 @@
       width: 100%
       height: 33pt
       margin-bottom: 15pt
-    input[type='submit']
-      background-color: $blue
+      padding-left: 5pt
+      &:focus
+        outline: none
+    input[type='radio']
+      height: 10pt
 
   &__time-wrapper
     display: flex
@@ -37,13 +48,76 @@
 
   &__buttton-wrapper
     display: flex
-    justify-content: flex-end
-    input[type='submit']:last-child
-      width: 188pt
-      height: 45pt
+    justify-content: space-between
+
+    input[type='submit']
       color: $white
       border-radius: 4px
       font-size: 12pt
 
+    input[type='submit']:first-child
+      width: 116pt
+      height: 45pt
+      color: $blue
+      border: 1px solid $blue
+
+    input[type='submit']:last-child
+      width: 170pt
+      height: 45pt
+      background-color: $blue
+
   &__main-content-wrapper
     padding-bottom: 20pt
+
+  &__customer-icons-wrapper
+    display: none
+
+  &__icon
+    width: 20pt
+    padding-right: 5pt
+
+  &__add-customers
+    display: flex
+    border: 1px solid $slightGray
+    width: 100%
+    justify-content: center
+    align-items: center
+    height: 33pt
+    margin: 10pt 0
+    span
+      color: $smokeGray
+      font-size: 20pt
+
+  &__customer_mates
+    padding: 10pt 0
+
+  &__flex-box
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  &__room-status
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: $weakGray
+    width: 90pt
+    height: 26pt
+    border-radius: 13pt
+
+  &__icons-gender-wrapper
+    display: flex
+    justify-content: space-between
+
+  &__half-flex-box
+    flex: 1
+    border: 1px solid $slightGray
+    padding: 5pt
+
+.room_bookings_rent_type
+  display: flex
+  align-items: center
+
+.radio
+  label
+    padding-right: 50pt

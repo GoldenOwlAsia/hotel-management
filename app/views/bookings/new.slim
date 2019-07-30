@@ -3,7 +3,7 @@
     div
       h4 Phòng #{ @room.room_number }
       p Phòng #{ @room.room_type   }
-    div
+    .booking__room-status
       h4 Phòng trống
 
   div
@@ -16,27 +16,76 @@
         .booking__main-content-wrapper
           = f.label 'Tên khách hàng'
           = f.input :name, label: false
+          .booking__flex-box
+            div
+              = f.input :customer_nin, label: false, placeholder: 'Số CMND'
 
-          = f.label 'Số CMND'
-          = f.input :customer_nin, label: false
+            div
+              = f.input :booking_phone_number, label: false, placeholder: 'Số điện thoại'
 
-          = f.label 'Số điện thoại'
-          = f.input :booking_phone_number, label: false
+          .booking__status-wrapper
+            = f.label 'Hình thức'
+            div
+              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons, label: false
 
           .booking__time-wrapper
             div
-              = f.label 'Ngày vào'
-              = f.input :checkin_time,  as: :datetime, html5: true, input_html: {value: @checkin_time},  label: false
+              = f.label 'Ngày'
+              = f.input :checkin_time,  as: :date, html5: true, input_html: { value: @checkin_time },  label: false
             div
-              = f.label 'Ngày đi'
-              = f.input :checkout_time, as: :datetime, html5: true, input_html: {value: @checkout_time}, label: false
-
-          .booking__status-wrapper
-            div
-              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons
+              = f.label 'Giờ'
+              = f.input :checkout_time, as: :time, html5: true, input_html: { value: @checkin_time }, label: false
 
           .booking__customer_mates
-            button + Thêm khách cùng phòng
+            h4 Khách cùng phòng
+            div.booking__add-customers
+              span +
+              p Thêm khách cùng phòng
+            div.booking__customer-icons-wrapper
+              .booking__icons-gender-wrapper
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/men.png', class: 'booking__icon'
+                    p Đàn ông
+                  .booking__flex-box
+                    span -
+                    span 0
+                    span +
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/women.png', class: 'booking__icon'
+                    p Phụ nữ
+                  .booking__flex-box
+                    span -
+                    span 0
+                    span +
+              .booking__icons-gender-wrapper
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/baby.png', class: 'booking__icon'
+                    p Bé trai
+                  div
+                    span -
+                    span 0
+                    span +
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/baby-girl.png',  class: 'booking__icon'
+                    p Bé gái
+                  .booking__flex-box
+                    span -
+                    span 0
+                    span +
 
         .booking__buttton-wrapper
+          = f.button :submit, 'Đặt phòng'
           = f.button :submit, 'Bắt đầu nhận phòng'
+
+script
+  |
+    $(document).ready(function() {
+      $('.sub-header__filter-content').hide();
+      $('.booking__add-customers').on('click', function(e) {
+        $('.booking__customer-icons-wrapper').toggle('booking__customer-icons-wrapper');
+      })
+    })
