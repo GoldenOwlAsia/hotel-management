@@ -17,5 +17,8 @@
       <%= render 'layouts/sub_header' %>
     <% end %>
     <%= yield %>
+    <% if content_for? :body_bottom %>
+      <%= yield :body_bottom %>
+    <% end %>
   </body>
 </html>
