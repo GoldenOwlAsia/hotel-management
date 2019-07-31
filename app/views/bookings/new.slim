@@ -9,7 +9,9 @@
   div
     .booking__form-title-container
       h4 Thông tin chi tiết
-      p Chụp ảnh thông tin
+      .booking__camera-wrapper
+        = image_tag 'icons/photo-camera.png', class: 'booking__icon'
+        p Chụp ảnh thông tin
 
     .booking__form-wrapper
       = simple_form_for :room_bookings, url: room_bookings_path(@room), method: :post do |f|
@@ -49,7 +51,7 @@
                     p Đàn ông
                   .booking__flex-box
                     span -
-                    span 0
+                    = f.input :men, label: false, placeholder: '0'
                     span +
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
@@ -57,24 +59,24 @@
                     p Phụ nữ
                   .booking__flex-box
                     span -
-                    span 0
+                    = f.input :women, label: false, placeholder: '0'
                     span +
               .booking__icons-gender-wrapper
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
                     = image_tag 'icons/baby.png', class: 'booking__icon'
                     p Bé trai
-                  div
+                  .booking__flex-box
                     span -
-                    span 0
+                    = f.input :baby_boy, label: false, placeholder: '0'
                     span +
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
-                    = image_tag 'icons/baby-girl.png',  class: 'booking__icon'
+                    = image_tag 'icons/baby-girl.png', class: 'booking__icon'
                     p Bé gái
                   .booking__flex-box
                     span -
-                    span 0
+                    = f.input :baby_girl, label: false, placeholder: '0'
                     span +
 
         .booking__buttton-wrapper
