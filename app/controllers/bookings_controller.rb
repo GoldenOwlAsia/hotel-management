@@ -20,8 +20,8 @@ class BookingsController < ApplicationController
 
     @booking = Booking.new(
       customer: @customer,
-      checkin_time: booking_params[:checkin_time],
-      checkout_time: booking_params[:checkout_time],
+      checkin_time: checkin_datetime,
+      checkout_time: 1.month.from_now,
       rent_type: booking_params[:rent_type],
       room_id: params[:room_id],
       status: 'checked_in'
@@ -62,10 +62,14 @@ class BookingsController < ApplicationController
     @baby_boy_count ||= booking_params[:baby_boy].to_i
   end
 
+  def checkin_datetime
+    @checkin_datetime ||= (booking_params[:checkin_date].to_datetime + Time.parse(booking_params[:checkin_time]).seconds_since_midnight.seconds).to_datetime
+  end
+
   def booking_params
     params.require(:room_bookings).permit(
+      :checkin_date,
       :checkin_time,
-      :checkout_time,
       :booked_at,
       :room_id,
       :customer_id,

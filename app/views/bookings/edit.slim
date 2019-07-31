@@ -33,10 +33,10 @@
           .booking__time-wrapper
             div
               = f.label 'Ngày'
-              = f.input :checkin_time,  as: :date, html5: true, input_html: { value: @checkin_time },  label: false
+              = f.input :checkin_date,  as: :date, html5: true, input_html: { value: @checkin_time },  label: false
             div
               = f.label 'Giờ'
-              = f.input :checkout_time, as: :time, html5: true, input_html: { value: @checkin_time }, label: false
+              = f.input :checkin_time, as: :time, html5: true, input_html: { value: @checkin_time }, label: false
 
           .booking__customer_mates
             h4 Khách cùng phòng
