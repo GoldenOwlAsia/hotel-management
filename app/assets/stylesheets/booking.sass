@@ -28,6 +28,9 @@
   &__form-wrapper
     display: flex
     justify-content: center
+    form
+      width: 100%
+      padding: 25pt
     label
       padding-bottom: 5pt
       display: block
@@ -101,11 +104,19 @@
   &__icons-gender-wrapper
     display: flex
     justify-content: space-between
+    input
+      border: none
+      width: 30pt
+      margin-bottom: 0
+      text-align: center
 
   &__half-flex-box
     flex: 1
     border: 1px solid $slightGray
     padding: 5pt
+
+  &__camera-wrapper
+    display: flex
 
 .room_bookings_rent_type
   display: flex

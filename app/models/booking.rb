@@ -18,6 +18,7 @@
 class Booking < ApplicationRecord
   belongs_to :room
   belongs_to :customer
+  has_many :guests, dependent: :destroy
 
   validates :rent_type, presence: true
 
