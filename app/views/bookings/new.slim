@@ -50,34 +50,34 @@
                     = image_tag 'icons/men.png', class: 'booking__icon'
                     p Đàn ông
                   .booking__flex-box
-                    .plus -
-                    = f.input :men, label: false, placeholder: '0', input_html: { value: 0 }, class: 'input-value'
-                    span +
+                    .minus -
+                    = f.input :men, label: false, placeholder: '0', input_html: { type: 'number', value: 0 }
+                    .plus +
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
                     = image_tag 'icons/women.png', class: 'booking__icon'
                     p Phụ nữ
                   .booking__flex-box
-                    span -
-                    = f.input :women, label: false, placeholder: '0'
-                    span +
+                    .minus -
+                    = f.input :women, label: false, input_html: { type: 'number', value: 0 }
+                    .plus +
               .booking__icons-gender-wrapper
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
                     = image_tag 'icons/baby.png', class: 'booking__icon'
                     p Bé trai
                   .booking__flex-box
-                    span -
-                    = f.input :baby_boy, label: false, placeholder: '0'
-                    span +
+                    .minus -
+                    = f.input :baby_boy, label: false, input_html: { type: 'number', value: 0 }
+                    .plus +
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
                     = image_tag 'icons/baby-girl.png', class: 'booking__icon'
                     p Bé gái
                   .booking__flex-box
-                    span -
-                    = f.input :baby_girl, label: false, placeholder: '0'
-                    span +
+                    .minus -
+                    = f.input :baby_girl, label: false, input_html: { type: 'number', value: 0 }
+                    .plus +
 
         .booking__buttton-wrapper
           = f.button :submit, 'Bắt đầu nhận phòng'
@@ -88,5 +88,19 @@ script
       $('.sub-header__filter-content').hide();
       $('.booking__add-customers').on('click', function(e) {
         $('.booking__customer-icons-wrapper').toggle('booking__customer-icons-wrapper');
+      })
+
+      $('.plus').on('click', function() {
+        let inputValue = $('#room_bookings_men').val();
+        inputValue = Number(inputValue) + 1;
+        console.log(inputValue)
+      })
+
+      $('.minus').on('click', function() {
+        let inputValue = $('#room_bookings_men').val();
+        if(inputValue == 0) {
+          inputValue = Number(inputValue) - 1;
+          console.log(inputValue)
+        }
       })
     })
