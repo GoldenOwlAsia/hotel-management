@@ -43,25 +43,18 @@
 
   &__time-wrapper
     display: flex
+    justify-content: space-between
     input
-      width: 157pt
+      width: 100%
 
   &__buttton-wrapper
     display: flex
-    justify-content: space-between
+    justify-content: flex-end
 
     input[type='submit']
       color: $white
       border-radius: 4px
       font-size: 12pt
-
-    input[type='submit']:first-child
-      width: 116pt
-      height: 45pt
-      color: $blue
-      border: 1px solid $blue
-
-    input[type='submit']:last-child
       width: 170pt
       height: 45pt
       background-color: $blue
