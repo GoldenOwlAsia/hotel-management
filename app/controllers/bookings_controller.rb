@@ -22,7 +22,6 @@ class BookingsController < ApplicationController
       customer: @customer,
       checkin_time: booking_params[:checkin_time],
       checkout_time: booking_params[:checkout_time],
-      booked_at: booking_params[:booked_at],
       rent_type: booking_params[:rent_type],
       room_id: params[:room_id],
       status: 'checked_in'
