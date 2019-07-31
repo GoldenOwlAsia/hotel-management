@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
   root 'homes#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }

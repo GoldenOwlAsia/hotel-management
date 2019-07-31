@@ -50,8 +50,8 @@
                     = image_tag 'icons/men.png', class: 'booking__icon'
                     p Đàn ông
                   .booking__flex-box
-                    span -
-                    = f.input :men, label: false, placeholder: '0'
+                    .plus -
+                    = f.input :men, label: false, placeholder: '0', input_html: { value: 0 }, class: 'input-value'
                     span +
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
