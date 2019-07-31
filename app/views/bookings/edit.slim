@@ -1,33 +1,92 @@
 .booking
   .booking__room-info-container
     div
-      h4 Phòng 201
-      p Phòng thường
-    div
+      h4 Phòng #{ @room.room_number }
+      p Phòng #{ @room.room_type   }
+    .booking__room-status
       h4 Phòng trống
 
   div
     .booking__form-title-container
       h4 Thông tin chi tiết
-      p Chụp ảnh thông tin
+      .booking__camera-wrapper
+        = image_tag 'icons/photo-camera.png', class: 'booking__icon'
+        p Chụp ảnh thông tin
 
     .booking__form-wrapper
-      = simple_form_for [@room, @booking] do |f|
+      = simple_form_for :room_bookings, url: room_bookings_path(@room), method: :post do |f|
         .booking__main-content-wrapper
-          = f.label 'Số điện thoại'
-          = f.input :booking_phone_number, label: false
+          = f.label 'Tên khách hàng'
+          = f.input :name, label: false
+          .booking__flex-box
+            div
+              = f.input :customer_nin, label: false, placeholder: 'Số CMND'
+
+            div
+              = f.input :phone_number, label: false, placeholder: 'Số điện thoại'
+
+          .booking__status-wrapper
+            = f.label 'Hình thức'
+            div
+              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons, label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' }, label: false
 
           .booking__time-wrapper
             div
-              = f.label 'Ngày vào'
-              = f.input :checkin_time,  as: :datetime, html5: true,  label: false
+              = f.label 'Ngày'
+              = f.input :checkin_time,  as: :date, html5: true, input_html: { value: @checkin_time },  label: false
             div
-              = f.label 'Ngày đi'
-              = f.input :checkout_time, as: :datetime, html5: true, label: false
+              = f.label 'Giờ'
+              = f.input :checkout_time, as: :time, html5: true, input_html: { value: @checkin_time }, label: false
 
-          .booking__rent-type-wrapper
-            div
-              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons
+          .booking__customer_mates
+            h4 Khách cùng phòng
+            div.booking__add-customers
+              span +
+              p Thêm khách cùng phòng
+            div.booking__customer-icons-wrapper
+              .booking__icons-gender-wrapper
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/men.png', class: 'booking__icon'
+                    p Đàn ông
+                  .booking__flex-box
+                    .plus -
+                    = f.input :men, label: false, placeholder: '0', input_html: { value: 0 }, class: 'input-value'
+                    span +
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/women.png', class: 'booking__icon'
+                    p Phụ nữ
+                  .booking__flex-box
+                    span -
+                    = f.input :women, label: false, placeholder: '0'
+                    span +
+              .booking__icons-gender-wrapper
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/baby.png', class: 'booking__icon'
+                    p Bé trai
+                  .booking__flex-box
+                    span -
+                    = f.input :baby_boy, label: false, placeholder: '0'
+                    span +
+                div class='booking__half-flex-box booking__flex-box'
+                  .booking__flex-box
+                    = image_tag 'icons/baby-girl.png', class: 'booking__icon'
+                    p Bé gái
+                  .booking__flex-box
+                    span -
+                    = f.input :baby_girl, label: false, placeholder: '0'
+                    span +
 
         .booking__buttton-wrapper
-          = f.button :submit, 'Lưu thay đổi'
+          = f.button :submit, 'Bắt đầu nhận phòng'
+
+script
+  |
+    $(document).ready(function() {
+      $('.sub-header__filter-content').hide();
+      $('.booking__add-customers').on('click', function(e) {
+        $('.booking__customer-icons-wrapper').toggle('booking__customer-icons-wrapper');
+      })
+    })
