@@ -23,9 +23,7 @@ class BookingsController < ApplicationController
       checkin_time: booking_params[:checkin_time],
       checkout_time: booking_params[:checkout_time],
       booked_at: booking_params[:booked_at],
-      status: booking_params[:status],
       rent_type: booking_params[:rent_type],
-      booking_phone_number: booking_params[:booking_phone_number],
       room_id: params[:room_id],
       status: 'checked_in'
     )
@@ -45,6 +43,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:room_bookings).permit(:checkin_time, :checkout_time, :booked_at, :room_id, :booking_phone_number, :customer_id, :status, :name, :phone_number, :customer_nin, :rent_type)
+    params.require(:room_bookings).permit(:checkin_time, :checkout_time, :booked_at, :room_id, :customer_id, :status, :name, :phone_number, :customer_nin, :rent_type)
   end
 end
