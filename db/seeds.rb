@@ -105,7 +105,7 @@ Booking.create!(room: Room.second, customer: Customer.second, checkin_time: Time
 Booking.create!(room: Room.third, customer: Customer.third, checkin_time: Time.now, checkout_time: 1.day.from_now, rent_type:'overnight', status: 'checked_in')
 Booking.create!(room: Room.fourth, customer: Customer.fourth, checkin_time: 1.month.ago, checkout_time: 1.month.from_now, rent_type:'hourly', status: 'checked_in')
 
-put '--> Creating guests'
+puts '--> Creating guests'
 Guest.create!(booking: Booking.first, guest_type: 'women', quantity: 1)
 Guest.create!(booking: Booking.first, guest_type: 'men', quantity: 1)
 Guest.create!(booking: Booking.first, guest_type: 'baby_girl', quantity: 1)
