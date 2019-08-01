@@ -85,6 +85,8 @@
     a, span
       color: $black
       font-weight: bold
+    span
+      padding-left: 2pt
 
   &__navigations-list
     white-space: nowrap
@@ -176,7 +178,7 @@
 
 @media screen and (min-width: 767px)
   .rooms
-    padding: 130pt 54pt 0 54pt
+    padding: 150pt 54pt 0 54pt
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
@@ -208,6 +210,16 @@
   .new_room_filter
     padding-left: 54pt
     padding-right: 30pt
+
+  .overlay
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(0,0,0,0.8)
+    z-index: 1000000
 
 @media screen and (min-width: 769px)
   .rooms
