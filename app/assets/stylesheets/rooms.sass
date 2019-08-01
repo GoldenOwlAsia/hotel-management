@@ -100,18 +100,12 @@
 
   &__choose-room-btn-wrapper
     a
-      display: none
-
-  &__room
-    &:hover
-      .rooms__choose-room-btn-wrapper
-        a
-          display: block
-          color: $black
-          border: $border-line-whisper
-          border-radius: 4px
-          text-align: center
-          padding: 2pt 0
+      display: block
+      color: $black
+      border: $border-line-whisper
+      border-radius: 4px
+      text-align: center
+      padding: 2pt 0
 
 .room-status-booked
   background-color: $blue
@@ -210,6 +204,21 @@
     &__nav-link
       a, span
         font-size: 12pt
+
+    &__choose-room-btn-wrapper
+      a
+        display: none
+
+    &__room
+      &:hover
+        .rooms__choose-room-btn-wrapper
+          a
+            display: block
+            color: $black
+            border: $border-line-whisper
+            border-radius: 4px
+            text-align: center
+            padding: 2pt 0
 
   .new_room_filter
     padding-left: 54pt
