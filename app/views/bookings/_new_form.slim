@@ -14,7 +14,7 @@
         p Chụp ảnh thông tin
 
     .booking__form-wrapper
-      = simple_form_for :room_bookings, url: room_bookings_path(@room), method: :post do |f|
+      = simple_form_for @room_booking, url: room_bookings_path(@room), method: :post do |f|
         .booking__main-content-wrapper
           = f.label 'Tên khách hàng'
           = f.input :name, label: false, placeholder: 'Trần Văn Sơn'
@@ -35,10 +35,10 @@
           .booking__time-wrapper
             div
               = f.label 'Ngày'
-              = f.input :checkin_date,  as: :date, html5: true, input_html: { value: @checkin_time },  label: false
+              = f.input :checkin_date,  as: :date, html5: true,  label: false
             div
               = f.label 'Giờ'
-              = f.input :checkin_time, as: :time, html5: true, input_html: { value: @checkin_time }, label: false
+              = f.input :checkin_time, as: :time, html5: true, label: false
 
           .booking__customer_mates
             h4 Khách cùng phòng

@@ -3,9 +3,11 @@ class BookingsController < ApplicationController
 
   def new
     @room = Room.find(params[:room_id])
-    @checkin_time = params[:checkin_time]
-    @checkout_time = params[:checkout_time]
-    @booking = Booking.new(checkin_time: @checkin_time, checkout_time: @checkout_time)
+    @room_booking = RoomBooking.new(
+      room_id: params[:room_id],
+      checkin_time: params[:checkin_time].to_datetime,
+      checkin_date: params[:checkin_time].to_datetime
+    )
   end
 
   def create
@@ -28,11 +30,10 @@ class BookingsController < ApplicationController
     )
 
     if @booking.save!
-      @booking.guests.create(guest_type: 'women', quantity: women_count) if women_count > 0
-      @booking.guests.create(guest_type: 'men', quantity: men_count) if men_count > 0
-      @booking.guests.create(guest_type: 'baby_girl', quantity: baby_girl_count) if baby_girl_count > 0
-      @booking.guests.create(guest_type: 'baby_boy', quantity: baby_boy_count) if baby_boy_count > 0
-
+      @booking.guests.create(guest_type: 'women', quantity: women_count) if women_count.positive?
+      @booking.guests.create(guest_type: 'men', quantity: men_count) if men_count.positive?
+      @booking.guests.create(guest_type: 'baby_girl', quantity: baby_girl_count) if baby_girl_count.positive?
+      @booking.guests.create(guest_type: 'baby_boy', quantity: baby_boy_count) if baby_boy_count.positive?
       redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
     else
       render 'new'
@@ -67,7 +68,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:room_bookings).permit(
+    params.require(:room_booking).permit(
       :checkin_date,
       :checkin_time,
       :booked_at,
