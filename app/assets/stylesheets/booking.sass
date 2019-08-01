@@ -2,7 +2,6 @@
 @import 'variables.sass'
 
 .booking
-  //width: 375pt
   border: 1px solid $gray
   padding-top: 20pt
   label
@@ -58,9 +57,20 @@
       color: $white
       border-radius: 4px
       font-size: 12pt
-      width: 170pt
+      padding: 0 20pt
       height: 45pt
       background-color: $blue
+
+  &__cancel-btn
+    color: $white
+    border-radius: 4px
+    font-size: 12pt
+    height: 45pt
+    background-color: $blue
+    display: flex
+    align-items: center
+    padding: 0 20pt
+    margin-right: 10pt
 
   &__main-content-wrapper
     padding-bottom: 20pt
@@ -70,8 +80,8 @@
 
   &__icon
     width: 20pt
+    height: 20pt
     padding-right: 5pt
-    object-fit: contain
 
   &__add-customers
     display: flex
