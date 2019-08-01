@@ -4,8 +4,8 @@ header
       = simple_form_for @room_filter, method: :get, url: url_for(only_path: false, overwrite_params: nil) do |f|
         .sub-header__left-side
           - if @hotel.id.present?
-            h3 Khách sạn
-            h3
+            h3.sub-header__hotel-name Khách sạn
+            h3.sub-header__hotel-name
               = @hotel.name
 
         .sub-header__right-side
