@@ -17,13 +17,15 @@
       = simple_form_for :room_bookings, url: room_bookings_path(@room), method: :post do |f|
         .booking__main-content-wrapper
           = f.label 'Tên khách hàng'
-          = f.input :name, label: false
+          = f.input :name, label: false, placeholder: 'Trần Văn Sơn'
           .booking__flex-box
             div
-              = f.input :customer_nin, label: false, placeholder: 'Số CMND'
+              = f.label 'Số CMND'
+              = f.input :customer_nin, label: false
 
             div
-              = f.input :phone_number, label: false, placeholder: 'Số điện thoại'
+              = f.label 'Số điện thoại'
+              = f.input :phone_number, label: false
 
           .booking__status-wrapper
             = f.label 'Hình thức'
@@ -61,6 +63,7 @@
                     .booking__women.minus-btn -
                     = f.input :women, label: false, input_html: { type: 'number', value: 0, min: 0 }
                     .booking__women.plus-btn +
+
               .booking__icons-gender-wrapper
                 div class='booking__half-flex-box booking__flex-box'
                   .booking__flex-box
@@ -79,6 +82,9 @@
                     = f.input :baby_girl, label: false, input_html: { type: 'number', value: 0, min: 0 }
                     .booking__girl.plus-btn +
 
+              .booking__message
+                p * Khách trong phòng bao gồm khách đăng ký ban đầu
+                
         .booking__buttton-wrapper
           = f.button :submit, 'Bắt đầu nhận phòng'
 
