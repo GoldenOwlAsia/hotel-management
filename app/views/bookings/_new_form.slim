@@ -84,8 +84,9 @@
 
               .booking__message
                 p * Khách trong phòng bao gồm khách đăng ký ban đầu
-                
+
         .booking__buttton-wrapper
+          .booking__cancel-btn Cancel
           = f.button :submit, 'Bắt đầu nhận phòng'
 
 script
@@ -105,4 +106,8 @@ script
         let $input = $(this).siblings('.input').find('input');
         $input.val(Math.max(Number($input.val()) - 1, 0));
       });
+
+      $('.booking__cancel-btn').on('click', function() {
+        $('.right-sidebar').hide();
+      })
     });
