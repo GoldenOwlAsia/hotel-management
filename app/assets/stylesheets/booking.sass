@@ -7,6 +7,7 @@
   padding-top: 20pt
   label
     color: $strongGray
+    white-space: nowrap
   h4
     font-weight: bold
   p
@@ -70,6 +71,7 @@
   &__icon
     width: 20pt
     padding-right: 5pt
+    object-fit: contain
 
   &__add-customers
     display: flex
@@ -90,6 +92,8 @@
     display: flex
     justify-content: space-between
     align-items: center
+    p
+      white-space: nowrap
 
   &__room-status
     display: flex
@@ -128,6 +132,12 @@
 .radio
   label
     padding-right: 50pt
+
+#room_bookings_rent_type_hourly
+  margin-left: -65pt
+
+#room_bookings_rent_type_overnight
+  margin-left: -65pt
 
 .right-sidebar
   display: none
