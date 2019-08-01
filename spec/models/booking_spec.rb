@@ -18,4 +18,14 @@
 require 'rails_helper'
 
 RSpec.describe Booking, type: :model do
+  describe 'validates' do
+    it { is_expected.to validate_presence_of(:rent_type) }
+    it { is_expected.to validate_presence_of(:checkin_time) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to belong_to(:room) }
+    it { is_expected.to belong_to(:customer) }
+    it { is_expected.to have_many(:guests) }
+  end
 end

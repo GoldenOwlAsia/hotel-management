@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :guest do
-    guest_type { "MyString" }
+    guest_type { 'men' }
     quantity { 1 }
-    booking { nil }
+    booking
   end
 end

@@ -7,7 +7,6 @@
 #  customer_id   :bigint           not null
 #  checkin_time  :datetime
 #  checkout_time :datetime
-#  booked_at     :datetime
 #  phone_number  :string
 #  status        :string
 #  created_at    :datetime         not null
@@ -21,6 +20,7 @@ class Booking < ApplicationRecord
   has_many :guests, dependent: :destroy
 
   validates :rent_type, presence: true
+  validates :checkin_time, presence: true
 
   enum status: { checked_in: 'checked_in', unchecked_in: 'unchecked_in' }
   enum rent_type: { hourly: 'hourly', overnight: 'overnight' }
