@@ -30,7 +30,11 @@
           .booking__status-wrapper
             = f.label 'Hình thức'
             div
-              = f.input :rent_type, collection: ['hourly', 'overnight'],  as: :radio_buttons, label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' }, label: false
+              = f.input :rent_type,
+                collection: ['hourly', 'overnight'],
+                as: :radio_buttons,
+                label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
+                label: false
 
           .booking__time-wrapper
             div
@@ -53,7 +57,10 @@
                     p Đàn ông
                   .booking__flex-box
                     .booking__men.minus-btn -
-                    = f.input :men, label: false, placeholder: '0', input_html: { type: 'number', value: 0, min: 0 }
+                    = f.input :men,
+                        label: false,
+                        placeholder: '0',
+                        input_html: { type: 'number', value: 0, min: 0 }
                     .booking__men.plus-btn +
                 .booking__half-flex-box.booking__flex-box'
                   .booking__flex-box
@@ -61,7 +68,9 @@
                     p Phụ nữ
                   .booking__flex-box
                     .booking__women.minus-btn -
-                    = f.input :women, label: false, input_html: { type: 'number', value: 0, min: 0 }
+                    = f.input :women,
+                        label: false,
+                        input_html: { type: 'number', value: 0, min: 0 }
                     .booking__women.plus-btn +
 
               .booking__icons-gender-wrapper
@@ -71,7 +80,9 @@
                     p Bé trai
                   .booking__flex-box
                     .booking__boy.minus-btn -
-                    = f.input :baby_boy, label: false, input_html: { type: 'number', value: 0, min: 0 }
+                    = f.input :baby_boy,
+                        label: false,
+                        input_html: { type: 'number', value: 0, min: 0 }
                     .booking__boy.plus-btn +
                 .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
@@ -79,7 +90,9 @@
                     p Bé gái
                   .booking__flex-box
                     .booking__girl.minus-btn -
-                    = f.input :baby_girl, label: false, input_html: { type: 'number', value: 0, min: 0 }
+                    = f.input :baby_girl,
+                        label: false,
+                        input_html: { type: 'number', value: 0, min: 0 }
                     .booking__girl.plus-btn +
 
               .booking__message
