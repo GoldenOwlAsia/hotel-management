@@ -31,10 +31,10 @@
             = f.label 'Hình thức'
             div
               = f.input :rent_type,
-                collection: ['hourly', 'overnight'],
-                as: :radio_buttons,
-                label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
-                label: false
+                  collection: ['hourly', 'overnight'],
+                  as: :radio_buttons,
+                  label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
+                  label: false
 
           .booking__time-wrapper
             div
@@ -101,27 +101,3 @@
         .booking__buttton-wrapper
           .booking__cancel-btn Cancel
           = f.button :submit, 'Bắt đầu nhận phòng'
-
-script
-  |
-    $(document).ready(function() {
-      $('.sub-header__filter-content').hide();
-      $('.booking__add-customers').on('click', function(e) {
-        $('.booking__customer-icons-wrapper').toggle('booking__customer-icons-wrapper');
-      });
-
-      $(document).on('click', '.plus-btn', function() {
-        let $input = $(this).siblings('.input').find('input');
-        $input.val(Number($input.val()) + 1);
-      });
-
-      $(document).on('click', '.minus-btn', function() {
-        let $input = $(this).siblings('.input').find('input');
-        $input.val(Math.max(Number($input.val()) - 1, 0));
-      });
-
-      $('.booking__cancel-btn').on('click', function() {
-        $('.right-sidebar').hide();
-        $('.overlay').hide();
-      })
-    });

@@ -95,13 +95,16 @@
     span:last-child
       padding-left: 3pt
 
-  &__filter-content
+  .hide-filter-content
     display: none
-    flex-direction: column
     position: relative
     top: 30pt
     left: 20pt
     width: 200pt
+    > div
+      display: flex
+      flex-direction: column
+      font-size: 9pt
 
   &__search
     form
@@ -163,14 +166,6 @@
   &__icon
     width: 10pt
 
-.hide-filter-content
-  display: flex
-  flex-direction: column
-  position: relative
-  top: 30pt
-  left: 20pt
-  width: 200pt
-
 @media screen and(min-width: 767px)
   .sub-header
     display: flex
@@ -184,13 +179,6 @@
     &__filter-default
       position: fixed
       display: flex
-      font-size: 9pt
-
-    &__filter-content
-      display: flex
-      flex-direction: column
-      position: relative
-      top: 30pt
       font-size: 9pt
 
     .new_room_filter
