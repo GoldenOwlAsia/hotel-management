@@ -35,7 +35,7 @@ class Booking < ApplicationRecord
       end_time,
       end_time,
       start_time,
-      end_time,
+      end_time
     )
   end
 end
