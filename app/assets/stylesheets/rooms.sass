@@ -141,6 +141,17 @@
 .new_room_filter
   border-bottom: 1px solid $slightGray
 
+.overlay
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0,0,0,0.8)
+  z-index: 1000000
+  opacity: 0.4
+
 @media screen and (min-width: 420px)
   .rooms
     margin: 0 auto
@@ -210,17 +221,6 @@
   .new_room_filter
     padding-left: 54pt
     padding-right: 30pt
-
-  .overlay
-    display: none
-    position: fixed
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background: rgba(0,0,0,0.8)
-    z-index: 1000000
-    opacity: 0.4
 
 @media screen and (min-width: 769px)
   .rooms
