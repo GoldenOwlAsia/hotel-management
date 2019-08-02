@@ -1,3 +1,4 @@
 class Order < ApplicationRecord
-  belongs_to :customer
+  has_many :service_orders
+  has_many :services, through: :service_orders, source: :services
 end
