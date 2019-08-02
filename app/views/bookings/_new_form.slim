@@ -45,9 +45,9 @@
             div.booking__add-customers
               span +
               p Thêm khách cùng phòng
-            div.booking__customer-icons-wrapper
+            .booking__customer-icons-wrapper.show-room-members
               .booking__icons-gender-wrapper
-                div class='booking__half-flex-box booking__flex-box'
+                .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
                     = image_tag 'icons/men.png', class: 'booking__icon'
                     p Đàn ông
@@ -55,7 +55,7 @@
                     .booking__men.minus-btn -
                     = f.input :men, label: false, placeholder: '0', input_html: { type: 'number', value: 0, min: 0 }
                     .booking__men.plus-btn +
-                div class='booking__half-flex-box booking__flex-box'
+                .booking__half-flex-box.booking__flex-box'
                   .booking__flex-box
                     = image_tag 'icons/women.png', class: 'booking__icon'
                     p Phụ nữ
@@ -65,7 +65,7 @@
                     .booking__women.plus-btn +
 
               .booking__icons-gender-wrapper
-                div class='booking__half-flex-box booking__flex-box'
+                .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
                     = image_tag 'icons/baby.png', class: 'booking__icon'
                     p Bé trai
@@ -73,7 +73,7 @@
                     .booking__boy.minus-btn -
                     = f.input :baby_boy, label: false, input_html: { type: 'number', value: 0, min: 0 }
                     .booking__boy.plus-btn +
-                div class='booking__half-flex-box booking__flex-box'
+                .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
                     = image_tag 'icons/baby-girl.png', class: 'booking__icon'
                     p Bé gái
