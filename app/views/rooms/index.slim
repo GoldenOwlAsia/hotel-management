@@ -10,6 +10,6 @@ section.rooms
 
   - @sorted_groups.each do |group_key|
     div.rooms__room-container
-      h1 tầng  #{ group_key == 0 ? get_floor_number_text(group_key) : group_key }
+      h1 tầng #{ group_key == 0 ? get_floor_number_text(group_key) : group_key }
       .rooms__room-wrapper
         = render @grouped_rooms[group_key]

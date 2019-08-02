@@ -21,16 +21,8 @@ header
               <span>&#x25BE;</span>
 
             .sub-header__filter-content.hide-filter-content
-              = link_to 'Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel.id, room_type: @room_type)
-              = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel.id)
+              div
+                = link_to 'Tất cả phòng trống', url_for(room_status: 'available', hotel_id: @hotel.id, room_type: @room_type)
+                = link_to 'Tất cả phòng', url_for(room_type: nil, hotel_id: @hotel.id)
 
     = yield :navigations
-
-script
-  |
-    $(document).ready(function() {
-      $('.sub-header__filter-content').hide();
-      $('.sub-header__filter-default').on('click', function(e) {
-        $('.sub-header__filter-content').toggle('hide-filter-content');
-      })
-    })
