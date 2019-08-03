@@ -14,6 +14,8 @@ module RoomsHelper
       'Phòng đôi'
     elsif room_type == 'single'
       'Phòng đơn'
+    elsif room_type == 'queen'
+      'Phòng queen'
     else
       ''
     end

@@ -33,7 +33,7 @@
       padding-bottom: 5pt
       display: block
     input
-      width: 98%
+      width: 100%
       height: 30pt
       margin-bottom: 15pt
       padding-left: 5pt
@@ -41,12 +41,6 @@
         outline: none
     input[type='radio']
       height: 10pt
-
-  &__time-wrapper
-    display: flex
-    justify-content: space-between
-    input
-      width: 100%
 
   &__buttton-wrapper
     display: flex
@@ -73,9 +67,6 @@
 
   &__main-content-wrapper
     padding-bottom: 20pt
-
-  // &__customer-icons-wrapper
-  //   display: none
 
   .show-room-members
     display: none
@@ -106,6 +97,10 @@
     align-items: center
     p
       white-space: nowrap
+    > div
+      width: 100%
+    > div:first-child
+      margin-right: 15pt
 
   &__room-status
     display: flex
