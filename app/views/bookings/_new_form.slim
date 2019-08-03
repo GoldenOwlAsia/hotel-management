@@ -16,8 +16,9 @@
     .booking__form-wrapper
       = simple_form_for @room_booking, url: room_bookings_path(@room), method: :post do |f|
         .booking__main-content-wrapper
-          = f.label 'Tên khách hàng'
-          = f.input :name, label: false, placeholder: 'Trần Văn Sơn'
+          div
+            = f.label 'Tên khách hàng'
+            = f.input :name, label: false, placeholder: 'Trần Văn Sơn'
           .booking__flex-box
             div
               = f.label 'Số CMND'
@@ -36,11 +37,11 @@
                   label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
                   label: false
 
-          .booking__time-wrapper
+          .booking__flex-box
             div
               = f.label 'Ngày'
               = f.input :checkin_date,  as: :date, html5: true,  label: false
-            div
+            .booking__time
               = f.label 'Giờ'
               = f.input :checkin_time, as: :time, html5: true, label: false
 
