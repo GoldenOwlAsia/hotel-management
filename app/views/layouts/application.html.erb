@@ -5,17 +5,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta content='width=device-width, initial-scale=1.0' name='viewport' />
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('icons/go.png') %>
   </head>
 
   <body class='<%= yield :page_class %>'>
+    <%= yield :overlay %>
     <% if current_user.present? %>
-      <%# <%= render 'layouts/header' %>
       <%= render 'layouts/sub_header' %>
     <% end %>
     <%= yield %>
+    <% if content_for? :body_bottom %>
+      <%= yield :body_bottom %>
+    <% end %>
   </body>
 </html>

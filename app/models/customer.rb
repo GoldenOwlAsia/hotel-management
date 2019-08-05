@@ -13,4 +13,8 @@
 class Customer < ApplicationRecord
   has_many :bookings
   has_many :rooms, through: :bookings, source: :rooms
+
+  validates :customer_nin, presence: true
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :phone_number, length: { maximum: 10 }
 end

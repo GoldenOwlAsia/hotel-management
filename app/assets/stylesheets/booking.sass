@@ -1,49 +1,181 @@
 @import 'mixins.sass'
+@import 'variables.sass'
 
 .booking
-  padding-top: 200pt
-  width: 375pt
-  height: 675pt
-  border: 1px solid red
+  padding-top: 20pt
+  label
+    color: $strongGray
+    white-space: nowrap
+  h4
+    font-weight: bold
+  p
+    color: $lightGray
+
+  &__customer-in-room
+    padding-bottom: 10pt
+
   &__room-info-container
     display: flex
     justify-content: space-between
     align-items: center
     border-bottom: $border-line-whisper
-    padding: 0 25pt 25pt 25pt
+    padding: 0 25pt 15pt 25pt
 
   &__form-title-container
     display: flex
     justify-content: space-between
-    padding: 25pt
+    padding: 15pt 25pt 0 25pt
 
   &__form-wrapper
     display: flex
     justify-content: center
+    form
+      width: 100%
+      padding: 15pt 25pt
     label
       padding-bottom: 5pt
       display: block
     input
       width: 100%
-      height: 33pt
+      height: 30pt
       margin-bottom: 15pt
-    input[type='submit']
-      background-color: $blue
+      padding-left: 5pt
+      &:focus
+        outline: none
+    input[type='radio']
+      height: 10pt
 
-  &__time-wrapper
-    display: flex
-    input
-      width: 157pt
+    .radio
+    input[type="radio"]
+      margin-left: -50px
 
   &__buttton-wrapper
     display: flex
-    justify-content: flex-end
-    input[type='submit']:last-child
-      width: 188pt
-      height: 45pt
+    justify-content: center
+
+    input[type='submit']
       color: $white
       border-radius: 4px
       font-size: 12pt
+      padding: 0 10pt
+      height: 45pt
+      background-color: $blue
+
+  &__cancel-btn
+    color: $white
+    border-radius: 4px
+    font-size: 12pt
+    height: 45pt
+    background-color: $blue
+    display: flex
+    align-items: center
+    padding: 0 20pt
+    margin-right: 10pt
 
   &__main-content-wrapper
     padding-bottom: 20pt
+
+  .show-room-members
+    display: none
+
+  &__icon
+    width: 21pt
+    padding-right: 5pt
+    object-fit: cover
+
+  &__add-customers
+    display: flex
+    border: 1px solid $slightGray
+    width: 100%
+    justify-content: center
+    align-items: center
+    height: 33pt
+    margin: 10pt 0
+    span
+      color: $smokeGray
+      font-size: 20pt
+
+  &__customer_mates
+    padding: 10pt 0
+
+  &__flex-box
+    display: flex
+    align-items: center
+    p
+      white-space: nowrap
+    > div
+      width: 100%
+    > div:first-child
+      margin-right: 15pt
+
+  &__room-status
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: $weakGray
+    width: 90pt
+    height: 26pt
+    border-radius: 13pt
+
+  &__icons-gender-wrapper
+    display: flex
+    justify-content: space-between
+    input
+      border: none
+      width: 30pt
+      margin-bottom: 0
+      padding-left: 0
+
+  &__half-flex-box
+    flex: 1
+    border: 1px solid $slightGray
+    padding: 5pt
+
+  &__camera-wrapper
+    display: flex
+    align-items: center
+
+  &__message
+    padding-top: 20pt
+
+.room_bookings_rent_type
+  display: flex
+  align-items: center
+
+.radio_buttons
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 200pt
+
+.right-sidebar
+  display: none
+  height: 100vh
+  position: fixed
+  top: 0
+  right: 0
+  background: white
+  z-index: 99999999
+  overflow: scroll
+  width: 370pt
+
+#room-members
+  display: block
+
+@media screen and(max-width: 768px)
+  .right-sidebar
+    width: 100vw
+
+  .booking
+    &__buttton-wrapper
+      display: flex
+      justify-content: center
+
+    input[type='submit']
+        width: initial
+
+@media screen and(min-width: 1023px)
+  .right-sidebar
+    width: 370pt
+
+@media screen and(min-width: 1439px)

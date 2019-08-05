@@ -8,7 +8,18 @@
   justify-content: space-between
   font-size: 10.5pt
   top: 30pt
+  bottom: 20pt
   left: 20pt
+  > div
+    height: 20pt
+    display: flex
+    justify-content: space-between
+    width: calc(100vw  - 35pt)
+
+  &__left-side
+    display: flex
+    span
+      padding-left: 10pt
 
   &__hamburger-wrapper
     span
@@ -69,6 +80,32 @@
   padding: 30pt 0 0 0
   width: 100%
 
+  &__hotel-name
+    font-size: 12pt
+
+  &__filter-default
+    position: fixed
+    display: flex
+    @include filter
+    padding: 0 10pt
+    color: $gray
+    span:first-child
+      font-weight: bold
+      padding-right: 2pt
+    span:last-child
+      padding-left: 3pt
+
+  .hide-filter-content
+    display: none
+    position: relative
+    top: 30pt
+    left: 20pt
+    width: 200pt
+    > div
+      display: flex
+      flex-direction: column
+      font-size: 9pt
+
   &__search
     form
       border: $border-line-whisper
@@ -83,35 +120,39 @@
         &:focus
           outline: none
 
-  &__lelf-side
+  &__left-side
     display: flex
     justify-content: center
-    font-size: 14pt
-    h3
-      padding-bottom: 10pt
-      margin-right: 5pt
+    align-items: center
+    padding-bottom: 20pt
+    h3:first-child
+      padding-right: 5pt
 
   &__right-side
     display: flex
     justify-content: center
-    padding-bottom: 20pt
-    a, p
+    padding-bottom: 10pt
+
+  &__current-day-wrapper
+    @include filter
+    h4
       color: $gray
-    > div
-        border: $border-line-whisper
-        width: 148pt
-        border-radius: 13.5pt
-        height: 27pt
-        align-items: center
-        display: flex
-        font-family: 'Nunito'
-        font-size: 8pt
-        justify-content: center
-        color: $cornFlowerBlue
-        margin-left: 10pt
-        span:first-child
-          color: $gray
-          padding-right: 2pt
+      font-size: 9pt
+      padding-right: 2pt
+      font-weight: bold
+    span
+      font-size: 9pt
+      color: $cornFlowerBlue
+      white-space: nowrap
+
+  &__filter-box-container
+    width: 140pt
+
+  &__current-day-wrapper
+    padding: 0 10pt
+    span:first-child
+      color: $gray
+      padding-right: 2pt
 
   &__search-btn
     position: relative
@@ -132,14 +173,24 @@
     flex-direction: column
     padding-top: 40pt
 
+    &__hotel-name
+      font-size: 18pt
+
+    &__filter-default
+      position: fixed
+      display: flex
+      font-size: 9pt
+
+    .new_room_filter
+      display: flex
+
     > div:first-child
       display: flex
       border-bottom: 1px solid #f5f8f7
       padding-bottom: 10pt
 
-    &__lelf-side
+    &__left-side
       align-items: center
-      font-size: 18pt
       flex: 1
       justify-content: flex-start
       h3
@@ -149,7 +200,7 @@
       padding-bottom: 0
       font-size: 10.5pt
       position: relative
-      right: 100pt
+      right: 20pt
       > div
         font-size: 10.5pt
 
@@ -157,20 +208,24 @@
       position: static
 
   .header
-    left: initial
+    left: 54pt
+    > div
+      width: calc(100vw  - 100pt)
+
     &__list
       ul
         left: 30pt
+
+@media screen and (min-width: 940px)
+  .header
+    left: 69pt
 
 @media screen and (min-width: 1023px)
   .sub-header
     display: flex
     justify-content: initial
 
-    > div:last-child
-      padding-left: 0
-
-    &__lelf-side
+    &__left-side
       display: flex
 
       form
@@ -181,11 +236,18 @@
       display: flex
 
   .header
-    left: initial
+    > div
+      width: calc(100vw  - 135pt)
+
     &__list
       ul
         left: 40pt
 
+@media screen and (min-width: 1370px)
+  .header
+    left: 62pt
+
 @media screen and (min-width: 1439px)
-  .rooms-index
-    padding: 0 47pt
+
+  .rooms
+    padding: 120pt 47pt 0 47pt

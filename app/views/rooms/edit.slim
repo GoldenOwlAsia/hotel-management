@@ -1,0 +1,8 @@
+section.new-room
+  = simple_form_for :hotel_rooms, url: hotel_rooms_path(hotel_id: Hotel.find(params[:hotel_id])), method: :post do |f|
+    = f.input :room_number
+    = f.input :room_type
+    = f.input :floor_number
+    = f.input :hotel_id
+    = f.submit 'Create room'
+

@@ -1,10 +1,15 @@
 = content_for :page_class, 'rooms-index'
+= content_for :overlay do
+  .overlay
+= content_for :body_bottom do
+  .right-sidebar
 
-= content_for :navigations do
-  = render 'rooms/navigations'
 section.rooms
+  = content_for :navigations do
+    = render 'rooms/navigations'
+
   - @sorted_groups.each do |group_key|
     div.rooms__room-container
-      h1 tầng  #{ group_key == 0 ? get_floor_number_text(group_key) : group_key }
+      h1 tầng #{ group_key == 0 ? get_floor_number_text(group_key) : group_key }
       .rooms__room-wrapper
         = render @grouped_rooms[group_key]

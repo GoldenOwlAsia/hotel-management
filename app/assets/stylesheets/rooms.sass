@@ -7,7 +7,7 @@
 
 .rooms
   font-size: 10.5pt
-  padding-top: 100pt
+  padding-top: 160pt
   padding-bottom: 50pt
 
   &__room-title
@@ -75,6 +75,7 @@
   &__nav-link
     a, span
       color: $lightGray
+      font-size: 9pt
 
   &__link-active
     display: flex
@@ -84,6 +85,8 @@
     a, span
       color: $black
       font-weight: bold
+    span
+      padding-left: 2pt
 
   &__navigations-list
     white-space: nowrap
@@ -99,18 +102,12 @@
 
   &__choose-room-btn-wrapper
     a
-      display: none
-
-  &__room
-    &:hover
-      .rooms__choose-room-btn-wrapper
-        a
-          display: block
-          color: $black
-          border: $border-line-whisper
-          border-radius: 4px
-          text-align: center
-          padding: 2pt 0
+      display: block
+      color: $black
+      border: $border-line-whisper
+      border-radius: 4px
+      text-align: center
+      padding: 2pt 0
 
 .room-status-booked
   background-color: $blue
@@ -137,6 +134,23 @@
 
 .menu
   display: block
+
+.new-room
+  padding-top: 100pt
+
+.new_room_filter
+  border-bottom: 1px solid $slightGray
+
+.overlay
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0,0,0,0.8)
+  z-index: 1000000
+  opacity: 0.4
 
 @media screen and (min-width: 420px)
   .rooms
@@ -174,11 +188,8 @@
       padding-left: 2pt
 
 @media screen and (min-width: 767px)
-  .rooms-index
-    padding: 0 54pt
-
   .rooms
-    padding-top: 130pt
+    padding: 150pt 54pt 0 54pt
 
     &__room-wrapper
       grid-template-columns: repeat(3, auto)
@@ -193,6 +204,8 @@
 
     &__navigations
       justify-content: initial
+      padding-left: 54pt
+      padding-right: 54pt
       &__list
       li:not(:last-child)
         margin-right: 20pt
@@ -201,13 +214,45 @@
       h1
         text-align: left
 
-@media screen and (min-width: 940px)
-  .rooms-index
-    padding: 0 69pt
+    &__nav-link
+      a, span
+        font-size: 12pt
 
+  .new_room_filter
+    padding-left: 54pt
+    padding-right: 30pt
+
+@media screen and (min-width: 769px)
   .rooms
+    &__choose-room-btn-wrapper
+      a
+        display: none
+
+    &__room
+      &:hover
+        .rooms__choose-room-btn-wrapper
+          a
+            display: block
+            color: $black
+            border: $border-line-whisper
+            border-radius: 4px
+            text-align: center
+            padding: 2pt 0
+
+@media screen and (min-width: 940px)
+  .rooms
+    padding: 130pt 69pt 0 69pt
+
+    &__navigations
+      padding-left: 69pt
+      padding-right: 69pt
+
     &__room-wrapper
       grid-template-columns: repeat(4, auto)
+
+  .new_room_filter
+    padding-left: 69pt
+    padding-right: 47pt
 
 @media screen and (min-width: 1160px)
   .rooms
@@ -215,19 +260,21 @@
       grid-template-columns: repeat(5, auto)
 
 @media screen and (min-width: 1370px)
-  .rooms-index
-    padding: 0 62pt
-
   .rooms
+    padding: 130pt 62pt 0 62pt
     &__room-wrapper
       grid-template-columns: repeat(6, auto)
 
     &__navigations
-      padding-left: 0
+      padding-left: 62pt
+      padding-right: 62pt
 
     &__room-container
       h1
         padding-left: 0
+
+  .new_room_filter
+    padding-left: 62pt
 
 @media screen and (min-width: 1601px)
   .rooms-index
