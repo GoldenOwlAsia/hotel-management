@@ -41,6 +41,11 @@
         outline: none
     input[type='radio']
       height: 10pt
+      // padding-left: -88px
+
+    .radio
+    input[type="radio"]
+      margin-left: -50px
 
   &__buttton-wrapper
     display: flex
@@ -135,13 +140,11 @@
   display: flex
   align-items: center
 
-.radio
-  label
-    padding-right: 50pt
-
 .radio_buttons
   display: flex
   align-items: center
+  justify-content: space-between
+  width: 200pt
 
 .right-sidebar
   display: none
@@ -158,15 +161,11 @@
   display: block
 
 @media screen and(max-width: 768px)
-  #room_bookings_rent_type_hourly
-    margin-left: -65pt
+  .right-sidebar
+    width: 100vw
 
-  #room_bookings_rent_type_overnight
-    margin-left: -65pt
+@media screen and(min-width: 1023px)
+  .right-sidebar
+    width: 370pt
 
 @media screen and(min-width: 1439px)
-  .booking
-    &__form-wrapper
-      .radio input[type="radio"]
-        height: 10pt
-        padding-left: -88px
