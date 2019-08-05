@@ -9,16 +9,12 @@ module RoomsHelper
     end
   end
 
-  def get_room_type_text(room_type)
-    if room_type == 'double'
-      'Phòng đôi'
-    elsif room_type == 'single'
-      'Phòng đơn'
-    elsif room_type == 'queen'
-      'Phòng queen'
-    else
-      ''
-    end
+  def get_room_type_text(room_type = :single)
+    {
+      single: 'Phòng đơn',
+      double: 'Phòng đôi',
+      queen: 'Phòng queen'
+    }.with_indifferent_access.fetch(room_type, nil)
   end
 
   def format_date(date)
@@ -29,13 +25,10 @@ module RoomsHelper
     date.strftime('%H:%M')
   end
 
-  def get_filter_text(room_status)
-    if room_status == 'available'
-      'Tất cả phòng trống'
-    elsif room_status == 'all'
-      'Tất cả phòng'
-    else
-      ''
-    end
+  def get_filter_text(room_status = :all)
+    {
+      available: 'Tất cả phòng trống',
+      all: 'Tất cả phòng'
+  }.with_indifferent_access.fetch(room_status, nil)
   end
 end
