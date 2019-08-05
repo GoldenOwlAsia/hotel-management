@@ -41,7 +41,6 @@
         outline: none
     input[type='radio']
       height: 10pt
-      // padding-left: -88px
 
     .radio
     input[type="radio"]
@@ -49,13 +48,13 @@
 
   &__buttton-wrapper
     display: flex
-    justify-content: flex-end
+    justify-content: center
 
     input[type='submit']
       color: $white
       border-radius: 4px
       font-size: 12pt
-      padding: 0 20pt
+      padding: 0 10pt
       height: 45pt
       background-color: $blue
 
@@ -163,6 +162,14 @@
 @media screen and(max-width: 768px)
   .right-sidebar
     width: 100vw
+
+  .booking
+    &__buttton-wrapper
+      display: flex
+      justify-content: center
+
+    input[type='submit']
+        width: initial
 
 @media screen and(min-width: 1023px)
   .right-sidebar
