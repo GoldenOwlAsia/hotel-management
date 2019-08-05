@@ -1,19 +1,8 @@
 module BookingsHelper
-  def get_rom_status_text(booking)
-    if booking.status == 'booked'
-      'Đã đặt phòng'
-    elsif booking.status == 'rent'
-      'Phòng đang thuê'
-    else
-      'Phòng trống'
-    end
-  end
-
-  def get_rent_type_text(rent_type)
-    if rent_type == 'hourly'
-      'Theo giờ'
-    elsif rent_type == 'overnight'
-      'Qua đêm'
-    end
+  def get_rent_type_text(rent_type = :hourly)
+    {
+      hourly: 'Theo giờ',
+      overnight: 'Qua đêm'
+    }.with_indifferent_access.fetch(rent_type, nil)
   end
 end
