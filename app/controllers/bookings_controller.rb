@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @room = Room.find(params[:room_id])
     @customer = Customer.find_by(customer_nin: booking_params[:customer_nin])
     if @customer.blank?
       @customer = Customer.create(
@@ -26,7 +27,8 @@ class BookingsController < ApplicationController
       checkout_time: 1.month.from_now,
       rent_type: booking_params[:rent_type],
       room_id: params[:room_id],
-      status: 'checked_in'
+      status: 'checked_in',
+      price: @room.price
     )
 
     if @booking.save!
@@ -36,8 +38,43 @@ class BookingsController < ApplicationController
       @booking.guests.create(guest_type: 'baby_boy', quantity: baby_boy_count) if baby_boy_count.positive?
       redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
     else
-      render 'new'
+      flash[:danger] = "Your new post couldn't be created! Please check the form."
+      render :new
     end
+  end
+
+  def edit
+    @room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:id])
+
+    @room_booking = RoomBooking.new(
+      room_id: @room.id,
+      checkin_time: @booking.checkin_time,
+      checkin_date: @booking.checkin_time.to_date,
+      rent_type: @booking.rent_type,
+      name: @booking.customer.name,
+      customer_nin: @booking.customer.customer_nin,
+      phone_number: @booking.customer.phone_number,
+      men: @booking.guests.where(guest_type: 'men').first&.quantity || 0,
+      women: @booking.guests.where(guest_type: 'women').first&.quantity || 0,
+      baby_girl: @booking.guests.where(guest_type: 'baby_girl').first&.quantity || 0,
+      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0
+    )
+  end
+
+  def update
+    @room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:id])
+    # @customer = Customer.find_by(customer_nin: booking_params[:customer_nin])
+    @customer = @booking.customer
+    @customer.update!(name: booking_params[:name], customer_nin: booking_params[:customer_nin], phone_number: booking_params[:phone_number])
+
+    @booking.guests.men.first_or_initialize.update(quantity: men_count)
+    @booking.guests.women.first_or_initialize.update(quantity: women_count)
+    @booking.guests.baby_girl.first_or_initialize.update(quantity: baby_girl_count)
+    @booking.guests.baby_boy.first_or_initialize.update(quantity: baby_boy_count)
+
+    redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
   end
 
   private
