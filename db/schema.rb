@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_091454) do
+ActiveRecord::Schema.define(version: 2019_08_04_153658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_07_31_091454) do
   create_table "booking_orders", force: :cascade do |t|
     t.bigint "booking_id", null: false
     t.bigint "order_id", null: false
-    t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["booking_id"], name: "index_booking_orders_on_booking_id"
@@ -34,7 +33,10 @@ ActiveRecord::Schema.define(version: 2019_07_31_091454) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "rent_type"
+    t.decimal "price"
+    t.bigint "order_id"
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
+    t.index ["order_id"], name: "index_bookings_on_order_id"
     t.index ["room_id"], name: "index_bookings_on_room_id"
   end
 
@@ -91,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_091454) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "floor_number"
+    t.decimal "price"
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
@@ -132,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_091454) do
   add_foreign_key "booking_orders", "bookings"
   add_foreign_key "booking_orders", "orders"
   add_foreign_key "bookings", "customers"
+  add_foreign_key "bookings", "orders"
   add_foreign_key "bookings", "rooms"
   add_foreign_key "guests", "bookings"
   add_foreign_key "orders", "customers"
