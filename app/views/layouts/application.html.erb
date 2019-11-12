@@ -13,6 +13,7 @@
 
   <body class='<%= yield :page_class %>'>
     <%= yield :overlay %>
+    <%= render 'layouts/header_side_menu' %>
     <% if current_user.present? %>
       <%= render 'layouts/sub_header' %>
     <% end %>

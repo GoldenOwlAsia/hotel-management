@@ -7,7 +7,7 @@
 
 .rooms
   font-size: 10.5pt
-  padding-top: 160pt
+  padding-top: 195pt
   padding-bottom: 50pt
 
   &__room-title
@@ -78,6 +78,7 @@
       font-size: 9pt
 
   &__link-active
+    position: relative
     display: flex
     justify-content: center
     border-radius: 4px
@@ -87,6 +88,16 @@
       font-weight: bold
     span
       padding-left: 2pt
+    
+    &:after
+      position: absolute
+      top: 12pt
+      content: ""
+      width: 1px
+      height: 15px
+      border-left: 6px solid transparent
+      border-right: 6px solid transparent
+      border-bottom: 9px solid #f9be39
 
   &__navigations-list
     white-space: nowrap
@@ -241,7 +252,7 @@
 
 @media screen and (min-width: 940px)
   .rooms
-    padding: 130pt 69pt 0 69pt
+    padding: 170pt 69pt 0 69pt
 
     &__navigations
       padding-left: 69pt
@@ -261,7 +272,7 @@
 
 @media screen and (min-width: 1370px)
   .rooms
-    padding: 130pt 62pt 0 62pt
+    padding: 172pt 62pt 0 62pt
     &__room-wrapper
       grid-template-columns: repeat(6, auto)
 
