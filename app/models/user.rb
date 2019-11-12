@@ -22,6 +22,7 @@
 #
 
 class User < ApplicationRecord
+  mount_uploader :avatar, UserAvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
 
