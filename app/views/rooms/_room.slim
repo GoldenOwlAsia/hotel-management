@@ -1,5 +1,4 @@
 - booking = @booking_in_period[room.id].first
-
 div class='rooms__room #{get_room_status_class(booking)}' data-id=(room.id)
   div
     .rooms__number-wrapper
@@ -17,7 +16,7 @@ div class='rooms__room #{get_room_status_class(booking)}' data-id=(room.id)
           p
             = format_date booking.checkin_time
 
-  div
+  div.room__right-side
     .rooms__choose-room-btn-wrapper
       = link_to 'Chọn phòng', new_room_booking_path(room, checkin_time: @checkin_time, checkout_time: @checkout_time),  remote: true
 
@@ -26,3 +25,12 @@ div class='rooms__room #{get_room_status_class(booking)}' data-id=(room.id)
         h5.rooms__room-title Hình thức
         p.rooms__rent-type
           = get_rent_type_text(booking.rent_type)
+
+    - if booking.present?
+      .rooms__room-member-wrapper
+        - if booking.checked_in?
+          - get_booking_guests(booking).each do |guest|
+            = image_tag  "icons/men.svg" if guest == 'men'
+            = image_tag  "icons/women.svg" if guest == 'women'
+            = image_tag  "icons/baby.png" if guest == 'baby_boy'
+            = image_tag  "icons/baby-girl.png" if guest == 'baby_girl'
