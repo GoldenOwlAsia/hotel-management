@@ -30,12 +30,11 @@
 
           .booking__status-wrapper
             = f.label 'Hình thức'
-            div
-              = f.input :rent_type,
-                  collection: ['hourly', 'overnight'],
-                  as: :radio_buttons,
-                  label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
-                  label: false
+            = f.input :rent_type,
+                collection: ['hourly', 'overnight'],
+                as: :radio_buttons,
+              label_method: ->(rent_type) { rent_type == 'hourly'  ? 'Theo giờ' : 'Qua đêm' },
+              label: false
 
           .booking__flex-box
             div
@@ -103,5 +102,5 @@
                   | Khách trong phòng bao gồm khách đăng ký ban đầu
 
         .booking__buttton-wrapper
-          .booking__cancel-btn Huỷ đặt phòng
-          = f.button :submit, 'Bắt đầu nhận phòng'
+          = f.button :submit, 'Đặt phòng', name: 'reserve', class: 'reserve-btn'
+          = f.button :submit, 'Bắt đầu nhận phòng', class: 'rent-btn'

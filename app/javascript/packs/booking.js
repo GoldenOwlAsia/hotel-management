@@ -14,7 +14,7 @@ $(document).ready(function () {
     $input.val(Math.max(Number($input.val()) - 1, 0));
   });
 
-  $(document).on('click', '.booking__cancel-btn', function () {
+  $(document).on('click', '.overlay', function () {
     $('.right-sidebar').hide();
     $('.overlay').hide();
   });

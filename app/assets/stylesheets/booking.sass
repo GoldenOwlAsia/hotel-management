@@ -43,34 +43,68 @@
       &:focus
         outline: none
     input[type='radio']
-      height: 10pt
+      height: 20px
+      width: 20px
+      margin-left: 0px!important
 
+      &:checked
+        & ~ label
+          &::before
+            background: $blue
     .radio
-    input[type="radio"]
-      margin-left: -50px
+      margin-right: 37.5pt
+
+      input[type="radio"]
+
+      label
+        color: #333333
+        padding-left: 30px
+        position: relative
+
+        &:before
+          content: ''
+          display: inline-block
+          width: 15px
+          height: 15px
+          border-radius: 100%
+          position: absolute
+          left: 2px
+          top: 6px
+
+    .radio + .radio, .checkbox + .checkbox
+      margin-top: unset
 
   &__buttton-wrapper
     display: flex
     justify-content: center
 
     input[type='submit']
-      color: $white
       border-radius: 4px
       font-size: 12pt
-      padding: 0 10pt
       height: 45pt
-      background-color: $blue
+      justify-content: center
+      font-weight: bold
+      text-transform: uppercase
 
-  &__cancel-btn
-    color: $white
-    border-radius: 4px
-    font-size: 12pt
-    height: 45pt
-    background-color: $blue
-    display: flex
-    align-items: center
-    padding: 0 20pt
-    margin-right: 10pt
+      &.rent-btn
+        background-color: $blue
+        padding: 0 10pt
+        color: $white
+        width: 60%
+
+        &:hover
+          background-color: #3e61b9
+
+      &.reserve-btn
+        background-color: $white
+        border: 1px solid $blue
+        color: $blue
+        padding: 0 20pt
+        margin-right: 10pt
+        width: 40%
+
+        &:hover
+          background-color: #4a73d812
 
   &__main-content-wrapper
     padding-bottom: 20pt
@@ -91,6 +125,7 @@
     align-items: center
     height: 33pt
     margin: 10pt 0
+    cursor: pointer
     span
       color: $smokeGray
       font-size: 20pt
@@ -126,6 +161,16 @@
       margin-bottom: 0
       padding-left: 0
 
+  .booking__men.minus-btn,
+  .booking__men.plus-btn,
+  .booking__women.minus-btn,
+  .booking__women.plus-btn,
+  .booking__boy.plus-btn,
+  .booking__boy.minus-btn,
+  .booking__girl.plus-btn,
+  .booking__girl.minus-btn
+    cursor: pointer
+
   &__half-flex-box
     flex: 1
     border: 1px solid $slightGray
@@ -145,8 +190,8 @@
 .radio_buttons
   display: flex
   align-items: center
-  justify-content: space-between
-  width: 200pt
+  justify-content: flex-start
+  width: 100%
 
 .right-sidebar
   display: none
@@ -158,6 +203,20 @@
   z-index: 99999999
   overflow: scroll
   width: 370pt
+
+  input[type=time]::-webkit-inner-spin-button
+    margin: 4px
+    cursor: pointer
+
+  // Disable spinbox
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=date]::-webkit-outer-spin-button,
+  input[type=date]::-webkit-inner-spin-button,
+      -webkit-appearance: none
+      margin: 0
+  input[type=number],input[type=date]
+    -moz-appearance: textfield
 
 #room-members
   display: block
