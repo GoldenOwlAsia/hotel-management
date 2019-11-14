@@ -1,23 +1,24 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update]
   def index
+    # room params: checkin_time, checkout_time, room_status, room_type
     @hotel = Hotel.find(params[:hotel_id])
 
     @checkin_time = params[:checkin_time] || Time.current.change(hour: 12)
     @checkout_time = params[:checkout_time] || 1.day.from_now.change(hour: 12)
 
-    @available_rooms_groups = available_rooms.group(:room_type).count
+    @available_rooms_groups = available_rooms.group(:room_type).count # example: {"queen"=>10, "double"=>10, "single"=>10}
     @available_rooms_groups.default = 0
 
-    @rooms = room_status == 'available' ? available_rooms : Room.where(hotel_id: params[:hotel_id])
-    @rooms = @rooms.where(room_type: room_type) if room_type
+    @rooms = room_status == 'available' ? available_rooms : all_rooms # array of room active records
+    @rooms = @rooms.where(room_type: room_type) if room_type # filter result if param room_type present?
 
     @single_rooms = @rooms.single
     @double_rooms = @rooms.double
     @queen_rooms = @rooms.queen
 
-    @grouped_rooms = @rooms.group_by(&:floor_number)
-    @sorted_groups = @grouped_rooms.keys.sort
+    @grouped_rooms = @rooms.group_by(&:floor_number) # example: { 0=>[ #room 1, #room 2 ], 1=>[ #room 3, #room 4 ] }
+    @sorted_groups = @grouped_rooms.keys.sort # example: [ 0, 1 ]
 
     @room_filter = RoomFilter.new(
       checkin_time: @checkin_time,
@@ -71,6 +72,10 @@ class RoomsController < ApplicationController
       service = AvailableRoomsQuery.new(params[:hotel_id])
       service.execute(@checkin_time, @checkout_time)
     end
+  end
+
+  def all_rooms
+    @all_rooms ||= Room.where(hotel_id: params[:hotel_id])
   end
 
   def set_room

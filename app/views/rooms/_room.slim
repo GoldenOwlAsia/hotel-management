@@ -1,5 +1,5 @@
 - booking = @booking_in_period[room.id].first
-div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' : 'room-status-rent' : 'room-status-available')) data-id=(room.id)
+div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' : 'room-status-booked' : 'room-status-available')) data-id=(room.id)
   div
     .rooms__number-wrapper
       h5.rooms__room-title Phòng
@@ -15,9 +15,6 @@ div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' 
             = "Giờ check-in #{format_hour booking.checkin_time}"
           p
             = format_date booking.checkin_time
-        - else
-          p
-            = "Đã đặt phòng #{format_date booking.checkin_time}"
 
   div
     .rooms__choose-room-btn-wrapper

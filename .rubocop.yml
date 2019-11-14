@@ -46,7 +46,7 @@ Lint/UselessAssignment:
 Security/Open:
   Enabled: true
 
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Enabled: true
 
 Style/GuardClause:
