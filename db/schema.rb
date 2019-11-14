@@ -15,15 +15,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_043057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "booking_orders", force: :cascade do |t|
-    t.bigint "booking_id", null: false
-    t.bigint "order_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["booking_id"], name: "index_booking_orders_on_booking_id"
-    t.index ["order_id"], name: "index_booking_orders_on_order_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.bigint "room_id", null: false
     t.bigint "customer_id", null: false
@@ -138,8 +129,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_043057) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
-  add_foreign_key "booking_orders", "bookings"
-  add_foreign_key "booking_orders", "orders"
   add_foreign_key "bookings", "customers"
   add_foreign_key "bookings", "orders"
   add_foreign_key "bookings", "rooms"
