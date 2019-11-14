@@ -1,12 +1,12 @@
 module RoomsHelper
-  def get_rom_status_class(booking)
-    "room-status-#{booking.status}"
+  def get_room_status_class(booking)
+    return 'room-status-available' if booking.blank?
+
+    booking.checked_in? ? 'room-status-rent' : 'room-status-booked'
   end
 
   def get_floor_number_text(group_key)
-    if group_key == 0
-      'Trệt'
-    end
+    'Trệt' if group_key.zero?
   end
 
   def get_room_type_text(room_type = :single)
@@ -29,6 +29,6 @@ module RoomsHelper
     {
       available: 'Tất cả phòng trống',
       all: 'Tất cả phòng'
-  }.with_indifferent_access.fetch(room_status, nil)
+    }.with_indifferent_access.fetch(room_status, nil)
   end
 end

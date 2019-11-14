@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_room_and_booking, only: [:edit, :update]
+  before_action :set_room_and_booking, only: %i[edit update]
 
   def new
     @room = Room.find(params[:room_id])
@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
       checkout_time: 1.month.from_now,
       rent_type: booking_params[:rent_type],
       room_id: params[:room_id],
-      status: params['commit']? 'checked_in' : 'unchecked_in',
+      status: params['commit'] ? 'checked_in' : 'unchecked_in',
       price: @room.price
     )
     if @booking.save!

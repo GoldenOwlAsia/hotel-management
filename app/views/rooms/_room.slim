@@ -1,5 +1,6 @@
 - booking = @booking_in_period[room.id].first
-div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' : 'room-status-booked' : 'room-status-available')) data-id=(room.id)
+
+div class='rooms__room #{get_room_status_class(booking)}' data-id=(room.id)
   div
     .rooms__number-wrapper
       h5.rooms__room-title Phòng
@@ -12,7 +13,7 @@ div class=('rooms__room ' + (booking ? booking.checked_in? ? 'room-status-rent' 
           = 'Phòng trống'
         - elsif booking.checked_in?
           p
-            = "Giờ check-in #{format_hour booking.checkin_time}"
+            = "Giờ check-in #{format_hour(booking.checkin_time)}"
           p
             = format_date booking.checkin_time
 
