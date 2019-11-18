@@ -1,4 +1,3 @@
-$(document).ready(function () {
   $(document).on('click', '.booking__add-customers', function () {
     $('.booking__customer-icons-wrapper').toggle('show-room-members');
     console.log('Hello');
@@ -18,4 +17,10 @@ $(document).ready(function () {
     $('.right-sidebar').hide();
     $('.overlay').hide();
   });
-});
+
+  $(document).on('click','.booking__add-services',function(){
+    $('.booking__service-icons-wrapper').toggle('show-services',function(){
+
+      $('.arrow-up').toggleClass('rotate-45');
+    });
+  });

@@ -8,6 +8,9 @@
     white-space: nowrap
   h4
     font-weight: bold
+
+  hr
+    border-width: 2px
   p
     color: $lightGray
 
@@ -18,8 +21,23 @@
     display: flex
     justify-content: space-between
     align-items: center
-    border-bottom: $border-line-whisper
     padding: 0 25pt 15pt 25pt
+
+
+  &__room-info-detail
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
+    padding: 0 25pt 15pt 25pt
+    margin-top: 20px
+
+    &__detail-item
+      margin-bottom: 12px
+      width: 33.33%
+      &__detail-data
+        color: #333333!important
+        font-weight: bold
 
   &__form-title-container
     display: flex
@@ -95,7 +113,7 @@
         &:hover
           background-color: #3e61b9
 
-      &.reserve-btn
+      &.reserve-btn, &.cancel-btn
         background-color: $white
         border: 1px solid $blue
         color: $blue
@@ -106,10 +124,17 @@
         &:hover
           background-color: #4a73d812
 
+      &.cancel-btn
+        color: red
+        border-color: red
+
   &__main-content-wrapper
     padding-bottom: 20pt
 
   .show-room-members
+    display: none
+
+  .show-services
     display: none
 
   &__icon
@@ -133,6 +158,24 @@
   &__customer_mates
     padding: 10pt 0
 
+  &__add-services
+    cursor: pointer
+
+    .arrow-up
+        content: ""
+        width: 10px
+        float: right
+        height: 10px
+        border: 2px solid black
+        border-top: transparent
+        border-left: transparent
+        margin-top: -18px
+        margin-right: 3px
+        transform: rotate(-45deg)
+
+    .rotate-45
+      transform: rotate(45deg)
+
   &__flex-box
     display: flex
     align-items: center
@@ -143,7 +186,7 @@
     > div:first-child
       margin-right: 15pt
 
-  &__room-status
+  &__room-status-available
     display: flex
     justify-content: center
     align-items: center
@@ -151,6 +194,33 @@
     width: 90pt
     height: 26pt
     border-radius: 13pt
+    h4
+      font-weight: unset
+
+  &__room-status-checked_in
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #fff5dd
+    width: 95pt
+    height: 26pt
+    border-radius: 13pt
+    color: #f9be39
+    font-weight: lighter
+    h4
+      font-weight: unset
+
+  &__room-status-booked
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #e9f0fd
+    width: 90pt
+    height: 26pt
+    border-radius: 13pt
+    color: #4a73d8
+    h4
+      font-weight: unset
 
   &__icons-gender-wrapper
     display: flex

@@ -7,18 +7,21 @@ class RoomsController < ApplicationController
     @checkin_time = params[:checkin_time] || Time.current.change(hour: 12)
     @checkout_time = params[:checkout_time] || 1.day.from_now.change(hour: 12)
 
-    @available_rooms_groups = available_rooms.group(:room_type).count # example: {"queen"=>10, "double"=>10, "single"=>10}
+    # example: {"queen"=>10, "double"=>10, "single"=>10}
+    @available_rooms_groups = available_rooms.group(:room_type).count
     @available_rooms_groups.default = 0
 
-    @rooms = room_status == 'available' ? available_rooms : all_rooms # array of room active records
-    @rooms = @rooms.where(room_type: room_type) if room_type # filter result if param room_type present?
-
+    # array of room active records
+    @rooms = room_status == 'available' ? available_rooms : all_rooms
+    # filter result if param room_type present?
+    @rooms = @rooms.where(room_type: room_type) if room_type
     @single_rooms = @rooms.single
     @double_rooms = @rooms.double
     @queen_rooms = @rooms.queen
-
-    @grouped_rooms = @rooms.group_by(&:floor_number) # example: { 0=>[ #room 1, #room 2 ], 1=>[ #room 3, #room 4 ] }
-    @sorted_groups = @grouped_rooms.keys.sort # example: [ 0, 1 ]
+    # example: { 0=>[ #room 1, #room 2 ], 1=>[ #room 3, #room 4 ] }
+    @grouped_rooms = @rooms.group_by(&:floor_number)
+    # example: [ 0, 1 ]
+    @sorted_groups = @grouped_rooms.keys.sort
 
     @room_filter = RoomFilter.new(
       checkin_time: @checkin_time,
@@ -26,6 +29,10 @@ class RoomsController < ApplicationController
       room_status: room_status
     )
 
+    # group bookings by room id
+    # example: { 1 =>[ #booking 1, #bookng 2],
+    #            2=>[ #bokking 3, #booking 4]
+    #          }
     @booking_in_period = booking_in_period(@checkin_time, @checkout_time)
   end
 
