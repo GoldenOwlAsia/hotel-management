@@ -1,6 +1,6 @@
 class RoomBooking
   attr_accessor :name, :customer_nin, :phone_number, :rent_type, :room_id
-  attr_accessor :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy
+  attr_accessor :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy, :booking_id
 
   include ActiveModel::Model
   extend ActiveModel::Naming
@@ -8,6 +8,8 @@ class RoomBooking
   include ActiveModel::Validations
 
   def initialize(params)
+    @room_id = params.fetch(:room_id, Room.new.id)
+    @booking_id = params.fetch(:booking_id, Booking.new.id)
     @name = params.fetch(:name, '')
     @customer_nin = params.fetch(:customer_nin, '')
     @phone_number = params.fetch(:phone_number, '')
