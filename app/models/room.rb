@@ -9,7 +9,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  floor_number :integer
-#  status       :string
+#  price        :decimal(, )
 #
 
 class Room < ApplicationRecord
