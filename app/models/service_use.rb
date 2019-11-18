@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: services
+# Table name: service_uses
 #
 #  id         :bigint           not null, primary key
-#  name       :string
+#  service_id :bigint           not null
+#  booking_id :bigint           not null
+#  quantity   :integer
 #  price      :decimal(, )
-#  image      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Service < ApplicationRecord
-  has_many :service_uses
-  has_many :bookings, through: :servivce_uses
+class ServiceUse < ApplicationRecord
 end
