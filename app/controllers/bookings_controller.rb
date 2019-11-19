@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
       room_id: params[:room_id],
       checkin_time: params[:checkin_time].to_datetime,
       checkin_date: params[:checkin_time].to_datetime
+
     )
   end
 
@@ -63,8 +64,11 @@ class BookingsController < ApplicationController
       men: @booking.guests.where(guest_type: 'men').first&.quantity || 0,
       women: @booking.guests.where(guest_type: 'women').first&.quantity || 0,
       baby_girl: @booking.guests.where(guest_type: 'baby_girl').first&.quantity || 0,
-      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0
+      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0,
+      services: Service.all.map { |s| [s.name, (@booking.service_uses.where(service_id: s.id).first&.quantity || 0), s.price]}
     )
+    # puts @room_booking.inspect
+    puts @room_booking.inspect
   end
 
   def edit
@@ -80,7 +84,7 @@ class BookingsController < ApplicationController
       men: @booking.guests.where(guest_type: 'men').first&.quantity || 0,
       women: @booking.guests.where(guest_type: 'women').first&.quantity || 0,
       baby_girl: @booking.guests.where(guest_type: 'baby_girl').first&.quantity || 0,
-      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0
+      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0,
     )
   end
 
@@ -98,6 +102,8 @@ class BookingsController < ApplicationController
   end
 
   def check_in
+    return if @booking.checked_in?
+
     @room_booking = RoomBooking.new(
       booking_id: @booking.id,
       room_id: @room.id,
@@ -110,10 +116,10 @@ class BookingsController < ApplicationController
       men: @booking.guests.where(guest_type: 'men').first&.quantity || 0,
       women: @booking.guests.where(guest_type: 'women').first&.quantity || 0,
       baby_girl: @booking.guests.where(guest_type: 'baby_girl').first&.quantity || 0,
-      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0
+      baby_boy: @booking.guests.where(guest_type: 'baby_boy').first&.quantity || 0,
+      # format: [[service_name, quantity, price]]
+      services: Service.all.map { |s| [s.name, @booking.service_uses.where(service_id: s.id).first&.quantity || 0, s.price]}
     )
-
-    return if @booking.checked_in?
 
     if params['cancel_booking']
       destroy
@@ -135,6 +141,19 @@ class BookingsController < ApplicationController
         # only update if user change guest quantity
         if @room_booking.baby_boy != baby_boy_count
           @booking.guests.baby_boy.first_or_initialize.update(quantity: baby_boy_count)
+        end
+
+        # update service uses
+        @room_booking.services.each do |s|
+          service_name = s[0]
+          old_quantity = s[1].to_i
+          new_quantity = params[s[0]].to_i
+
+          # only update if any servie input value changes
+          if old_quantity != new_quantity
+            service_record = Service.find_by_name(service_name)
+            @booking.service_uses.create!(service_id: service_record.id, quantity: new_quantity)
+          end
         end
 
         redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
@@ -195,7 +214,8 @@ class BookingsController < ApplicationController
       :women,
       :men,
       :baby_girl,
-      :baby_boy
+      :baby_boy,
+      :services
     )
   end
 end
