@@ -21,7 +21,7 @@ class Booking < ApplicationRecord
   has_one :order
 
   has_many :guests, dependent: :destroy
-  has_many :service_uses
+  has_many :service_uses, dependent: :destroy
   has_many :services, through: :service_uses
 
   validates :rent_type, presence: true

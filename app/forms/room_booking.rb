@@ -1,6 +1,5 @@
 class RoomBooking
-  attr_accessor :name, :customer_nin, :phone_number, :rent_type, :room_id
-  attr_accessor :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy, :booking_id
+  attr_accessor :name, :customer_nin, :phone_number, :rent_type, :room_id, :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy, :booking_id, :services
 
   include ActiveModel::Model
   extend ActiveModel::Naming
@@ -20,5 +19,7 @@ class RoomBooking
     @women = params.fetch(:women, 0)
     @baby_girl = params.fetch(:baby_girl, 0)
     @baby_boy = params.fetch(:baby_boy, 0)
+    # format: [[service_name, quantity, price]]
+    @services = params.fetch(:services, [])
   end
 end

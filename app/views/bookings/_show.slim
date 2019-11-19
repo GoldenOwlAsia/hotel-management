@@ -48,18 +48,36 @@
             h4 Sử dụng dịch vụ
             span.arrow-up
           .booking__service-icons-wrapper.show-services
-            .booking__service-wrapper
-              | service A
-            .booking__service-wrapper
-              | service A
-            .booking__service-wrapper
-              | service A
-            .booking__service-wrapper
-              | service A
+            - f.object.services.each do |sv|
+              .booking__service-wrapper
+                = image_tag  "cocacola.svg", class:'service_img'
+                .booking__service-input
+                  p.service-name = sv[0]
+                  .booking__flex-box
+                    .minus-btn -
+                    = f.input :services, label: false, input_html: {value: sv[1], name: sv[0], data: {price: sv[2]}, type: 'number', style: 'width: 40pt'}
+                    .plus-btn +
+                .service_total_price
+                  span = number_with_delimiter sv[1]*sv[2].to_i
+                  |  VND
 
         hr
         .booking__customer_mates
           h4 Khách cùng phòng
+          .booking__members-info-wrapper
+            .room-member-info
+              p Đàn ông
+              p.value = @room_booking.men
+            .room-member-info
+              p Phụ nữ
+              p.value = @room_booking.women
+            .room-member-info
+              p Bé trai
+              p.value = @room_booking.baby_boy
+            .room-member-info
+              p Bé gái
+              p.value = @room_booking.baby_girl
+
           div.booking__add-customers
             span +
             p Thêm khách cùng phòng
@@ -111,9 +129,9 @@
 
             .booking__message
               strong
-              | *Chú ý:
+                | *Chú ý:
               span
-                | Khách trong phòng bao gồm khách đăng ký ban đầu
+                |  Khách trong phòng bao gồm khách đăng ký ban đầu
         .booking__buttton-wrapper
           - if @booking.unchecked_in?
             = f.button :submit, 'Hủy đặt', class: 'cancel-btn', data: {confirm: 'Are your sure?' }, method: :delete, name: 'cancel_booking'
