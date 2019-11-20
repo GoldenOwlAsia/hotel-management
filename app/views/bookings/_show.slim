@@ -41,7 +41,7 @@
 
 
     .booking__form-wrapper
-      = simple_form_for @room_booking, url: check_in_booking_path(id: @room_booking.booking_id, room_id: @room_booking.room_id), method: :post do |f|
+      = simple_form_for @room_booking, url: check_in_booking_path(id: @booking.id, room_id: @room_booking.room_id), method: :post do |f|
         hr
         .booking__services
           .booking__add-services
