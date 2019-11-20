@@ -18,7 +18,8 @@ div class='rooms__room #{get_room_status_class(booking)}' data-id=(room.id)
 
   div.room__right-side
     .rooms__choose-room-btn-wrapper
-      = link_to 'Chọn phòng', new_room_booking_path(room, checkin_time: @checkin_time, checkout_time: @checkout_time),  remote: true
+      = link_to 'Chọn phòng', new_room_booking_path(room, checkin_time: @checkin_time, checkout_time: @checkout_time),  remote: true if booking.blank?
+      = link_to 'Chi tiết', room_booking_path(id: booking.id, room_id: room.id),  remote: true if booking.present?
 
     .rooms__rent-type-wrapper
       - if booking.present?

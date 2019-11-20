@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_043057) do
+ActiveRecord::Schema.define(version: 2019_11_18_113117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "booking_orders", force: :cascade do |t|
-    t.bigint "booking_id", null: false
-    t.bigint "order_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["booking_id"], name: "index_booking_orders_on_booking_id"
-    t.index ["order_id"], name: "index_booking_orders_on_order_id"
-  end
 
   create_table "bookings", force: :cascade do |t|
     t.bigint "room_id", null: false
@@ -73,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_11_12_043057) do
     t.string "payment_method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_orders_on_booking_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
@@ -97,15 +90,15 @@ ActiveRecord::Schema.define(version: 2019_11_12_043057) do
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
-  create_table "service_orders", force: :cascade do |t|
+  create_table "service_uses", force: :cascade do |t|
     t.bigint "service_id", null: false
-    t.bigint "order_id", null: false
+    t.bigint "booking_id", null: false
     t.integer "quantity"
     t.decimal "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_service_orders_on_order_id"
-    t.index ["service_id"], name: "index_service_orders_on_service_id"
+    t.index ["booking_id"], name: "index_service_uses_on_booking_id"
+    t.index ["service_id"], name: "index_service_uses_on_service_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -138,16 +131,15 @@ ActiveRecord::Schema.define(version: 2019_11_12_043057) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
-  add_foreign_key "booking_orders", "bookings"
-  add_foreign_key "booking_orders", "orders"
   add_foreign_key "bookings", "customers"
   add_foreign_key "bookings", "orders"
   add_foreign_key "bookings", "rooms"
   add_foreign_key "guests", "bookings"
+  add_foreign_key "orders", "bookings"
   add_foreign_key "orders", "customers"
   add_foreign_key "roles", "hotels"
   add_foreign_key "roles", "users"
   add_foreign_key "rooms", "hotels"
-  add_foreign_key "service_orders", "orders"
-  add_foreign_key "service_orders", "services"
+  add_foreign_key "service_uses", "bookings"
+  add_foreign_key "service_uses", "services"
 end

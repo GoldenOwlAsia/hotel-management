@@ -1,0 +1,140 @@
+.booking
+  .booking__room-info-container
+    div
+      h4 Phòng #{ @room.room_number }
+      p #{ get_room_type_text(@room.room_type) }
+
+    -if @booking.checked_in?
+      .booking__room-status-checked_in
+        h4 Đang được thuê
+    -else
+      .booking__room-status-booked
+        h4 Đã đặt phòng
+  hr
+  div
+    .booking__form-title-container
+      h4 Thông tin chi tiết
+    .booking__room-info-detail
+      .booking__room-info-detail__detail-item
+        p Tên khách hàng
+        p.booking__room-info-detail__detail-item__detail-data = @room_booking.name
+
+      .booking__room-info-detail__detail-item
+        p.booking__room-info-detail__detail-item__detail-title Số CMND
+        p.booking__room-info-detail__detail-item__detail-data = @room_booking.customer_nin
+
+      .booking__room-info-detail__detail-item
+        p.booking__room-info-detail__detail-item__detail-title Số điện thoại
+        p.booking__room-info-detail__detail-item__detail-data = @room_booking.phone_number
+
+      .booking__room-info-detail__detail-item
+        p.booking__room-info-detail__detail-item__detail-title Hình thức
+        p.booking__room-info-detail__detail-item__detail-data = get_rent_type_text(@room_booking.rent_type)
+
+      .booking__room-info-detail__detail-item
+        p.booking__room-info-detail__detail-item__detail-title Ngày
+        p.booking__room-info-detail__detail-item__detail-data = @room_booking.checkin_date
+
+      .booking__room-info-detail__detail-item
+        p.booking__room-info-detail__detail-item__detail-title Giờ vào
+        p.booking__room-info-detail__detail-item__detail-data = format_hour(@room_booking.checkin_time)
+
+
+    .booking__form-wrapper
+      = simple_form_for @room_booking, url: check_in_booking_path(id: @booking.id, room_id: @room_booking.room_id), method: :post do |f|
+        hr
+        .booking__services
+          .booking__add-services
+            h4 Sử dụng dịch vụ
+            span.arrow-up
+          .booking__service-icons-wrapper.show-services
+            - f.object.services.each do |sv|
+              .booking__service-wrapper
+                = image_tag  "cocacola.svg", class:'service_img'
+                .booking__service-input
+                  p.service-name = sv[0]
+                  .booking__flex-box
+                    .minus-btn -
+                    = f.input :services, label: false, input_html: {value: sv[1], name: sv[0], data: {price: sv[2]}, type: 'number', style: 'width: 40pt'}
+                    .plus-btn +
+                .service_total_price
+                  span = number_with_delimiter sv[1]*sv[2].to_i
+                  |  VND
+
+        hr
+        .booking__customer_mates
+          h4 Khách cùng phòng
+          .booking__members-info-wrapper
+            .room-member-info
+              p Đàn ông
+              p.value = @room_booking.men
+            .room-member-info
+              p Phụ nữ
+              p.value = @room_booking.women
+            .room-member-info
+              p Bé trai
+              p.value = @room_booking.baby_boy
+            .room-member-info
+              p Bé gái
+              p.value = @room_booking.baby_girl
+
+          div.booking__add-customers
+            span +
+            p Thêm khách cùng phòng
+          .booking__customer-icons-wrapper.show-room-members
+            .booking__icons-gender-wrapper
+              .booking__half-flex-box.booking__flex-box
+                .booking__flex-box
+                  = image_tag 'icons/men.svg', class: 'booking__icon'
+                  p Đàn ông
+                .booking__flex-box
+                  .booking__men.minus-btn -
+                  = f.input :men,
+                      label: false,
+                      placeholder: '0',
+                      input_html: { type: 'number', min: 0 }
+                  .booking__men.plus-btn +
+              .booking__half-flex-box.booking__flex-box
+                .booking__flex-box
+                  = image_tag 'icons/women.svg', class: 'booking__icon'
+                  p Phụ nữ
+                .booking__flex-box
+                  .booking__women.minus-btn -
+                  = f.input :women,
+                      label: false,
+                      input_html: { type: 'number', min: 0 }
+                  .booking__women.plus-btn +
+
+            .booking__icons-gender-wrapper
+              .booking__half-flex-box.booking__flex-box
+                .booking__flex-box
+                  = image_tag 'icons/baby.png', class: 'booking__icon'
+                  p Bé trai
+                .booking__flex-box
+                  .booking__boy.minus-btn -
+                  = f.input :baby_boy,
+                      label: false,
+                      input_html: { type: 'number', min: 0 }
+                  .booking__boy.plus-btn +
+              .booking__half-flex-box.booking__flex-box
+                .booking__flex-box
+                  = image_tag 'icons/baby-girl.png', class: 'booking__icon'
+                  p Bé gái
+                .booking__flex-box
+                  .booking__girl.minus-btn -
+                  = f.input :baby_girl,
+                      label: false,
+                      input_html: { type: 'number', min: 0 }
+                  .booking__girl.plus-btn +
+
+            .booking__message
+              strong
+                | *Chú ý:
+              span
+                |  Khách trong phòng bao gồm khách đăng ký ban đầu
+        .booking__buttton-wrapper
+          - if @booking.unchecked_in?
+            = f.button :submit, 'Hủy đặt', class: 'cancel-btn', data: {confirm: 'Are your sure?' }, method: :delete, name: 'cancel_booking'
+            = f.button :submit, 'Bắt đầu nhận phòng', class: 'rent-btn'
+          - else
+            = link_to  "Thanh toán", "#", class: 'btn', remote: true

@@ -8,6 +8,9 @@
     white-space: nowrap
   h4
     font-weight: bold
+
+  hr
+    border-width: 2px
   p
     color: $lightGray
 
@@ -18,8 +21,23 @@
     display: flex
     justify-content: space-between
     align-items: center
-    border-bottom: $border-line-whisper
     padding: 0 25pt 15pt 25pt
+
+
+  &__room-info-detail
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
+    padding: 0 25pt 15pt 25pt
+    margin-top: 20px
+
+    &__detail-item
+      margin-bottom: 12px
+      width: 33.33%
+      &__detail-data
+        color: #333333!important
+        font-weight: bold
 
   &__form-title-container
     display: flex
@@ -95,7 +113,7 @@
         &:hover
           background-color: #3e61b9
 
-      &.reserve-btn
+      &.reserve-btn, &.cancel-btn
         background-color: $white
         border: 1px solid $blue
         color: $blue
@@ -106,16 +124,32 @@
         &:hover
           background-color: #4a73d812
 
+      &.cancel-btn
+        color: red
+        border-color: red
+
   &__main-content-wrapper
     padding-bottom: 20pt
 
   .show-room-members
     display: none
 
+  .show-services
+    display: none
+
   &__icon
     width: 21pt
     padding-right: 5pt
     object-fit: cover
+
+  &__members-info-wrapper
+    display: flex
+    justify-content: space-between
+    margin: 10pt 0
+
+    .value
+      font-weight: bold
+      color: #333333
 
   &__add-customers
     display: flex
@@ -133,6 +167,24 @@
   &__customer_mates
     padding: 10pt 0
 
+  &__add-services
+    cursor: pointer
+
+    .arrow-up
+        content: ""
+        width: 10px
+        float: right
+        height: 10px
+        border: 2px solid black
+        border-top: transparent
+        border-left: transparent
+        margin-top: -18px
+        margin-right: 3px
+        transform: rotate(-45deg)
+
+    .rotate-45
+      transform: rotate(45deg)
+
   &__flex-box
     display: flex
     align-items: center
@@ -143,7 +195,7 @@
     > div:first-child
       margin-right: 15pt
 
-  &__room-status
+  &__room-status-available
     display: flex
     justify-content: center
     align-items: center
@@ -151,6 +203,33 @@
     width: 90pt
     height: 26pt
     border-radius: 13pt
+    h4
+      font-weight: unset
+
+  &__room-status-checked_in
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #fff5dd
+    width: 95pt
+    height: 26pt
+    border-radius: 13pt
+    color: #f9be39
+    font-weight: lighter
+    h4
+      font-weight: unset
+
+  &__room-status-booked
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #e9f0fd
+    width: 90pt
+    height: 26pt
+    border-radius: 13pt
+    color: #4a73d8
+    h4
+      font-weight: unset
 
   &__icons-gender-wrapper
     display: flex
@@ -161,15 +240,16 @@
       margin-bottom: 0
       padding-left: 0
 
-  .booking__men.minus-btn,
-  .booking__men.plus-btn,
-  .booking__women.minus-btn,
-  .booking__women.plus-btn,
-  .booking__boy.plus-btn,
-  .booking__boy.minus-btn,
-  .booking__girl.plus-btn,
-  .booking__girl.minus-btn
+  // .booking__men.minus-btn,
+  // .booking__men.plus-btn,
+  // .booking__women.minus-btn,
+  // .booking__women.plus-btn,
+  // .booking__boy.plus-btn,
+  // .booking__boy.minus-btn,
+  .plus-btn,
+  .minus-btn
     cursor: pointer
+    text-align: center
 
   &__half-flex-box
     flex: 1
@@ -182,6 +262,55 @@
 
   &__message
     padding-top: 20pt
+    font-size: 10pt
+    strong
+      font-weight: bold
+
+  &__service-wrapper
+    margin-bottom: 10pt
+    position: relative
+
+    &:first-child
+      margin-top: 7pt
+
+    display: flex
+    align-items: center
+
+    .service_img
+      width: 35px
+      height: 35px
+      display: block
+      margin-right: 14px
+
+    input[type=number]
+      margin-bottom: unset
+      text-align: center
+      border: none
+
+    .service_total_price
+      position: absolute
+      right: 0
+      font-weight: bold
+
+    .booking__service-input
+      margin-left: 12px
+
+      .service-name
+        color: #4f4f4f
+
+
+      .booking__flex-box
+        border: 1px solid #f5f8f7
+
+        & > div:first-child
+          margin-right: 0
+
+        & > div
+          width: unset
+
+        .plus-btn,.minus-btn
+          width: 20px
+
 
 .room_bookings_rent_type
   display: flex

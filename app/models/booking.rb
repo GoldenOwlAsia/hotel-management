@@ -7,19 +7,22 @@
 #  customer_id   :bigint           not null
 #  checkin_time  :datetime
 #  checkout_time :datetime
-#  phone_number  :string
 #  status        :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  rent_type     :string
+#  price         :decimal(, )
+#  order_id      :bigint
 #
 
 class Booking < ApplicationRecord
   belongs_to :room
   belongs_to :customer
-  belongs_to :order, optional: true
+  has_one :order
 
   has_many :guests, dependent: :destroy
+  has_many :service_uses, dependent: :destroy
+  has_many :services, through: :service_uses
 
   validates :rent_type, presence: true
   validates :checkin_time, presence: true

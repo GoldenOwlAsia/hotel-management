@@ -10,5 +10,10 @@ Rails.application.routes.draw do
     resources :bookings
   end
 
+  resources :bookings do
+    member do
+      post :check_in
+    end
+  end
   resources :guests
 end

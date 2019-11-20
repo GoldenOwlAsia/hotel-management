@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: guests
+# Table name: service_uses
 #
 #  id         :bigint           not null, primary key
-#  guest_type :string
-#  quantity   :integer
+#  service_id :bigint           not null
 #  booking_id :bigint           not null
+#  quantity   :integer
+#  price      :decimal(, )
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Guest < ApplicationRecord
+class ServiceUse < ApplicationRecord
+  belongs_to :service
   belongs_to :booking
-
-  enum guest_type: { women: 'women', men: 'men', baby_girl: 'baby_girl', baby_boy: 'baby_boy' }
 end
