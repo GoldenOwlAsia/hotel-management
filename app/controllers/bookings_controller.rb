@@ -114,9 +114,9 @@ class BookingsController < ApplicationController
 
   def destroy
     booking = Booking.find(params[:id])
-    room_id = booking.room_id
+    hotel_id = booking.room.hotel.id
     booking.destroy
-    redirect_to rooms_path(hotel_id: Room.find(room_id).hotel.id)
+    redirect_to rooms_path(hotel_id: hotel_id)
   end
 
   private
