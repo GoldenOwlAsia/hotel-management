@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
     @checkout_time = params[:checkout_time] || 1.day.from_now.change(hour: 12)
 
     # example: {"queen"=>10, "double"=>10, "single"=>10}
-    @available_rooms_groups = available_rooms.group(:room_type).count
+    @available_rooms_groups = available_rooms.group(:room_type).size
     @available_rooms_groups.default = 0
 
     # array of room active records
