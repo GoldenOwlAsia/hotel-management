@@ -14,6 +14,6 @@
 
 class Order < ApplicationRecord
   belongs_to :booking
-
+  belongs_to :customer
   enum payment_method: { cash: 'cash', credit_card: 'credit_card', bank_transfer: 'bank_transfer' }
 end
