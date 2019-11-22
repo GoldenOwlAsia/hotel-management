@@ -3,8 +3,13 @@
     div
       h4 Phòng #{ @room.room_number }
       p #{ get_room_type_text(@room.room_type) }
-    .booking__room-status-available
-      h4 Phòng trống
+
+    -if @booking.checked_in?
+      .booking__room-status-checked_in
+        h4 Đang được thuê
+    -else
+      .booking__room-status-booked
+        h4 Đã đặt phòng
   hr
   div
     .booking__form-title-container
@@ -14,7 +19,7 @@
         p Chụp ảnh thông tin
 
     .booking__form-wrapper
-      = simple_form_for @room_booking, url: room_bookings_path(@room), method: :post do |f|
+      = simple_form_for @room_booking, url: room_booking_path(@room, @booking),method: :patch do |f|
         .booking__main-content-wrapper
           div
             = f.label 'Tên khách hàng'
@@ -60,7 +65,7 @@
                     = f.input :men,
                         label: false,
                         placeholder: '0',
-                        input_html: { type: 'number', value: 0, min: 0, readonly: true}
+                        input_html: { type: 'number', value: @room_booking.men, min: 0, readonly: true }
                     .booking__men.plus-btn +
                 .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
@@ -70,7 +75,7 @@
                     .booking__women.minus-btn -
                     = f.input :women,
                         label: false,
-                        input_html: { type: 'number', value: 0, min: 0, readonly: true }
+                        input_html: { type: 'number', value: @room_booking.women, min: 0, readonly: true }
                     .booking__women.plus-btn +
 
               .booking__icons-gender-wrapper
@@ -82,7 +87,7 @@
                     .booking__boy.minus-btn -
                     = f.input :baby_boy,
                         label: false,
-                        input_html: { type: 'number', value: 0, min: 0, readonly: true}
+                        input_html: { type: 'number', value: @room_booking.baby_boy, min: 0, readonly: true}
                     .booking__boy.plus-btn +
                 .booking__half-flex-box.booking__flex-box
                   .booking__flex-box
@@ -92,7 +97,7 @@
                     .booking__girl.minus-btn -
                     = f.input :baby_girl,
                         label: false,
-                        input_html: { type: 'number', value: 0, min: 0, readonly: true}
+                        input_html: { type: 'number', value: @room_booking.baby_girl, min: 0, readonly: true }
                     .booking__girl.plus-btn +
 
               .booking__message
@@ -102,5 +107,5 @@
                   |  Khách trong phòng bao gồm khách đăng ký ban đầu
 
         .booking__buttton-wrapper
-          = f.button :submit, 'Đặt phòng', name: 'reserve', class: 'reserve-btn'
-          = f.button :submit, 'Bắt đầu nhận phòng', class: 'rent-btn'
+          button class="cancel_edit" type="button" Hủy thay đổi
+          = f.button :submit, 'Lưu thay đổi', class: 'rent-btn', remote: true, name: 'save_edit'

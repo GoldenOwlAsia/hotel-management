@@ -1,10 +1,14 @@
 class RoomBooking
-  attr_accessor :name, :customer_nin, :phone_number, :rent_type, :room_id, :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy, :services
-
   include ActiveModel::Model
   extend ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
+
+  attr_accessor :name, :customer_nin, :phone_number, :rent_type, :room_id, :checkin_date, :checkin_time, :men, :women, :baby_girl, :baby_boy, :services
+
+  validates :name, :customer_nin, :checkin_date, :checkin_time, presence: true
+  validates :name, length: { maximum: 30 }
+  validates :phone_number, length: { maximum: 10 }
 
   def initialize(params)
     @room_id = params.fetch(:room_id)
