@@ -9,6 +9,6 @@ module BookingsHelper
   def get_booking_guests(booking)
     return if booking.blank?
 
-    booking.guests.pluck :guest_type
+    booking.guests.where.not(quantity: 0).pluck :guest_type
   end
 end
