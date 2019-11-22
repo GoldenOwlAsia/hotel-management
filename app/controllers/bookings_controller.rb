@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
       room_id: params[:room_id],
       checkin_time: params[:checkin_time].to_datetime,
       checkin_date: params[:checkin_time].to_datetime
-
     )
   end
 
@@ -25,7 +24,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(
       customer: @customer,
       checkin_time: checkin_datetime,
-      checkout_time: 1.month.from_now,
       rent_type: booking_params[:rent_type],
       room_id: params[:room_id],
       status: params['commit'] ? 'checked_in' : 'unchecked_in',
@@ -50,20 +48,32 @@ class BookingsController < ApplicationController
 
   def show
     @room_booking = set_room_booking_form_object(@room, @booking)
+    # additional variable if the booking is checked in
+    if @booking.checked_in?
+      @checkout_time = Time.now
+      @total_guests = [@room_booking.men, @room_booking.women, @room_booking.baby_boy, @room_booking.baby_girl].sum
+    end
   end
 
   def edit
+    @room_booking = set_room_booking_form_object(@room, @booking)
+    update if params['save_edit'].present?
   end
 
   def update
-    # @customer = Customer.find_by(customer_nin: booking_params[:customer_nin])
+    room_booking = set_room_booking_form_object(@room, @booking)
     @customer = @booking.customer
     @customer.update(name: booking_params[:name], customer_nin: booking_params[:customer_nin], phone_number: booking_params[:phone_number])
 
-    @booking.guests.men.first_or_initialize.update(quantity: men_count)
-    @booking.guests.women.first_or_initialize.update(quantity: women_count)
-    @booking.guests.baby_girl.first_or_initialize.update(quantity: baby_girl_count)
-    @booking.guests.baby_boy.first_or_initialize.update(quantity: baby_boy_count)
+    men_changed = (room_booking.men != men_count)
+    women_changed = (room_booking.women != women_count)
+    baby_boy_changed = (room_booking.baby_boy != baby_boy_count)
+    baby_girl_changed = (room_booking.baby_girl != baby_girl_count)
+
+    @booking.guests.men.first_or_initialize.update(quantity: men_count) if men_changed
+    @booking.guests.women.first_or_initialize.update(quantity: women_count) if women_changed
+    @booking.guests.baby_girl.first_or_initialize.update(quantity: baby_girl_count) if baby_girl_changed
+    @booking.guests.baby_boy.first_or_initialize.update(quantity: baby_boy_count) if baby_boy_changed
 
     redirect_to rooms_path(hotel_id: Room.find(params[:room_id]).hotel.id)
   end
@@ -71,27 +81,20 @@ class BookingsController < ApplicationController
   def check_in
     return if @booking.checked_in?
 
-    @room_booking = set_room_booking_form_object(@room, @booking)
-
+    room_booking = set_room_booking_form_object(@room, @booking)
     if params['cancel_booking']
       destroy
     elsif params['commit']
       @booking.status = 'checked_in'
 
-      # only update if user change guest quantity
-      @booking.guests.men.first_or_initialize.quantity = men_count if @room_booking.men != men_count
+      men_changed = (room_booking.men != men_count)
+      women_changed = (room_booking.women != women_count)
+      baby_boy_changed = (room_booking.baby_boy != baby_boy_count)
+      baby_girl_changed = (room_booking.baby_girl != baby_girl_count)
 
-      # only update if user change guest quantity
-      @booking.guests.women.first_or_initialize.quantity = women_count if @room_booking.women != women_count
-
-      # only update if user change guest quantity
-      @booking.guests.baby_girl.first_or_initialize.quantity = baby_girl_count if @room_booking.baby_girl != baby_girl_count
-
-      # only update if user change guest quantity
-      @booking.guests.baby_boy.first_or_initialize.quantity = baby_boy_count if @room_booking.baby_boy != baby_boy_count
-
+      if @booking.save
       # update service uses
-      @room_booking.services.each do |s|
+        room_booking.services.each do |s|
         service_name = s[0]
         old_quantity = s[1].to_i
         new_quantity = params[s[0]].to_i
@@ -103,7 +106,11 @@ class BookingsController < ApplicationController
         end
       end
 
-      if @booking.save
+        @booking.guests.men.first_or_initialize.update(quantity: men_count) if men_changed
+        @booking.guests.women.first_or_initialize.update(quantity: women_count) if women_changed
+        @booking.guests.baby_girl.first_or_initialize.update(quantity: baby_girl_count) if baby_girl_changed
+        @booking.guests.baby_boy.first_or_initialize.update(quantity: baby_boy_count) if baby_boy_changed
+
         redirect_to rooms_path(hotel_id: @booking.room.hotel.id)
       else
         flash[:danger] = "Check in fail!"
@@ -123,7 +130,6 @@ class BookingsController < ApplicationController
 
   def set_room_booking_form_object(room_record, booking_record)
     RoomBooking.new(
-      booking_id: booking_record.id,
       room_id: room_record.id,
       checkin_time: booking_record.checkin_time,
       checkin_date: booking_record.checkin_time.to_date,
@@ -145,32 +151,29 @@ class BookingsController < ApplicationController
   end
 
   def women_count
-    @women_count ||= booking_params[:women].to_i
+    @women_count = booking_params[:women].to_i
   end
 
   def men_count
-    @men_count ||= booking_params[:men].to_i
+    @men_count = booking_params[:men].to_i
   end
 
   def baby_girl_count
-    @baby_girl_count ||= booking_params[:baby_girl].to_i
+    @baby_girl_count = booking_params[:baby_girl].to_i
   end
 
   def baby_boy_count
-    @baby_boy_count ||= booking_params[:baby_boy].to_i
+    @baby_boy_count = booking_params[:baby_boy].to_i
   end
 
   def checkin_datetime
-    @checkin_datetime ||= (booking_params[:checkin_date].to_datetime + Time.parse(booking_params[:checkin_time]).seconds_since_midnight.seconds).to_datetime
+    @checkin_datetime = (booking_params[:checkin_date].to_datetime + Time.parse(booking_params[:checkin_time]).seconds_since_midnight.seconds).to_datetime
   end
 
   def booking_params
     params.require(:room_booking).permit(
       :checkin_date,
       :checkin_time,
-      :booked_at,
-      :room_id,
-      :customer_id,
       :status,
       :name,
       :phone_number,

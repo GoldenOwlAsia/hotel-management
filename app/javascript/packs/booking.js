@@ -56,3 +56,9 @@ $(document).on('click','.booking__add-services',function(){
     $('.arrow-up').toggleClass('rotate-45');
   });
 });
+
+
+$(document).on('click','.cancel_edit',function(){
+  $('.right-sidebar').hide();
+  $('.overlay').hide();
+});
