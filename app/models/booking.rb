@@ -17,12 +17,15 @@
 
 class Booking < ApplicationRecord
   belongs_to :room
-  belongs_to :customer
-  has_one :order
+  belongs_to :customer, dependent: :destroy
+
+  has_one :order, dependent: :destroy
 
   has_many :guests, dependent: :destroy
   has_many :service_uses, dependent: :destroy
   has_many :services, through: :service_uses
+
+  accepts_nested_attributes_for :service_uses
 
   validates :rent_type, presence: true
   validates :checkin_time, presence: true
