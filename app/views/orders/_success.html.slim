@@ -1,0 +1,8 @@
+.payment-success
+  .pay-success-image
+    = image_tag "success.png"
+  .pay-success-title
+    h1
+      | Thanh toán thành công!
+  .pay-success-back-homepage
+    = link_to "TRỞ VỀ TRANG CHÍNH", booking_order_path(@booking.id, @order.id), method: :delete, class: "btn btn-primary"

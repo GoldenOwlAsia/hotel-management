@@ -1,0 +1,51 @@
+.payment-information
+  .payinfor-room-info
+    h4
+      = link_to room_booking_path(@booking.id), remote: true
+        i.fa.fa-angle-left
+      | Phòng #{ @booking.room.room_number }
+  .payinfor-title
+    h1 Thông tin thanh toán
+  .payinfor-detail-item
+    .wrapper-title-data
+      .item-title
+        | Hình thức
+      .detail-data
+        = get_rent_type_text(@booking.rent_type)
+    .wrapper-title-data
+      .item-title
+        | Giá thuê theo giờ
+      .detail-data
+        = number_with_delimiter(@booking.price.to_i)
+        | /giờ
+    .wrapper-title-data
+      .item-title
+        | Thời gian thuê
+      .detail-data
+        = @rental_time
+    .wrapper-title-data
+      .item-title
+        | Tiền phòng phải trả
+      .detail-data
+        = number_with_delimiter(@room_money.to_i)
+  .payinfor-service-uses
+    - @services.each do |s|
+      - money = s.service.price.to_i * s.quantity.to_i
+      .wrapper-title-data
+        .item-title
+          = s.service.name
+          |  x
+          = s.quantity
+        .detail-data
+          = number_with_delimiter(money)
+      - @total_service_money += money
+  .payinfor-total-pay
+    .wrapper-title-data
+      .item-title Tổng tiền phải trả
+      .detail-data
+        - session[:total_pay] = @room_money + @total_service_money
+        = number_with_delimiter(session[:total_pay].to_i)
+        span
+          |  VNĐ
+  .footer.navbar-fixed-bottom
+    = link_to  "HOÀN THÀNH", booking_orders_path(@booking), method: :post, remote: true, class: "btn btn-primary"

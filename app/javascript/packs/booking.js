@@ -11,15 +11,41 @@ $(document).on('click', '.plus-btn', function () {
 
     // get the service price
     let price = Number($input.data('price'));
-    let input_value = Number($input.val());
+    let amount = Number($input.val());
+    let service_id = Number($(this).data("service_id"));
+    let booking_id = $("#room_booking_id").val();
+    let service_use_id = Number($(this).data("service_use_id"));
+    let url = $("#room_booking_ajax_service_use_url").val();
 
     // get span tag value which represents the price
     let totalPriceSpanTag= $input.parents('.booking__service-input').next('.service_total_price').find('span');
 
     // add comma every 3 digits
-    let total_price = (price*input_value).toLocaleString('en');
+    let total_price = (price*amount).toLocaleString('en');
 
     totalPriceSpanTag.text(total_price);
+    let data = {
+      booking_id: booking_id,
+      service_id: service_id,
+      service_use_id: service_use_id,
+      amount: amount
+    };
+    console.log(data);
+
+    const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
+    $.ajax({
+      url: '/service_uses/update_service_use',
+      dataType: 'json',
+      type: 'POST',
+      data: JSON.stringify(data),
+      headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+              },
+      success: function(){
+        console.log();
+      }
+    });
   }
 });
 
@@ -32,17 +58,43 @@ $(document).on('click', '.minus-btn', function () {
 
     // get the service price
     let price = Number($input.data('price'));
-    let input_value = Number($input.val());
+    let amount = Number($input.val());
+    let service_id = Number($(this).data("service_id"));
+    let booking_id = $("#room_booking_id").val();
+    let service_use_id = Number($(this).data("service_use_id"));
+    let url = $("#room_booking_ajax_service_use_url").val();
 
     // get span tag value which represents the price
     let totalPriceSpanTag= $input.parents('.booking__service-input').next('.service_total_price').find('span');
 
     // add comma every 3 digits
-    let total_price = (price*input_value).toLocaleString('en');
+    let total_price = (price*amount).toLocaleString('en');
 
     totalPriceSpanTag.text(total_price);
-  }
 
+    let data = {
+      booking_id: booking_id,
+      service_id: service_id,
+      service_use_id: service_use_id,
+      amount: amount
+    };
+    console.log(data);
+
+    const csrfToken = document.querySelector('[name="csrf-token"]').getAttribute('content');
+    $.ajax({
+      url: '/service_uses/update_service_use',
+      dataType: 'json',
+      type: 'POST',
+      data: JSON.stringify(data),
+      headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+              },
+      success: function(){
+        console.log();
+      }
+    });
+  }
 });
 
 $(document).on('click', '.overlay', function () {

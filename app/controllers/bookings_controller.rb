@@ -93,19 +93,6 @@ class BookingsController < ApplicationController
       baby_girl_changed = (room_booking.baby_girl != baby_girl_count)
 
       if @booking.save
-      # update service uses
-        room_booking.services.each do |s|
-        service_name = s[0]
-        old_quantity = s[1].to_i
-        new_quantity = params[s[0]].to_i
-
-        # only update if any servie input value changes
-        if old_quantity != new_quantity
-          service_record = Service.find_by_name(service_name)
-          @booking.service_uses.create(service_id: service_record.id, quantity: new_quantity)
-        end
-      end
-
         @booking.guests.men.first_or_initialize.update(quantity: men_count) if men_changed
         @booking.guests.women.first_or_initialize.update(quantity: women_count) if women_changed
         @booking.guests.baby_girl.first_or_initialize.update(quantity: baby_girl_count) if baby_girl_changed
@@ -118,6 +105,20 @@ class BookingsController < ApplicationController
       end
     end
   end
+
+  def check_out
+    @booking = Booking.find(params[:id])
+    @rental_time = (((Time.current + 7.hours).to_f - @booking.checkin_time.to_f)/1.hour).round(1).abs()
+    @room_money = @rental_time * @booking.price.to_i
+    @services = @booking.service_uses
+    @total_service_money = 0
+    @total_pay_money = 0
+    session[:total_pay] = 0
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def destroy
     booking = Booking.find(params[:id])
@@ -141,7 +142,7 @@ class BookingsController < ApplicationController
       women: booking_record.guests.where(guest_type: 'women').first&.quantity || 0,
       baby_girl: booking_record.guests.where(guest_type: 'baby_girl').first&.quantity || 0,
       baby_boy: booking_record.guests.where(guest_type: 'baby_boy').first&.quantity || 0,
-      services: Service.all.map { |s| [s.name, (booking_record.service_uses.where(service_id: s.id).first&.quantity || 0), s.price]}
+      services: Service.all.map { |s| [s.name, (booking_record.service_uses.where(service_id: s.id).first&.quantity || 0), s.price, s.id, booking_record.service_uses.ids]}
     )
   end
 
