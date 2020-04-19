@@ -113,12 +113,11 @@ class BookingsController < ApplicationController
     @services = @booking.service_uses
     @total_service_money = 0
     @total_pay_money = 0
-    session[:total_pay] = 0
+    session[:total_pay] = @room_money + @total_service_money
     respond_to do |format|
       format.js
     end
   end
-
 
   def destroy
     booking = Booking.find(params[:id])

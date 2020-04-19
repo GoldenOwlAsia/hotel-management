@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#index'
-  post "service_uses/update_service_use", to: "service_uses#update_service_use", as: :service_use
+  post "service_uses/update_service_use", to: "service_uses#update", as: :service_use
 
   devise_for :users, controllers: { registrations: 'registrations' }
 

@@ -57,8 +57,8 @@
     .booking__form-wrapper
       - if @booking.unchecked_in?
         = simple_form_for @room_booking, url: check_in_booking_path(id: @booking.id, room_id: @room.id), method: :post do |f|
-          = f.hidden_field :id, :value => @booking.id
-          = f.hidden_field :ajax_service_use_url, :value => service_use_path
+          = f.hidden_field :id, value: @booking.id
+          = f.hidden_field :ajax_service_use_url, value: service_use_path
           hr
           .booking__services
             .booking__add-services
@@ -156,8 +156,8 @@
               = f.button :submit, 'Bắt đầu nhận phòng', class: 'rent-btn'
       - else
         = simple_form_for @room_booking, url: check_out_booking_path(@booking), method: :post, remote: true do |f|
-          = f.hidden_field :id, :value => @booking.id
-          = f.hidden_field :ajax_service_use_url, :value => service_use_path
+          = f.hidden_field :id, value: @booking.id
+          = f.hidden_field :ajax_service_use_url, value: service_use_path
           hr
           .booking__services
             .booking__add-services

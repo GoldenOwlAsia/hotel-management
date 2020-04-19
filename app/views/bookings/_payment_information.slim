@@ -30,7 +30,7 @@
         = number_with_delimiter(@room_money.to_i)
   .payinfor-service-uses
     - @services.each do |s|
-      - money = s.service.price.to_i * s.quantity.to_i
+      - money = service_money(s.service.price, s.quantity)
       .wrapper-title-data
         .item-title
           = s.service.name
@@ -43,7 +43,6 @@
     .wrapper-title-data
       .item-title Tổng tiền phải trả
       .detail-data
-        - session[:total_pay] = @room_money + @total_service_money
         = number_with_delimiter(session[:total_pay].to_i)
         span
           |  VNĐ

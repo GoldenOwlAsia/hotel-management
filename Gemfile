@@ -38,7 +38,7 @@ gem 'carrierwave'
 gem 'faker'
 gem 'sentry-raven'
 
-#Use font
+# Use the font-awesome
 gem 'font-awesome-rails'
 
 group :development, :test do
