@@ -8,7 +8,6 @@
 .rooms
   font-size: 10.5pt
   padding-top: 195pt
-  padding-bottom: 50pt
 
   &__room-title
     font-weight: bold
@@ -119,10 +118,13 @@
 
   &__room-container
     h1
+      font-size: 16px
       padding: 20pt 0 0 0
       text-transform: uppercase
       text-align: center
       color: $lightGray
+      padding-top: 30px
+      padding-bottom: 7px
 
   &__choose-room-btn-wrapper
     a
@@ -284,7 +286,8 @@
 
 @media screen and (min-width: 1370px)
   .rooms
-    padding: 172pt 62pt 0 62pt
+    padding: 172pt 62pt 35pt 62pt
+
     &__room-wrapper
       grid-template-columns: repeat(6, auto)
 

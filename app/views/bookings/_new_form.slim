@@ -18,7 +18,7 @@
         .booking__main-content-wrapper
           div
             = f.label 'Tên khách hàng'
-            = f.input :name, label: false, placeholder: 'Trần Văn Sơn'
+            = f.input :name, label: false
           .booking__flex-box
             div
               = f.label 'Số CMND'
@@ -45,10 +45,10 @@
               = f.input :checkin_time, as: :time, html5: true, label: false
 
           .booking__customer_mates
-            h4 Khách cùng phòng
+            h4 Khách trong phòng
             div.booking__add-customers
               span +
-              p Thêm khách cùng phòng
+              p Thêm khách trong phòng
             .booking__customer-icons-wrapper.show-room-members
               .booking__icons-gender-wrapper
                 .booking__half-flex-box.booking__flex-box
