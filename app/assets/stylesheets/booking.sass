@@ -23,6 +23,8 @@
     align-items: center
     padding: 0 25pt 15pt 25pt
 
+    h4
+      font-size: 24px
 
   &__room-info-detail
     display: flex
@@ -49,14 +51,15 @@
     padding: 15pt 25pt 0 25pt
 
     .edit-booking-btn
-      width: 20px
-      height: 20px
+      width: 30%
+      height: 110%
       display: block
       cursor: pointer
 
   &__form-wrapper
     display: flex
     justify-content: center
+    font-size: 14px
     form
       width: 100%
       padding: 15pt 25pt
@@ -105,6 +108,7 @@
   &__buttton-wrapper
     display: flex
     justify-content: center
+    margin-top: 78%
 
     input[type='submit']
       border-radius: 4px
@@ -158,7 +162,7 @@
         margin-bottom: 15pt
 
   &__main-content-wrapper
-    padding-bottom: 20pt
+    padding-bottom: 223px
 
   .show-room-members
     display: none
@@ -189,12 +193,19 @@
     height: 33pt
     margin: 10pt 0
     cursor: pointer
+
     span
       color: $smokeGray
       font-size: 20pt
 
+    p
+      color: #33343a
+
   &__customer_mates
     padding: 10pt 0
+
+    h4
+      font-size: 16px
 
   &__add-services
     cursor: pointer
@@ -232,8 +243,10 @@
     width: 90pt
     height: 26pt
     border-radius: 13pt
+
     h4
       font-weight: unset
+      font-size: 14px
 
   &__room-status-checked_in
     display: flex
@@ -247,6 +260,7 @@
     font-weight: lighter
     h4
       font-weight: unset
+      font-size: 14px
 
   &__room-status-booked
     display: flex
@@ -259,6 +273,7 @@
     color: #4a73d8
     h4
       font-weight: unset
+      font-size: 14px
 
   &__icons-gender-wrapper
     display: flex
@@ -288,6 +303,9 @@
   &__camera-wrapper
     display: flex
     align-items: center
+
+    p
+      font-size: 14px
 
   &__message
     padding-top: 20pt

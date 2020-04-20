@@ -39,17 +39,18 @@
 
       .booking__room-info-detail__detail-item
         p.booking__room-info-detail__detail-item__detail-title Ngày
-        p.booking__room-info-detail__detail-item__detail-data = @room_booking.checkin_date
+        p.booking__room-info-detail__detail-item__detail-data = @room_booking.checkin_date.strftime("%m/%d/%Y")
+
+      - if @booking.checked_in?
+        .booking__room-info-detail__detail-item
+          p.booking__room-info-detail__detail-item__detail-title Số lượng khách
+          p.booking__room-info-detail__detail-item__detail-data = @total_guests
 
       .booking__room-info-detail__detail-item
         p.booking__room-info-detail__detail-item__detail-title Giờ vào
         p.booking__room-info-detail__detail-item__detail-data = format_hour(@room_booking.checkin_time)
 
       - if @booking.checked_in?
-          .booking__room-info-detail__detail-item
-            p.booking__room-info-detail__detail-item__detail-title Số lượng khách
-            p.booking__room-info-detail__detail-item__detail-data = @total_guests
-
           .booking__room-info-detail__detail-item
             p.booking__room-info-detail__detail-item__detail-title Giờ ra (hiện tại)
             p.booking__room-info-detail__detail-item__detail-data = format_hour(@checkout_time)
@@ -81,7 +82,7 @@
           hr
           - if @booking.unchecked_in?
             .booking__customer_mates
-              h4 Khách cùng phòng
+              h4 Khách trong phòng
               .booking__members-info-wrapper
                 .room-member-info
                   p Đàn ông
@@ -98,7 +99,7 @@
 
               div.booking__add-customers
                 span +
-                p Thêm khách cùng phòng
+                p Thêm khách trong phòng
               .booking__customer-icons-wrapper.show-room-members
                 .booking__icons-gender-wrapper
                   .booking__half-flex-box.booking__flex-box
