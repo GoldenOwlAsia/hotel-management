@@ -16,4 +16,10 @@ class Order < ApplicationRecord
   belongs_to :booking
   belongs_to :customer
   enum payment_method: { cash: 'cash', credit_card: 'credit_card', bank_transfer: 'bank_transfer' }
+
+  before_create :set_payment_method
+
+  def set_payment_method
+    self.payment_method = 'cash'
+  end
 end

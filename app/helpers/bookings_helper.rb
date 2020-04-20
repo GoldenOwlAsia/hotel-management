@@ -11,4 +11,8 @@ module BookingsHelper
 
     booking.guests.where.not(quantity: 0).pluck :guest_type
   end
+
+  def service_money(price, quantity)
+    price.to_i * quantity.to_i
+  end
 end

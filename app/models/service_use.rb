@@ -14,4 +14,6 @@
 class ServiceUse < ApplicationRecord
   belongs_to :service
   belongs_to :booking
+
+  accepts_nested_attributes_for :service
 end

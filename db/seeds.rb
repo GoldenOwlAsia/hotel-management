@@ -71,7 +71,6 @@ puts '--> Creating rooms...'
   price = room_position[:price]
   room_type = [:single, :double, :queen].sample
   Room.create!(room_number: room_number, price: price, floor_number: floor, room_type: room_type, hotel: Hotel.first)
-  Room.create!(room_number: room_number, price: price, floor_number: floor, room_type: room_type, hotel: Hotel.second)
 end
 
 [
@@ -90,7 +89,6 @@ end
   price = room_position[:price]
   room_type = [:single, :double, :queen].sample
   Room.create!(room_number: room_number, price: price, floor_number: floor, room_type: room_type, hotel: Hotel.first)
-  Room.create!(room_number: room_number, price: price, floor_number: floor, room_type: room_type, hotel: Hotel.second)
 end
 
 puts '--> Creating customers'
