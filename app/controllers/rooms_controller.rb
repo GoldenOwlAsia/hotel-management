@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
     @double_rooms = @rooms.double
     @queen_rooms = @rooms.queen
     # example: { 0=>[ #room 1, #room 2 ], 1=>[ #room 3, #room 4 ] }
-    @grouped_rooms = @rooms.group_by(&:floor_number)
+    @grouped_rooms = @rooms.order(room_number: :asc).group_by(&:floor_number)
     # example: [ 0, 1 ]
     @sorted_groups = @grouped_rooms.keys.sort
 

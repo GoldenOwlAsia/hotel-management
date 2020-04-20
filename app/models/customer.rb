@@ -12,6 +12,7 @@
 
 class Customer < ApplicationRecord
   has_many :bookings
+  has_many :orders
   has_many :rooms, through: :bookings, source: :rooms
 
   validates :customer_nin, presence: true
